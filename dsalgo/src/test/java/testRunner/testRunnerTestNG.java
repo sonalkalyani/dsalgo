@@ -1,4 +1,4 @@
-package com.dsportalapp.dsalgo.testRunner;
+package testRunner;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;

@@ -1,11 +1,11 @@
-package com.dsportalapp.dsalgo.utilities;
+package utilities;
 
 import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
 
-import com.dsportalapp.dsalgo.POM.PageObjectManager;
-import com.dsportalapp.dsalgo.webDriverManager.DriverManager;
+import pageObjectModel.PageObjectManager;
+import webDriverManager.DriverManager;
 
 public class TestSetup {
 	public WebDriver driver;
