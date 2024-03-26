@@ -1,4 +1,4 @@
-package webDriverManager;
+package com.dsportal.dsalgo.webDriverManager;
 
 import java.io.FileInputStream;
 import java.io.IOException;

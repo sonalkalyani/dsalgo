@@ -1,4 +1,4 @@
-package pageObjectModel;
+package com.dsportal.dsalgo.POM;
 
 import org.openqa.selenium.WebDriver;
 

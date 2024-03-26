@@ -1,7 +1,8 @@
-package hooks;
+package com.dsportal.dsalgo.hooks;
+
+import com.dsportal.dsalgo.utilities.TestSetup;
 
 import io.cucumber.java.After;
-import utilities.TestSetup;
 
 public class Hooks {
 	

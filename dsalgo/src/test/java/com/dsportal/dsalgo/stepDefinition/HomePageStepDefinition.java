@@ -1,4 +1,4 @@
-package stepDefinition;
+package com.dsportal.dsalgo.stepDefinition;
 
 import java.time.Duration;
 
@@ -7,9 +7,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.dsportal.dsalgo.utilities.TestSetup;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import utilities.TestSetup;
 
 
 
