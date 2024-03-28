@@ -11,11 +11,15 @@ public class TestSetup {
 	public WebDriver driver;
 	public DriverManager drivermanager;
 	public PageObjectManager pageobjectmanager;
+	
 
 	public TestSetup() throws IOException {
 		
 		drivermanager = new DriverManager();
 		pageobjectmanager = new PageObjectManager(drivermanager.getDriverManager());
+		
 	}
+	
+	
 	
 }
