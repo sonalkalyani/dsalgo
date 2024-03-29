@@ -12,7 +12,8 @@ Background: Check User is in home page
 	 
 	 
 	 User should be logged into the DSAslgo Portal
-
+	 
+#
 
 Scenario: As a user, I should be able to view and navigate the array topics
 	Given User clicks on Array - Get Started button
