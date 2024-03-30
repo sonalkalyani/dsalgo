@@ -7,7 +7,9 @@ public class testRunnerTestNG {
 
 	@CucumberOptions(
 			features=
-					"src/test/resources/features/HomePage.feature",
+
+					"src/test/resources/features/linkedList.feature",
+
 			glue="com.dsportalapp.dsalgo.stepDefinition",
 			monochrome = true,
 //			dryRun=true
