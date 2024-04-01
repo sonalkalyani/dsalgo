@@ -8,64 +8,77 @@ Background:
  Given User should be logged in with valid credential.
 
 Scenario:
-       #//Given User is on DS_Algo Home page after logged in
 When The user select Get Started button in "Linked List" panel
-Then The user should be redirected to Linked List page.
+Then The user should be redirected to "linked-list" page.
 
 
 Scenario Outline: Navigate through Linked List learning and run valid Python code
 Given User is on "Linked List" Home page
 When The user clicks "<Topics>" link
-Then The user should be redirected to Topics page
+Then The user should be redirected to "<Topic specific>" page
 When The user clicks Try Here button
 Then The user should redirected to the page having Editor and Run button
 When The user clicks the Run button after writes following Valid Python Code in editor
 """
 print"Hello"
 print"Welcome!!"
-print x =0
+
 """
 Then The user is able to see the output inside the console
 
+Examples: 
+|Topics|                            | Topic specific|
+|Introduction|                      |linked-list|
+|Creating Linked LIst|              |creating-linked-list|             
+|Types of Linked List|						  |types-of-linked-list|
+|Implement Linked List in Python|  |implement-linked-list-in-python|
+|Traversal|										    |traversal|
+|Insertion|												|insertion-in-linked-list|
+|Deletion|													|deletion-in-linked-list|
 
 
-#Scenario Outline: Navigate through Linked List learning and run invalid Python code
-#Given User is on Linked List Home page
-#When The user clicks "<Topics>" link
-#Then The user should be redirected to "<Topics>" page
-#When The user clicks Try Here button
-#Then The user should redirected to the page having Editor and Run button
-#When The user clicks the Run button after writes invalid python code in editor
-#Then The user see error msg in alert window
+
+Scenario Outline: Navigate through Linked List learning and run invalid Python code
+Given User is on "Linked List" Home page
+When The user clicks "<Title>" link
+Then The user should be redirected to "<Title specific>" page
+When The user clicks Try Here button
+Then The user should redirected to the page having Editor and Run button
+When The user clicks the Run button after writes following Invalid Python code in editor
+"""
+public class PythonCode{
+ int a = 0;
+}
+"""
+Then The user see error msg in alert window
 
 
 Examples: 
-|Topics|
-|Introduction|
-#|Creating Linked List|
-#|Types of Linked List|
-#|Implement Linked List in Python|
-#|Traversal|
-#|Insertion|
-#|Deletion|
+|Title|                            | Title specific|
+|Introduction|                      |linked-list|
+|Creating Linked LIst|              |creating-linked-list|             
+|Types of Linked List|						  |types-of-linked-list|
+|Implement Linked List in Python|  |implement-linked-list-in-python|
+|Traversal|										    |traversal|
+|Insertion|												|insertion-in-linked-list|
+|Deletion|													|deletion-in-linked-list|
 
 
-#Scenario: Validation of Left Panel Links in Linked List Topic - Specific Page  
-#
-#Given User is on Linked List Home page
-#When The user clicks "<Topics>" link
-#|Topics|
-#|Introduction|
-#|Creating Linked List|
-#|Types of Linked List|
-#|Implement Linked List in Python|
-#|Traversal|
-#|Insertion|
-#|Deletion|
-#
-#Then The user should be redirected to Topics page
+Scenario: Validation of Left Panel Links in Linked List Topic - Specific Page  
+
+Given User is on "Linked List" "Introduction" page
+Then The user should be redirected to Left Panel Topic Specific page as folows
+
+ |linked-list|
+ |creating-linked-list| 
+ |types-of-linked-list|
+ |implement-linked-list-in-python|
+ |traversal|
+ |insertion-in-linked-list|
+ |deletion-in-linked-list|
+
 #Then The user tries to click on LINKS on the left panel
-#Then The user should redirected to the page having Editor and Run button
+Then The user should redirected to the page having Editor and Run button
 
 
 

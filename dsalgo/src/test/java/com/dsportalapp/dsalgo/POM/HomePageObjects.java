@@ -3,7 +3,10 @@ package com.dsportalapp.dsalgo.POM;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
@@ -37,6 +40,8 @@ public class HomePageObjects {
 	@FindBy(xpath="//div[@class='navbar-nav']/div")
 	private WebElement dataStructuresDropDown;
 	
+	By dataStructuresDropDownLocator = By.xpath("//div[@class='navbar-nav']/div");
+	
 	public boolean clickDataStructuresDropDown() {
 		try {
 			dataStructuresDropDown.click();
@@ -61,6 +66,7 @@ public class HomePageObjects {
 		return optionNames;
 	}
 //	 Dropdown option xpath
+	
 	@FindBy(xpath="//div[@class='navbar-nav'][1]/div/div/a[1]")
 	private WebElement arraysOption;
 	@FindBy(xpath="//div[@class='navbar-nav'][1]/div/div/a[2]")
@@ -78,8 +84,46 @@ public class HomePageObjects {
 	WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(4));
 	wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
+//	public void waitVisibilityOfElementLocated(WebElement element) {
+//		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(4));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated;
+//	}
+	public void newSelectDataStructuresDropDown(List<String> options) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		for(String option: options) {
+			clickDataStructuresDropDown();
+			switch(option.toLowerCase()) {
+			case "arrays":
+				wait.until(ExpectedConditions.elementToBeClickable(arraysOption)).click();
+				break;
+			case "linked list":
+				wait.until(ExpectedConditions.elementToBeClickable(linkedListsOption)).click();
+				break;
+			case "stack":
+				wait.until(ExpectedConditions.elementToBeClickable(statckOption)).click();
+				break;
+			case "queue":
+				wait.until(ExpectedConditions.elementToBeClickable(queueOption)).click();
+				break;
+			case "tree":
+				wait.until(ExpectedConditions.elementToBeClickable(treeOption)).click();
+				break;
+			case "graph":
+				wait.until(ExpectedConditions.elementToBeClickable(graphOption)).click();
+				break;
+			default: 
+				throw new IllegalArgumentException("Invalid option: "+ option );
+			  }
+			
+			
+		}
+		
+	}
+
 	public void selectDataStructuresDropDown(String option) throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+//		driver.navigate().refresh();
+		
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		waitElementToBeClickable(dataStructuresDropDown);
 		clickDataStructuresDropDown();
 		if(clickDataStructuresDropDown()) {
@@ -123,8 +167,9 @@ public class HomePageObjects {
 			LOG.error("Option " + option +" not found in the dropdownlist" + e );
 			
 		}
-		
+				
 	}
+
 	
 	@FindBy(xpath="//a[contains(text(),' Register ')]")
 	private WebElement registerButton;
@@ -163,8 +208,8 @@ public class HomePageObjects {
 	}
 	
 	
-	public void clickGetStartedButton(String option) throws InterruptedException {
-		
+	public Map<String, String> clickGetStartedButton(String option) throws InterruptedException {
+		Map<String, String> warningMessageMap = new HashMap<>();
 		Thread.sleep(2000);
 		String listOfDtaStructuresItemXpath = "//h5[@class='card-title']";
 		List<WebElement> dataStructuresItem = driver.findElements(By.xpath(listOfDtaStructuresItemXpath));
@@ -180,12 +225,18 @@ public class HomePageObjects {
 				getStratedButton.click();
 				if(j==1)
 					break;
+				
+				String warningMessage = printloginAlertMessage();
+				if(warningMessage != null) {
+					warningMessageMap.put(option,warningMessage);
+				}
 			}
 		  }catch(StaleElementReferenceException e) {
 			 LOG.error("Stale element reference encountered." + e);
 //			 driver.navigate().refresh();
 		  }	
 		}
+		   return warningMessageMap;
 	}
 	
 	
@@ -203,6 +254,6 @@ public class HomePageObjects {
 		
 		}
 	
-		
+	
 
 }

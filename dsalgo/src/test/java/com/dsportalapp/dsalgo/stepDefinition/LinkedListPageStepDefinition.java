@@ -3,6 +3,8 @@ package com.dsportalapp.dsalgo.stepDefinition;
 import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
@@ -55,16 +57,16 @@ public class LinkedListPageStepDefinition {
 		commonobj.clickGetStartedButtonCommon(dataStructureName);
 	}
 
-	@Then("The user should be redirected to Linked List page.")
-	public void the_user_should_be_redirected_to_linked_list_page() {
-		assertTrue(linkedlistobj.isOnLinkedListHome(), "The user should be in Linked List Page");
+	@Then("The user should be redirected to {string} page.")
+	public void the_user_should_be_redirected_to_linked_list_page(String redirectedPageName) {
+		assertTrue(commonobj.isOnRedirectedPage(redirectedPageName), "The user should be in Linked List Page");
 	}
 	
 //	--------------------------------------------------------
 	@Given("User is on {string} Home page")
 	public void user_is_on_linked_list_home_page(String dataStructureName) throws InterruptedException {
 		commonobj.clickGetStartedButtonCommon(dataStructureName);
-		linkedlistobj.isOnLinkedListHome();
+//		linkedlistobj.isOnLinkedListHome();
 	}
 
 	@When("The user clicks {string} link")
@@ -72,9 +74,10 @@ public class LinkedListPageStepDefinition {
 		commonobj.clickdataStructuresHomeLinks(homeLinkName);
 	}
 
-	@Then("The user should be redirected to Topics page")
-	public void the_user_should_be_redirected_to_topics_page() {
-		assertTrue(linkedlistobj.isOnLinkedListHome(), "The user is not redirected to Linked List Topic Page");
+	
+	@Then("The user should be redirected to {string} page")
+	public void the_user_should_be_redirected_to_topics_page(String redirectedPage) {
+		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The user is not redirected to Linked List Topic Page");
 		
 		
 	}
@@ -91,7 +94,7 @@ public class LinkedListPageStepDefinition {
 
 	@When("The user clicks the Run button after writes following Valid Python Code in editor")
 	public void the_user_clicks_the_run_button_after_writes_following_valid_python_code_in_editor(String pythonCode) throws InterruptedException {
-		System.out.println(pythonCode);
+		
 		Thread.sleep(3000);
 		commonobj.sendTextEditor(pythonCode);
 		Thread.sleep(3000);
@@ -101,9 +104,50 @@ public class LinkedListPageStepDefinition {
 	@Then("The user is able to see the output inside the console")
 	public void the_user_is_able_to_see_the_output_inside_the_console() {
 		String result = commonobj.printResultEditor();
-		System.out.println(result);
+		LOG.info(result);
 	}
 
+	
+	@When("The user clicks the Run button after writes following Invalid Python code in editor")
+	public void the_user_clicks_the_run_button_after_writes_following_invalid_python_code_in_editor(String invalidPythonCode) throws InterruptedException {
+		commonobj.sendTextEditor(invalidPythonCode);
+		Thread.sleep(3000);
+		commonobj.clickRunButton();
+	}
+	
+	@Then("The user see error msg in alert window")
+	public void the_user_see_error_msg_in_alert_window() {
+		String alertMessage = commonobj.switchToAlert();
+		LOG.info(alertMessage);
+	}
+//	---------------------------------------------------------------
+	
+	@Given("User is on {string} {string} page")
+	public void user_is_on_page(String dataStructureName, String dataStructureTopicName) throws InterruptedException {
+		commonobj.clickGetStartedButtonCommon(dataStructureName);
+		commonobj.clickdataStructuresHomeLinks(dataStructureTopicName);
+	}
+//	@Given("User is on Linked List DataStructure page")
+//	public void user_is_on_linked_list_data_structure_page() {
+//	    // Write code here that turns the phrase above into concrete actions
+//	    throw new io.cucumber.java.PendingException();
+//	}
+	@When("The user clicks following link")
+	public void the_user_clicks_following_link(io.cucumber.datatable.DataTable dataTable) throws MalformedURLException, IOException, URISyntaxException {
+		commonobj.bokenLinks();
+	}
+
+	@Then("The user should be redirected to Left Panel Topic Specific page as folows")
+	public void the_user_should_be_redirected_to_left_panel_topic_specific_page_as_folows(io.cucumber.datatable.DataTable dataTable) {
+	    // Write code here that turns the phrase above into concrete actions
+	    // For automatic transformation, change DataTable to one of
+	    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
+	    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
+	    // Double, Byte, Short, Long, BigInteger or BigDecimal.
+	    //
+	    // For other transformations you can register a DataTableType.
+	    throw new io.cucumber.java.PendingException();
+	}
 
 
 	
