@@ -180,7 +180,15 @@ public class RegisterPageObjects {
 	
 	public void goToHomePage()
 	{
-		loginLnk.click();
+		try
+		{
+			loginLnk.click();
+		}
+		catch(Exception e)
+		{
+			LOG.error("An error occured while checking the Login Link: "+ e.getMessage());
+			e.printStackTrace();
+		}
 	}
 	
 	
