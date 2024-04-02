@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Sun Mar 24 22:56:48 EDT 2024</td>
+<td>Started on:</td><td>Tue Apr 02 07:39:35 EDT 2024</td>
 </tr>
-<tr><td>Total time:</td><td>5 seconds (5251 ms)</td>
+<tr><td>Total time:</td><td>1 seconds (1818 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,17 +76,19 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='testRunner.testRunnerTestNG$TestNGTestRunner.runScenario()'><b>runScenario</b><br>Test class: testRunner.testRunnerTestNG$TestNGTestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "verify user is navigated to home page when login button is clicked with valid username and valid password is entered", "As a user"</td>
-<td><div><pre>java.lang.IllegalAccessError: class stepDefinition.Login (in unnamed module @0x673ba40c) cannot access class jdk.internal.org.jline.utils.Log (in module jdk.internal.le) because module jdk.internal.le does not export jdk.internal.org.jline.utils to unnamed module @0x673ba40c
-	at stepDefinition.Login.the_user_should_be_redirected_to_home_page_with_the_message_and_with_the_user_name_on_the_top(Login.java:62)
-	at ✽.The user should be redirected to Home Page with the message &quot;You are logged in&quot; and with the user name on the top(file:///Users/saumdas/git/dsalgo/dsalgo/src/test/resources/features/Login.feature:11)
-</pre></div><a href='#' onClick='toggleBox("stack-trace2118413714", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace2118413714'><pre>java.lang.IllegalAccessError: class stepDefinition.Login (in unnamed module @0x673ba40c) cannot access class jdk.internal.org.jline.utils.Log (in module jdk.internal.le) because module jdk.internal.le does not export jdk.internal.org.jline.utils to unnamed module @0x673ba40c
-	at stepDefinition.Login.the_user_should_be_redirected_to_home_page_with_the_message_and_with_the_user_name_on_the_top(Login.java:62)
-	at ✽.The user should be redirected to Home Page with the message &quot;You are logged in&quot; and with the user name on the top(file:///Users/saumdas/git/dsalgo/dsalgo/src/test/resources/features/Login.feature:11)
+<td title='com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner.runScenario()'><b>runScenario</b><br>Test class: com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify Register link under the login button", "Login page functionality"</td>
+<td><div><pre>java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebDriver.get(String)&quot; because &quot;this.driver&quot; is null
+	at com.dsportalapp.dsalgo.POM.LoginPageObjects.isOnSignInPage(LoginPageObjects.java:45)
+	at com.dsportalapp.dsalgo.stepDefinition.LoginPageStepDefinition.the_user_is_on_ds_algo_sign_in_page(LoginPageStepDefinition.java:60)
+	at ✽.The user is on DS Algo Sign in Page(file:///Users/saumdas/git/dsalgo/dsalgo/src/test/resources/features/LoginPage.feature:14)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1512273713", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1512273713'><pre>java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebDriver.get(String)&quot; because &quot;this.driver&quot; is null
+	at com.dsportalapp.dsalgo.POM.LoginPageObjects.isOnSignInPage(LoginPageObjects.java:45)
+	at com.dsportalapp.dsalgo.stepDefinition.LoginPageStepDefinition.the_user_is_on_ds_algo_sign_in_page(LoginPageStepDefinition.java:60)
+	at ✽.The user is on DS Algo Sign in Page(file:///Users/saumdas/git/dsalgo/dsalgo/src/test/resources/features/LoginPage.feature:14)
 </pre></div></td>
-<td>5</td>
-<td>testRunner.testRunnerTestNG$TestNGTestRunner@24c1b2d2</td></tr>
+<td>1</td>
+<td>com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656</td></tr>
 </table><p>
 </body>
 </html>

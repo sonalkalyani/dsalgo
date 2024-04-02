@@ -1,4 +1,4 @@
-package com.dsportal.dsalgo.fileReader;
+package com.dsportalapp.dsalgo.fileReader;
 
 import java.io.File;
 

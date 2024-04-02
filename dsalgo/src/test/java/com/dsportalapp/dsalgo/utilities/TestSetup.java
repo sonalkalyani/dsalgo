@@ -1,11 +1,11 @@
-package com.dsportal.dsalgo.utilities;
+package com.dsportalapp.dsalgo.utilities;
 
 import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
 
-import com.dsportal.dsalgo.POM.PageObjectManager;
-import com.dsportal.dsalgo.webDriverManager.DriverManager;
+import com.dsportalapp.dsalgo.POM.PageObjectManager;
+import com.dsportalapp.dsalgo.webDriverManager.DriverManager;
 
 public class TestSetup {
 	public WebDriver driver;
@@ -15,7 +15,7 @@ public class TestSetup {
 	public TestSetup() throws IOException {
 		
 		drivermanager = new DriverManager();
-		pageobjectmanager = new PageObjectManager(drivermanager.getDriverManager());
+		pageobjectmanager = new PageObjectManager(drivermanager.getDriver());
 	}
 	
 }

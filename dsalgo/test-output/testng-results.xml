@@ -2,57 +2,58 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-03-24T22:56:48 EDT" name="Default suite" finished-at="2024-03-24T22:56:53 EDT" duration-ms="5251">
+  <suite started-at="2024-04-02T07:39:35 EDT" name="Default suite" finished-at="2024-04-02T07:39:37 EDT" duration-ms="1818">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.testRunnerTestNG$TestNGTestRunner@24c1b2d2]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2024-03-24T22:56:48 EDT" name="Default test" finished-at="2024-03-24T22:56:53 EDT" duration-ms="5251">
-      <class name="testRunner.testRunnerTestNG$TestNGTestRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:testRunner.testRunnerTestNG$TestNGTestRunner@24c1b2d2]" started-at="2024-03-24T22:56:48 EDT" name="setUpClass" finished-at="2024-03-24T22:56:48 EDT" duration-ms="92" status="PASS">
+    <test started-at="2024-04-02T07:39:35 EDT" name="Default test" finished-at="2024-04-02T07:39:37 EDT" duration-ms="1818">
+      <class name="com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656]" started-at="2024-04-02T07:39:35 EDT" name="setUpClass" finished-at="2024-04-02T07:39:35 EDT" duration-ms="89" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@7e72a6cc]]>
+                <![CDATA[org.testng.TestRunner@fc807c1]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.testRunnerTestNG$TestNGTestRunner@24c1b2d2]" started-at="2024-03-24T22:56:48 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2024-03-24T22:56:53 EDT" duration-ms="5133" status="FAIL">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656]" started-at="2024-04-02T07:39:35 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2024-04-02T07:39:37 EDT" duration-ms="1704" status="FAIL">
           <params>
             <param index="0">
               <value>
-                <![CDATA["verify user is navigated to home page when login button is clicked with valid username and valid password is entered"]]>
+                <![CDATA["Verify Register link under the login button"]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA["As a user"]]>
+                <![CDATA["Login page functionality"]]>
               </value>
             </param>
           </params>
-          <exception class="java.lang.IllegalAccessError">
+          <exception class="java.lang.NullPointerException">
             <message>
-              <![CDATA[class stepDefinition.Login (in unnamed module @0x673ba40c) cannot access class jdk.internal.org.jline.utils.Log (in module jdk.internal.le) because module jdk.internal.le does not export jdk.internal.org.jline.utils to unnamed module @0x673ba40c]]>
+              <![CDATA[Cannot invoke "org.openqa.selenium.WebDriver.get(String)" because "this.driver" is null]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.IllegalAccessError: class stepDefinition.Login (in unnamed module @0x673ba40c) cannot access class jdk.internal.org.jline.utils.Log (in module jdk.internal.le) because module jdk.internal.le does not export jdk.internal.org.jline.utils to unnamed module @0x673ba40c
-at stepDefinition.Login.the_user_should_be_redirected_to_home_page_with_the_message_and_with_the_user_name_on_the_top(Login.java:62)
-at ✽.The user should be redirected to Home Page with the message "You are logged in" and with the user name on the top(file:///Users/saumdas/git/dsalgo/dsalgo/src/test/resources/features/Login.feature:11)
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.get(String)" because "this.driver" is null
+at com.dsportalapp.dsalgo.POM.LoginPageObjects.isOnSignInPage(LoginPageObjects.java:45)
+at com.dsportalapp.dsalgo.stepDefinition.LoginPageStepDefinition.the_user_is_on_ds_algo_sign_in_page(LoginPageStepDefinition.java:60)
+at ✽.The user is on DS Algo Sign in Page(file:///Users/saumdas/git/dsalgo/dsalgo/src/test/resources/features/LoginPage.feature:14)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.IllegalAccessError -->
+          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:testRunner.testRunnerTestNG$TestNGTestRunner@24c1b2d2]" started-at="2024-03-24T22:56:53 EDT" name="tearDownClass" finished-at="2024-03-24T22:56:53 EDT" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656]" started-at="2024-04-02T07:39:37 EDT" name="tearDownClass" finished-at="2024-04-02T07:39:37 EDT" duration-ms="3" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-      </class> <!-- testRunner.testRunnerTestNG$TestNGTestRunner -->
+      </class> <!-- com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

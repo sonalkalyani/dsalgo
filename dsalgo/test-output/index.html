@@ -103,7 +103,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="testRunner.testRunnerTestNG$TestNGTestRunner" class="method navigator-link" hash-for-method="runScenario(&quot;verify user is navigated to home page when login button is clicked with valid username and valid pa...)">runScenario("verify user is navigated to home page when login button is clicked with valid username and valid pa...)</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner" class="method navigator-link" hash-for-method="runScenario(&quot;Verify Register link under the login button&quot;, &quot;Login page functionality&quot;)">runScenario("Verify Register link under the login button", "Login page functionality")</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -121,18 +121,19 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">testRunner.testRunnerTestNG$TestNGTestRunner</span>
+              <span class="class-name">com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="runScenario(&quot;verify user is navigated to home page when login button is clicked with valid username and valid pa...)">
-                  </a> <!-- runScenario("verify user is navigated to home page when login button is clicked with valid username and valid pa...) -->
+                  <a name="runScenario(&quot;Verify Register link under the login button&quot;, &quot;Login page functionality&quot;)">
+                  </a> <!-- runScenario("Verify Register link under the login button", "Login page functionality") -->
                   <span class="method-name">runScenario</span>
-                  <span class="parameters">("verify user is navigated to home page when login button is clicked with valid username and valid password is entered","As a user")</span>
-                  <div class="stack-trace">java.lang.IllegalAccessError: class stepDefinition.Login (in unnamed module @0x673ba40c) cannot access class jdk.internal.org.jline.utils.Log (in module jdk.internal.le) because module jdk.internal.le does not export jdk.internal.org.jline.utils to unnamed module @0x673ba40c
-	at stepDefinition.Login.the_user_should_be_redirected_to_home_page_with_the_message_and_with_the_user_name_on_the_top(Login.java:62)
-	at ✽.The user should be redirected to Home Page with the message &quot;You are logged in&quot; and with the user name on the top(file:///Users/saumdas/git/dsalgo/dsalgo/src/test/resources/features/Login.feature:11)
+                  <span class="parameters">("Verify Register link under the login button","Login page functionality")</span>
+                  <div class="stack-trace">java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebDriver.get(String)&quot; because &quot;this.driver&quot; is null
+	at com.dsportalapp.dsalgo.POM.LoginPageObjects.isOnSignInPage(LoginPageObjects.java:45)
+	at com.dsportalapp.dsalgo.stepDefinition.LoginPageStepDefinition.the_user_is_on_ds_algo_sign_in_page(LoginPageStepDefinition.java:60)
+	at ✽.The user is on DS Algo Sign in Page(file:///Users/saumdas/git/dsalgo/dsalgo/src/test/resources/features/LoginPage.feature:14)
 
 </div> <!-- stack-trace -->
                   <em>
@@ -144,7 +145,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">/private/var/folders/1_/jxn5xnqj5j3510ypp4q5ct7m0000gn/T/testng-eclipse--1072796001/testng-customsuite.xml</span>
+            <span class="header-content">/private/var/folders/1_/jxn5xnqj5j3510ypp4q5ct7m0000gn/T/testng-eclipse--1142093671/testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -153,7 +154,7 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;testRunner.testRunnerTestNG&quot;/&gt;
+      &lt;class name=&quot;com.dsportalapp.dsalgo.testRunner.testRunnerTestNG&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -204,13 +205,13 @@ data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'runScenario')
-data.setCell(0, 2, 'testRunner.testRunnerTestNG$TestNGTestRunner')
-data.setCell(0, 3, 5133);
+data.setCell(0, 2, 'com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner')
+data.setCell(0, 3, 1704);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 5 seconds</span>
+              <span class="suite-total-time">Total running time: 1 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -236,20 +237,20 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">testRunner.testRunnerTestNG$TestNGTestRunner</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
-                <span class="method-name">setUpClass(org.testng.TestRunner@7e72a6cc)</span>
+                <span class="method-name">setUpClass(org.testng.TestRunner@fc807c1)</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">runScenario("verify user is navigated to home page when login button is clicked with valid username and valid pa...)</span>
-                <span class="method-start">98 ms</span>
+                <span class="method-name">runScenario("Verify Register link under the login button", "Login page functionality")</span>
+                <span class="method-start">95 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDownClass</span>
-                <span class="method-start">5237 ms</span>
+                <span class="method-start">1802 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
