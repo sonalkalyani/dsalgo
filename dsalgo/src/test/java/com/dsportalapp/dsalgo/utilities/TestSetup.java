@@ -15,7 +15,7 @@ public class TestSetup {
 	public TestSetup() throws IOException {
 		
 		drivermanager = new DriverManager();
-		pageobjectmanager = new PageObjectManager(drivermanager.getDriver());
+		pageobjectmanager = new PageObjectManager(drivermanager.getDriverManager());
 	}
 	
 }

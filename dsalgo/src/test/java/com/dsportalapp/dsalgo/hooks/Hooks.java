@@ -1,5 +1,6 @@
 package com.dsportalapp.dsalgo.hooks;
 
+import java.io.IOException;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
@@ -24,7 +25,7 @@ public class Hooks {
 		
 		this.testup = testup;
 	}
-	
+/*	
 	@Before(order = 0)
 	public void getProperty() {
 		configFileReader = new ConfigReader();
@@ -34,9 +35,14 @@ public class Hooks {
 	@Before(order = 1)
 	public void launchBrowser() {
 	
-		String browserName = prop.getProperty("browser");
+		//String browserName = prop.getProperty("browser");
 		driverManager = new DriverManager();
-		driver = driverManager.init_driver(browserName);
+		try {
+			driver = driverManager.getDriverManager();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 		
 	}
 	@After(order = 0)
@@ -44,7 +50,7 @@ public class Hooks {
 		driver.quit();
 	}
 	
-	
+	*/
 	
 	
 }

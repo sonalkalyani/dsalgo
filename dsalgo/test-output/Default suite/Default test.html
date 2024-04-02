@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>7/0/0</td>
 </tr><tr>
-<td>Started on:</td><td>Tue Apr 02 07:39:35 EDT 2024</td>
+<td>Started on:</td><td>Tue Apr 02 14:00:58 EDT 2024</td>
 </tr>
-<tr><td>Total time:</td><td>1 seconds (1818 ms)</td>
+<tr><td>Total time:</td><td>14 seconds (14285 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,8 +67,8 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-failed'>
-<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td><b>Attribute(s)</b></td>
 <td width="30%"><b>Exception</b></td>
@@ -76,17 +76,38 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
+<td title='com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner.runScenario()'><b>runScenario</b><br>Test class: com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify Login page title", "Login page functionality"</td>
+<td></td>
+<td>2</td>
+<td>com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656</td></tr>
+<tr>
+<td title='com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner.runScenario()'><b>runScenario</b><br>Test class: com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify error message when login button is clicked with valid username and invalid password", "Login page functionality"</td>
+<td></td>
+<td>2</td>
+<td>com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656</td></tr>
+<tr>
 <td title='com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner.runScenario()'><b>runScenario</b><br>Test class: com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify Register link under the login button", "Login page functionality"</td>
-<td><div><pre>java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebDriver.get(String)&quot; because &quot;this.driver&quot; is null
-	at com.dsportalapp.dsalgo.POM.LoginPageObjects.isOnSignInPage(LoginPageObjects.java:45)
-	at com.dsportalapp.dsalgo.stepDefinition.LoginPageStepDefinition.the_user_is_on_ds_algo_sign_in_page(LoginPageStepDefinition.java:60)
-	at ✽.The user is on DS Algo Sign in Page(file:///Users/saumdas/git/dsalgo/dsalgo/src/test/resources/features/LoginPage.feature:14)
-</pre></div><a href='#' onClick='toggleBox("stack-trace1512273713", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1512273713'><pre>java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebDriver.get(String)&quot; because &quot;this.driver&quot; is null
-	at com.dsportalapp.dsalgo.POM.LoginPageObjects.isOnSignInPage(LoginPageObjects.java:45)
-	at com.dsportalapp.dsalgo.stepDefinition.LoginPageStepDefinition.the_user_is_on_ds_algo_sign_in_page(LoginPageStepDefinition.java:60)
-	at ✽.The user is on DS Algo Sign in Page(file:///Users/saumdas/git/dsalgo/dsalgo/src/test/resources/features/LoginPage.feature:14)
-</pre></div></td>
+<td></td>
+<td>1</td>
+<td>com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656</td></tr>
+<tr>
+<td title='com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner.runScenario()'><b>runScenario</b><br>Test class: com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "verify login is successful with valid credentials", "Login page functionality"</td>
+<td></td>
+<td>2</td>
+<td>com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656</td></tr>
+<tr>
+<td title='com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner.runScenario()'><b>runScenario</b><br>Test class: com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify error message when login button is clicked with invalid username and valid password", "Login page functionality"</td>
+<td></td>
+<td>1</td>
+<td>com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656</td></tr>
+<tr>
+<td title='com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner.runScenario()'><b>runScenario</b><br>Test class: com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify error message when login button is clicked with invalid username and invalid password", "Login page functionality"</td>
+<td></td>
+<td>2</td>
+<td>com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656</td></tr>
+<tr>
+<td title='com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner.runScenario()'><b>runScenario</b><br>Test class: com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify error message when login button is clicked with blank username and blank password", "Login page functionality"</td>
+<td></td>
 <td>1</td>
 <td>com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656</td></tr>
 </table><p>

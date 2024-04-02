@@ -1,27 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="7" passed="7" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-04-02T07:39:35 EDT" name="Default suite" finished-at="2024-04-02T07:39:37 EDT" duration-ms="1818">
+  <suite started-at="2024-04-02T14:00:58 EDT" name="Default suite" finished-at="2024-04-02T14:01:12 EDT" duration-ms="14285">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2024-04-02T07:39:35 EDT" name="Default test" finished-at="2024-04-02T07:39:37 EDT" duration-ms="1818">
+    <test started-at="2024-04-02T14:00:58 EDT" name="Default test" finished-at="2024-04-02T14:01:12 EDT" duration-ms="14285">
       <class name="com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656]" started-at="2024-04-02T07:39:35 EDT" name="setUpClass" finished-at="2024-04-02T07:39:35 EDT" duration-ms="89" status="PASS">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656]" started-at="2024-04-02T14:00:58 EDT" name="setUpClass" finished-at="2024-04-02T14:00:58 EDT" duration-ms="79" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@fc807c1]]>
+                <![CDATA[org.testng.TestRunner@3a4aadf8]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656]" started-at="2024-04-02T07:39:35 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2024-04-02T07:39:37 EDT" duration-ms="1704" status="FAIL">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656]" started-at="2024-04-02T14:00:58 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2024-04-02T14:01:00 EDT" duration-ms="2114" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Verify Login page title"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Login page functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656]" started-at="2024-04-02T14:01:00 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2024-04-02T14:01:02 EDT" duration-ms="1888" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -34,22 +50,90 @@
               </value>
             </param>
           </params>
-          <exception class="java.lang.NullPointerException">
-            <message>
-              <![CDATA[Cannot invoke "org.openqa.selenium.WebDriver.get(String)" because "this.driver" is null]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.get(String)" because "this.driver" is null
-at com.dsportalapp.dsalgo.POM.LoginPageObjects.isOnSignInPage(LoginPageObjects.java:45)
-at com.dsportalapp.dsalgo.stepDefinition.LoginPageStepDefinition.the_user_is_on_ds_algo_sign_in_page(LoginPageStepDefinition.java:60)
-at ✽.The user is on DS Algo Sign in Page(file:///Users/saumdas/git/dsalgo/dsalgo/src/test/resources/features/LoginPage.feature:14)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656]" started-at="2024-04-02T07:39:37 EDT" name="tearDownClass" finished-at="2024-04-02T07:39:37 EDT" duration-ms="3" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656]" started-at="2024-04-02T14:01:02 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2024-04-02T14:01:04 EDT" duration-ms="2191" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["verify login is successful with valid credentials"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Login page functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656]" started-at="2024-04-02T14:01:04 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2024-04-02T14:01:06 EDT" duration-ms="1870" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Verify error message when login button is clicked with blank username and blank password"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Login page functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656]" started-at="2024-04-02T14:01:06 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2024-04-02T14:01:08 EDT" duration-ms="2057" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Verify error message when login button is clicked with valid username and invalid password"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Login page functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656]" started-at="2024-04-02T14:01:08 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2024-04-02T14:01:10 EDT" duration-ms="1960" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Verify error message when login button is clicked with invalid username and valid password"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Login page functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656]" started-at="2024-04-02T14:01:10 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2024-04-02T14:01:12 EDT" duration-ms="2072" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Verify error message when login button is clicked with invalid username and invalid password"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Login page functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.dsportalapp.dsalgo.testRunner.testRunnerTestNG$TestNGTestRunner@7bbc8656]" started-at="2024-04-02T14:01:12 EDT" name="tearDownClass" finished-at="2024-04-02T14:01:12 EDT" duration-ms="10" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->

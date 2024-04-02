@@ -12,6 +12,11 @@ import java.util.Properties;
 
 import javax.enterprise.inject.New;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.dsportalapp.dsalgo.stepDefinition.LoginPageStepDefinition;
+
 import io.cucumber.java.be.I.Is;
 
 
@@ -19,6 +24,7 @@ public class  ConfigFileReader {
 
 
 protected Properties properties;
+public static Logger LOG = LoggerFactory.getLogger(ConfigFileReader.class);
 
 private final String configFilePath= System.getProperty("user.dir")+"/src/test/resources/config/global.properties";
 
@@ -46,7 +52,7 @@ try {
 
       {
 
-        System.out.println(e.getMessage());
+        LOG.info(e.getMessage());
 
       }
 
@@ -54,7 +60,7 @@ try {
 
       {
 
-        System.out.println(e.getMessage());
+	  LOG.info(e.getMessage());
 
 throw new RuntimeException("global.properties not found at config file path " + configFilePath);
 
@@ -65,9 +71,9 @@ throw new RuntimeException("global.properties not found at config file path " + 
 
 public String getApplicationUrl() {
 
-String applicationurl= properties.getProperty("url");
+String applicationurl= properties.getProperty("Url");
 
-System.out.println("URL is " + applicationurl);
+LOG.info("URL is " + applicationurl);
 
 if(applicationurl != null)
 
@@ -83,7 +89,7 @@ throw new RuntimeException("Application url not specified in the config.properti
 public String getUserName(){
 
 String username= properties.getProperty("username");
-System.out.println("username is " +username);
+LOG.info("username is " +username);
 
 if(username != null)
 
@@ -99,7 +105,7 @@ throw new RuntimeException("username not specified in the config.properties file
 public String getPassword(){
 
 String password= properties.getProperty("password");
-System.out.println("password is " +password);
+LOG.info("password is " +password);
 
 if(password != null)
 
@@ -115,7 +121,7 @@ throw new RuntimeException("password not specified in the config.properties file
 public String getBrowser() {
 
 String browser= properties.getProperty("browser");
-System.out.println("browser is " +browser);
+LOG.info("browser is " +browser);
 
 
 if(browser != null)
