@@ -1,3 +1,4 @@
+
 package com.dsportalapp.dsalgo.webDriverManager;
 
 import java.io.FileInputStream;
@@ -17,11 +18,11 @@ public class DriverManager {
 	
 	public WebDriver getDriverManager() throws IOException {
 		if (driver == null) {
-            FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "\\src\\test\\resources\\config\\global.properties");
+            FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "//src//test//resources//config//global.properties");
             Properties property = new Properties();
             property.load(fis);
             String browserType = property.getProperty("browser");
-            String url = property.getProperty("QAUrl");
+            String url = property.getProperty("Url");
 
             switch (browserType.toLowerCase()) {
                 case "chrome":
