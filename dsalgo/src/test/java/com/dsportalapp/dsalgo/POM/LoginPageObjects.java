@@ -13,9 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-
 import com.dsportalapp.dsalgo.utilities.ConfigReader;
-import com.dsportalapp.dsalgo.webDriverManager.DriverManager;
 
 public class LoginPageObjects {
 
