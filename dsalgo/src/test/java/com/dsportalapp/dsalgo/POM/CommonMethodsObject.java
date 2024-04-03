@@ -292,4 +292,8 @@ public class CommonMethodsObject {
 		}
 		softassert.assertAll();
 	} 
+
 }
+
+
+

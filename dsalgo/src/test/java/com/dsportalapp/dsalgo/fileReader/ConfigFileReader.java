@@ -133,7 +133,8 @@ else
 throw new RuntimeException("browser not specified in the config.properties file.");
 
 }
-public static void main(String[] args) {
+}
+/*public static void main(String[] args) {
 	ConfigFileReader obj =  new ConfigFileReader();
 	obj.FileReader();
 	obj.getApplicationUrl();
@@ -142,7 +143,7 @@ public static void main(String[] args) {
 	obj.getPassword();
 }
 }
-
+*/
 /*
 public  long getTimeout() {
 
