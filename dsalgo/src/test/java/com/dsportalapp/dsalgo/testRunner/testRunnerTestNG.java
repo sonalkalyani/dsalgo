@@ -8,6 +8,7 @@ import io.qameta.allure.testng.Tags;
 public class testRunnerTestNG {
 
 	@CucumberOptions(
+
 			features = "src/test/resources/features/LoginPage.feature",
 //			"src/test/resources/features/linkedList.feature",
 //			"src/test/resources/features/LoginPage.feature",
@@ -20,6 +21,7 @@ public class testRunnerTestNG {
 //			dryRun=true
 //			plugin = {"pretty", "html:target/cucumber.html","json:target/cucmber.json",
 //			plugin ={"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
+
 			)
 	public class TestNGTestRunner extends AbstractTestNGCucumberTests {
 	
