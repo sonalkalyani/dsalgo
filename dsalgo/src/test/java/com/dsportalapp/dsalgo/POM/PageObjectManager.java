@@ -7,6 +7,7 @@ public class PageObjectManager {
 	public HomePageObjects homepageobj;
 	public RegisterPageObjects registerobjects;
 	public QueuePageObjects queueobjects;
+	public CommonMethodsObject commonobj;
 
 	public PageObjectManager(WebDriver driver) {
 		super();
@@ -26,6 +27,11 @@ public class PageObjectManager {
 	public QueuePageObjects getQueuePageObjects() {
 		queueobjects = new QueuePageObjects(driver);
 		return queueobjects;
+		
+	}
+	public CommonMethodsObject getCommonMethodsObject() {
+		commonobj = new CommonMethodsObject(driver);
+		return commonobj;
 		
 	}
 	
