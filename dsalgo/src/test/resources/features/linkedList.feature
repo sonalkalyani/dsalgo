@@ -1,20 +1,19 @@
-Feature: Navigation to Linked List home page and validating its Functionality
+Feature: Navigation to 'Linked List' home page and validating its Functionality
 As a user
-I want to be able to navigate to the Linked List home page
+I want to be able to navigate to the 'Linked List' home page
 So that I can access its functionalities
 Additionally, I want to verify the correct execution of Python code snippets 
 
 Background:
- Given User should be logged in with valid credential.
+Given User should be logged in with valid credential
 
 Scenario:
 When The user select Get Started button in "Linked List" panel
 Then The user should be redirected to following page
 |linked-list|
 
-Scenario Outline: Navigate through Linked List learning and run valid Python code
-Given User is on below Home page
-|Linked List|
+Scenario Outline: Navigate through 'Linked List' learning and run valid Python code
+Given User is on "Linked List" Home page
 When The user clicks "<Topics>" link
 Then The user should be redirected to "<Topic specific>" page 
 When The user clicks Try Here button
@@ -39,9 +38,8 @@ Examples:
 
 
 
-Scenario Outline: Navigate through Linked List learning and run invalid Python code
-Given User is on below Home page
-|Linked List|
+Scenario Outline: Navigate through 'Linked List' learning and run invalid Python code
+Given User is on "Linked List" Home page
 When The user clicks "<Title>" link
 Then The user should be redirected to "<Title specific>" page of Linked List
 When The user clicks Try Here button
@@ -66,8 +64,7 @@ Examples:
 |Deletion|													|deletion-in-linked-list|
 
 
-Scenario: Validation of Left Panel Links in Linked List Topic - Specific Page  
-
+Scenario: Validation of Left Panel Links in 'Linked List' Topic - Specific Page  
 Given User is on "Linked List" "Introduction" page
 Then The user tries to click on LINKS on the left panel
 Then The user should redirected to the page having Editor button

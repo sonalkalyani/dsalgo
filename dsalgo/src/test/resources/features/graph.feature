@@ -1,6 +1,6 @@
-Feature: Navigation to 'Stack' home page and validate its Functionality
+Feature: Navigation to 'Graph' home page and validate its Functionality
 As a user
-I want to navigate to the 'Stack' home page
+I want to navigate to the 'Graph' home page
 So that I can access its functionalities
 Additionally, I want to verify the correct execution of Python code snippets 
 
@@ -8,12 +8,13 @@ Background:
 Given User should be logged in with valid credential
 
 Scenario:
-When The user select Get Started button in "Stack" panel
+When The user select Get Started button in "Graph" panel
 Then The user should be redirected to following page
-|stack| 
+|graph|
 
-Scenario Outline: Navigate through 'Stack' learning and run valid Python code
-Given User is on "Stack" Home page
+
+Scenario Outline: Navigate through 'Graph' learning and run valid Python code
+Given User is on "Graph" Home page
 When The user clicks "<Topics>" link
 Then The user should be redirected to "<Topic specific>" page
 When The user clicks Try Here button
@@ -27,15 +28,13 @@ print"Welcome!!"
 Then The user is able to see the output inside the console
 
 Examples: 
-|Topics|                            | Topic specific|
-|Operations in Stack|               |operations-in-stack|
-|Implementation|             				|implementation|             
-|Applications|						  				|stack-applications|
+|Topics|                            |Topic specific|
+|Graph|               							|graph|
+|Graph Representations|        			|graph-representations|             
 
 
-
-Scenario Outline: Navigate through 'Stack' learning and run invalid Python code
-Given User is on "Stack" Home page
+Scenario Outline: Navigate through 'Graph' learning and run invalid Python code
+Given User is on "Graph" Home page
 When The user clicks "<Topics>" link
 Then The user should be redirected to "<Topic specific>" page
 When The user clicks Try Here button
@@ -48,20 +47,13 @@ public class PythonCode{
 """
 Then The user see error msg in alert window
 
-
 Examples: 
 |Topics|                            | Topic specific|
-|Operations in Stack|               |operations-in-stack|
-|Implementation|             				|implementation|             
-|Applications|						  				|stack-applications|
+|Graph|               							|graph|
+|Graph Representations|        			|graph-representations|
 
+Scenario: Validation of Left Panel Links in 'Graph' Topic - Specific Page  
 
-
-Scenario: Validation of Left Panel Links in 'Stack' Topic - Specific Page  
-
-Given User is on "Stack" "operations-in-stack" page
+Given User is on "Graph" "graph" page
 Then The user tries to click on LINKS on the left panel
 Then The user should redirected to the page having Editor button
-
-
-

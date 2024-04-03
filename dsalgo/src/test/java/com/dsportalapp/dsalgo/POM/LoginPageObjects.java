@@ -66,6 +66,7 @@ public class LoginPageObjects {
 		String passwd = configFileReader.init_prop().getProperty("password");
 		username.sendKeys(usrname);
 		password.sendKeys(passwd);
+		ClickLoginBtn();
 		
 	}
 	public void EnterInvalidUsernameandPassword(List <Map<String, String>> userList) {

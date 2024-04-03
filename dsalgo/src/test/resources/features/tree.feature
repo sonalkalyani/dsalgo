@@ -1,20 +1,19 @@
-Feature: Navigation to Tree home page and validating its Functionality
+Feature: Navigation to 'Tree' home page and validating its Functionality
 As a user
-I want to be able to navigate to the Tree home page
+I want to be able to navigate to the 'Tree' home page
 So that I can access its functionalities
 Additionally, I want to verify the correct execution of Python code snippets 
 
 Background:
- Given User should be logged in with valid credential.
+ Given User should be logged in with valid credential
 
 Scenario:
 When The user select Get Started button in "Tree" panel
 Then The user should be redirected to following page
 |tree|
 
-Scenario Outline: Navigate through Tree learning and run valid Python code
-Given User is on below Home page
-|Tree|
+Scenario Outline: Navigate through 'Tree' learning and run valid Python code
+Given User is on "Tree" Home page
 When The user clicks "<Topics>" link
 Then The user should be redirected to "<Topic specific>" page 
 When The user clicks Try Here button
@@ -43,9 +42,8 @@ Examples:
 |Binary Search Trees|								|binary-search-trees|
 |Implementation Of BST|							|implementation-of-bst|
 
-Scenario Outline: Navigate through Tree learning and run invalid Python code
-Given User is on below Home page
-|Tree|
+Scenario Outline: Navigate through 'Tree' learning and run invalid Python code
+Given User is on "Tree" Home page
 When The user clicks "<Topics>" link
 Then The user should be redirected to "<Topic specific>" page 
 When The user clicks Try Here button
@@ -74,8 +72,10 @@ Examples:
 |Binary Search Trees|								|binary-search-trees|
 |Implementation Of BST|							|implementation-of-bst|
 
-Scenario: Validation of Left Panel Links in Tree Topic - Specific Page  
 
+Scenario: Validation of Left Panel Links in 'Tree' Topic - Specific Page  
 Given User is on "Tree" "Overview of Trees" page
 Then The user tries to click on LINKS on the left panel
 Then The user should redirected to the page having Editor button
+
+

@@ -9,7 +9,7 @@ public class testRunnerTestNG {
 
 	@CucumberOptions(
 
-			features = "src/test/resources/features/LoginPage.feature",
+			features = "src/test/resources/features/Queue.feature",
 //			"src/test/resources/features/linkedList.feature",
 //			"src/test/resources/features/LoginPage.feature",
 

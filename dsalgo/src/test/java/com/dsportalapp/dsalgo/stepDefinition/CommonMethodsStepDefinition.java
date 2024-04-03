@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import com.dsportalapp.dsalgo.POM.CommonMethodsObject;
 import com.dsportalapp.dsalgo.POM.HomePageObjects;
 import com.dsportalapp.dsalgo.POM.LinkedListObjects;
+import com.dsportalapp.dsalgo.POM.LoginPageObjects;
 import com.dsportalapp.dsalgo.POM.PortalPageObjects;
 import com.dsportalapp.dsalgo.utilities.TestSetup;
 
@@ -26,6 +27,7 @@ public class CommonMethodsStepDefinition {
 	LinkedListObjects linkedlistobj;
 	HomePageObjects homepageobj;
 	CommonMethodsObject commonobj;
+	LoginPageObjects loginpageobj;
 	
 	
 	public static Logger LOG = LoggerFactory.getLogger(PortalPageStepDefinition.class);
@@ -38,12 +40,14 @@ public class CommonMethodsStepDefinition {
 		linkedlistobj = testsetup.pageobjectmanager.getLinkedListObjects();
 		commonobj = testsetup.pageobjectmanager.getCommonMethodsObject();
 		homepageobj = testsetup.pageobjectmanager.getHomePageObjects();
+		loginpageobj = testsetup.pageobjectmanager.getLoginPageObjects();
 	}
-	@Given("User should be logged in with valid credential.")
+	@Given("User should be logged in with valid credential")
 	public void user_should_be_logged_in_with_valid_credential() {
 		driver.get("https://dsportalapp.herokuapp.com/home");
 		homepageobj.clickSignInButton();
-		commonobj.login();
+		loginpageobj.EnterValidUsernameandPassword();
+//		commonobj.login();
 	}
 //	@Given("User is on DS_Algo Home page after logged in")
 //	public void user_is_on_ds_algo_home_page_after_logged_in() {
@@ -63,7 +67,7 @@ public class CommonMethodsStepDefinition {
 	}
 	
 //	--------------------------------------------------------
-	@Given("User is on below Home page")
+	@Given("User is on {string} Home page")
 	public void user_is_on_linked_list_home_page(String dataStructureName) throws InterruptedException {
 		commonobj.clickGetStartedButtonCommon(dataStructureName);
 //		linkedlistobj.isOnLinkedListHome();
@@ -76,7 +80,7 @@ public class CommonMethodsStepDefinition {
 	
 	@Then("The user should be redirected to {string} page")
 	public void the_user_should_be_redirected_to_topics_page(String redirectedPage) {
-		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The user is not redirected to Linked List Topic Page");
+		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The user is not redirected to "+redirectedPage+" Topic Page");
 		LOG.info("The user is redirected to "+ redirectedPage + " page");
 	}
 	

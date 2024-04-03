@@ -56,19 +56,34 @@ public class CommonMethodsObject {
 	}
 
 //	 Login
-	@FindBy(xpath = "//input[@id='id_username']")
-	private WebElement userNameText;
-
-	@FindBy(xpath = "//input[@id='id_password']")
-	private WebElement passwordText;
-	@FindBy(xpath = "//input[@value='Login']")
-	private WebElement clickLoginBtn;
-
-	public void login() {
-
-		userNameText.sendKeys("ninja153");
-		passwordText.sendKeys("sdet@153");
-		clickLoginBtn.click();
+//	@FindBy(xpath = "//input[@id='id_username']")
+//	private WebElement userNameText;
+//
+//	@FindBy(xpath = "//input[@id='id_password']")
+//	private WebElement passwordText;
+//	@FindBy(xpath = "//input[@value='Login']")
+//	private WebElement clickLoginBtn;
+//
+//	public void login() {
+//
+//		userNameText.sendKeys("ninja153");
+//		passwordText.sendKeys("sdet@153");
+//		clickLoginBtn.click();
+//	}
+	
+//	Login link in signin page
+	@FindBy(xpath="//a[contains(text(),'Login ')]")
+	protected WebElement loginLink;
+	
+	public boolean isDisplayLoginLink() {
+		boolean result = false;
+			try {
+				result = loginLink.isDisplayed();
+			 } catch (Exception e) {
+			        LOG.error("Error occurred while checking if login link is displayed: " + e.getMessage());
+			        e.printStackTrace(); 
+			 }
+		return result;
 	}
 
 //	tryHereButton
