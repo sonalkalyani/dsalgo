@@ -31,6 +31,9 @@ public class HomePageStepDefinition {
 	TestSetup testsetup;
 	HomePageObjects homepageobj;
 	CommonMethodsObject commonobj;
+	Map<String,String> warningMessageMap;
+	Map<String,String> dropDownwarningMsgMap;
+	
 	
 	public static Logger LOG = LoggerFactory.getLogger(HomePageStepDefinition.class);
 	
@@ -42,13 +45,14 @@ public class HomePageStepDefinition {
 		homepageobj = testsetup.pageobjectmanager.getHomePageObjects();
 		
 	}
-
+//	Background:
 	@Given("The user is on the Home page of DS_Algo portal")
 	public void the_user_is_on_the_home_page_of_ds_algo_portal() {
 		commonobj.clicktoHomeGetStartedButton();
 	}
 
-
+//	Scenario: Verify 'Data Structures DropDown List' size and options
+	
 	@When("The user clicks on the DataStructures DropDown arrow")
 	public void the_user_clicks_on_the_data_structures_drop_down_arrow() {
 		homepageobj.clickDataStructuresDropDown();
@@ -63,104 +67,97 @@ public class HomePageStepDefinition {
 		for(String expectedOption : expectedDropDownOptions) {
 			assertTrue(actualDropDownOptions.contains(expectedOption), expectedOption + " is not present in the dropdown");
 		}
+		LOG.info("Assertion successful for DropDown List size and options");
 	}
+	
+//	Scenario: Verify display of 'You are not logged in' Message for Unauthenticated Users for DropDown List
 	
 	@When("The user selects following options from the drop down without login")
 	public void the_user_selects_following_options_from_the_drop_down_without_login(List<String> dropDownOptions) throws InterruptedException {
 	
 		for(String option:dropDownOptions) {
 			homepageobj.clickDataStructuresDropDown();
-			homepageobj.selectDataStructuresDropDown(option);
+			dropDownwarningMsgMap =	homepageobj.selectDataStructuresDropDown(option);
 			driver.navigate().refresh();
 			PageFactory.initElements(driver, this);
 		}
 	}
 
-	@Then("The user should be able to see an warning message {string}")
-	public void the_user_should_be_able_to_see_an_warning_message(String expectedWarningMessage) {
-		String actualMessage = homepageobj.printloginAlertMessage();
-		Assert.assertEquals(actualMessage, expectedWarningMessage,"The actual warning message does not match the with expected warning message");
+	@Then("The user should be able to see an warning message {string} for dropdown list")
+	public void the_user_should_be_able_to_see_an_warning_message_for_dropdown_list(String expectedWarningMessage) {
+		dropDownwarningMsgMap.entrySet().forEach(e-> {
+			Assert.assertEquals(e.getValue(), expectedWarningMessage, 
+					"Expected message is not displayed for option:" +e.getKey() );
+		});
+		LOG.info("Assertion successful for DropDown List selection without login");
 	}
 	
-
+//	Scenario: Verify display of 'You are not logged in' Message for Unauthenticated Users for 'Get Started Button'
 	
-//	----------------------------------------------------------------------------------------
-	
-
-	
-	@When("The user selects {string} from the drop down without login")
-	public void the_user_selects_any_data_structures_item_from_the_drop_down_without_login(String option) throws InterruptedException {
-		homepageobj.clickDataStructuresDropDown();
-//		homepageobj.selectDataStructuresDropDown(option);
-	}
-	@Then("The user should able to see an warning message {string}")
-	public void the_user_should_able_to_see_an_warning_message(String expectedMessage) {
-		String warningMessage = homepageobj.printloginAlertMessage();
-		Assert.assertEquals(warningMessage, expectedMessage);
-	}
-
 	@When("The user clicks following any Get Started button for Data Structures Option on the DS home page")
 	public void the_user_clicks_following_any_get_started_button_for_data_structures_option_on_the_ds_home_page(List<String> dataStructuresOption) throws InterruptedException {
-		for(String option : dataStructuresOption) {
-		Map<String,String> warningMessageMap = homepageobj.clickGetStartedButton(option);
-		if(warningMessageMap != null) {
-			for(Map.Entry<String, String> entry : warningMessageMap.entrySet()) {
-				System.out.println("Option" + entry.getKey() + ", WarningMessage: " + entry.getValue());
-			}
-		}else {
-			System.out.println("WarningMessageMap is null");
+			warningMessageMap = homepageobj.clickGetStartedButton(dataStructuresOption);
 		}
-		Thread.sleep(3000);
-		driver.navigate().refresh();
-		PageFactory.initElements(driver, this);
-		}
+	
+	@Then("The user should be able to see an warning message {string} for Get Started Button")
+	public void the_user_should_be_able_to_see_an_warning_message(String expectedWarningMessage) {
+		warningMessageMap.entrySet().forEach(e -> {			
+			Assert.assertEquals(e.getValue(), expectedWarningMessage, 
+					"Expected message is not displayed for option:" +e.getKey() );
+		});
+		LOG.info("Assertion successful for Get Started Button");
+		
 	}
-
-
-	@When("The user clicks Register link")
-	public void the_user_clicks_link() {
+//	Scenario: Navigation to Register Page
+	
+	@When("The user clicks Register link on DS_Algo Home page")
+	public void the_user_clicks_link_on_DS_Algo_Home_page() {
 		homepageobj.clickRegisterButton();
 	}
-
-	@Then("The user should be redirected to Register page")
-	public void the_user_should_be_redirected_to_register_page() {
-		
-		assertTrue(homepageobj.isOnRegisterPage(), "The User is not redirected to Register Page ");
-		
+	
+	@Then("The user should be redirected to {string} Page")
+	public void the_user_should_be_redirected_to_page(String redirectedPage) {
+		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The User is not redirected to Register Page ");
+		LOG.info("The user is redirected to Register page successfully!!");
 	}
 
-	@Then("The user should be able to see Login link at the bottom of the page")
+	@When("The user should be able to see Login link at the bottom of the page")
 	public void the_user_should_be_able_to_see_link_at_the_bottom_of_the_page() {
-		
-		assertTrue(homepageobj.isDisplayLoginLink(), "Login Link is not displayed");
-	}                                         
-
-	@Then("The user should be able to navigate to login page if clicks")
-	public void the_user_should_be_able_to_navigate_to_login_page() {
-		homepageobj.clickLoginLink();
-		assertTrue(homepageobj.isOnLoginPage(),"The user is not redirected to login page");
-		
+		assertTrue(homepageobj.isDisplayLoginLink(), "Login Link is not displayed in Register page");
+		LOG.info("Login link is displayed in Register page");
 	}
 
-	@When("The user clicks on Sign In link")
-	public void the_user_clicks_on_link() {
+	@Then("The user should be able to navigate to {string} page if clicks Login link")
+	public void the_user_should_be_able_to_navigate_to_login_page(String redirectedPage) {
+		homepageobj.clickLoginLink();
+		assertTrue(commonobj.isOnRedirectedPage(redirectedPage),"The user is not redirected to login page");
+		LOG.info("The user is redirected to login page from Register page");
+	}
+
+//	Scenario: Navigation to 'Sign In' Page
+	
+	@When("The user clicks on Sign In link on DS_Algo Home page")
+	public void the_user_clicks_on_sign_in_link_on_ds_algo_home_page() {
 		homepageobj.clickSignInButton();
 	}
 
-	@Then("The user should be redirected to login page")
-	public void the_user_should_be_redirected_to_login_page() {
-		assertTrue(homepageobj.isOnLoginPage(),"The user is not redirected to login page");
+	@Then("The user shoulde be redirected to {string} page")
+	public void the_user_shoulde_be_redirected_to_page(String redirectedPage) {
+		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The User is not redirected to Login Page ");
+		LOG.info("The user is redirected to login page");
 	}
 
-	@Then("The user should be able to see Register link")
-	public void the_user_should_be_able_to_see_link() {
-		assertTrue(homepageobj.isDisplayRegisterLink(), "Register Link is not displayed");;
+	@When("The user should be able to see Register link in login page")
+	public void the_user_should_be_able_to_see_register_link_in_login_page() {
+		assertTrue(homepageobj.isDisplayRegisterLink(), "Register Link is not displayed");
+		LOG.info("Register link is displayed in login page");
+		
 	}
 
-	@Then("The user should able to navigate to register page")
-	public void the_user_should_able_to_navigate_to_register_page() {
+	@Then("The user should able to navigate to {string} page if clicks Register link")
+	public void the_user_should_able_to_navigate_to_page_if_clicks_register_link(String redirectedPage) {
 		homepageobj.clickRegisterLink();
-		assertTrue(homepageobj.isOnRegisterPage(), "The User is not redirected to Register Page ");
+		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The User is not redirected to Register Page");
+		LOG.info("The user is redirected to Register page from Login page");
 	}
-
 }

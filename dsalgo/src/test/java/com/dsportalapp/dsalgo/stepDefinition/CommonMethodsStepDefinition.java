@@ -20,7 +20,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class LinkedListPageStepDefinition {
+public class CommonMethodsStepDefinition {
 	WebDriver driver;
 	TestSetup testsetup;
 	LinkedListObjects linkedlistobj;
@@ -31,7 +31,7 @@ public class LinkedListPageStepDefinition {
 	public static Logger LOG = LoggerFactory.getLogger(PortalPageStepDefinition.class);
 	
 	
-	public LinkedListPageStepDefinition(TestSetup testsetup) throws IOException {
+	public CommonMethodsStepDefinition(TestSetup testsetup) throws IOException {
 		super();
 		this.testsetup = testsetup;
 		this.driver = testsetup.drivermanager.getDriverManager();
@@ -57,13 +57,13 @@ public class LinkedListPageStepDefinition {
 		commonobj.clickGetStartedButtonCommon(dataStructureName);
 	}
 
-	@Then("The user should be redirected to {string} page.")
+	@Then("The user should be redirected to following page")
 	public void the_user_should_be_redirected_to_linked_list_page(String redirectedPageName) {
-		assertTrue(commonobj.isOnRedirectedPage(redirectedPageName), "The user should be in Linked List Page");
+		assertTrue(commonobj.isOnRedirectedPage(redirectedPageName), "The user should be in https://dsportalapp.herokuapp.com/"+ redirectedPageName + "/ Page");
 	}
 	
 //	--------------------------------------------------------
-	@Given("User is on {string} Home page")
+	@Given("User is on below Home page")
 	public void user_is_on_linked_list_home_page(String dataStructureName) throws InterruptedException {
 		commonobj.clickGetStartedButtonCommon(dataStructureName);
 //		linkedlistobj.isOnLinkedListHome();
@@ -73,15 +73,14 @@ public class LinkedListPageStepDefinition {
 	public void the_user_clicks_link(String homeLinkName) {
 		commonobj.clickdataStructuresHomeLinks(homeLinkName);
 	}
-
 	
 	@Then("The user should be redirected to {string} page")
 	public void the_user_should_be_redirected_to_topics_page(String redirectedPage) {
 		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The user is not redirected to Linked List Topic Page");
-		
-		
+		LOG.info("The user is redirected to "+ redirectedPage + " page");
 	}
-
+	
+	
 	@When("The user clicks Try Here button")
 	public void the_user_clicks_try_here_button() {
 		commonobj.clickTryHereButton();
@@ -90,6 +89,7 @@ public class LinkedListPageStepDefinition {
 	@Then("The user should redirected to the page having Editor and Run button")
 	public void the_user_should_redirected_to_the_page_having_editor_and_run_button() {
 		assertTrue(commonobj.isOntryEditorPage(),"The user is not redirected to Python Editor Page");
+		LOG.info("The user is redirected to Python Editor page");
 	}
 
 	@When("The user clicks the Run button after writes following Valid Python Code in editor")
@@ -127,26 +127,17 @@ public class LinkedListPageStepDefinition {
 		commonobj.clickGetStartedButtonCommon(dataStructureName);
 		commonobj.clickdataStructuresHomeLinks(dataStructureTopicName);
 	}
-//	@Given("User is on Linked List DataStructure page")
-//	public void user_is_on_linked_list_data_structure_page() {
-//	    // Write code here that turns the phrase above into concrete actions
-//	    throw new io.cucumber.java.PendingException();
-//	}
-	@When("The user clicks following link")
-	public void the_user_clicks_following_link(io.cucumber.datatable.DataTable dataTable) throws MalformedURLException, IOException, URISyntaxException {
-		commonobj.bokenLinks();
-	}
 
-	@Then("The user should be redirected to Left Panel Topic Specific page as folows")
-	public void the_user_should_be_redirected_to_left_panel_topic_specific_page_as_folows(io.cucumber.datatable.DataTable dataTable) {
-	    // Write code here that turns the phrase above into concrete actions
-	    // For automatic transformation, change DataTable to one of
-	    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-	    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-	    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-	    //
-	    // For other transformations you can register a DataTableType.
-	    throw new io.cucumber.java.PendingException();
+
+	@Then("The user tries to click on LINKS on the left panel")
+	public void the_user_tries_to_click_on_links_on_the_left_panel() throws URISyntaxException {
+		commonobj.checkBrokenLinks();
+		LOG.info("All links are validated successfully!!!");
+	}
+	
+	@Then("The user should redirected to the page having Editor button")
+	public void the_user_should_redirected_to_the_page_having_editor_button() {
+	    
 	}
 
 

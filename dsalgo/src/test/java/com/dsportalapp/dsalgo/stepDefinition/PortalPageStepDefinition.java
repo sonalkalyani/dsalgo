@@ -32,7 +32,9 @@ public class PortalPageStepDefinition {
 		linkedlistobj = testsetup.pageobjectmanager.getLinkedListObjects();
 		commonobj = testsetup.pageobjectmanager.getCommonMethodsObject();
 	}
-
+	
+//	Scenario: User landing on DS_Algo Introduction page
+	
 	@Given("The user is opening the browser and enter the DS_Algo Portal <URL>")
 	public void the_user_is_should_open_the_browser_and_enter_the_ds_algo_portal_url() {
 		LOG.info("The user is on Landing Page successful");

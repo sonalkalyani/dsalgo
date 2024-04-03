@@ -29,23 +29,23 @@ public class PortalPageObjects {
 		String message = null;
 		try {
 			message = introPageMessage.getText();
-		}catch(NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			LOG.error("No such element found " + e);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			LOG.error("An error occurred while while getting intro page message: " + e.getMessage());
 		}
 		return message;
 	}
 
 		
-// Get title of the DS_Algo Introduction page	
-	public String getTitle() {
+//  Get title of the DS_Algo Introduction page	
+    public String getTitle() {
 		String result = null;
 		try {
 			result = driver.getTitle();
-		}catch (WebDriverException e) {
-           	LOG.error("WebDriverException occurred: " + e.getMessage());
-        }
+		} catch (WebDriverException e) {
+			LOG.error("WebDriverException occurred: " + e.getMessage());
+		}
 		return result;
 	}
 }

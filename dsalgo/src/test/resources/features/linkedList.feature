@@ -9,13 +9,14 @@ Background:
 
 Scenario:
 When The user select Get Started button in "Linked List" panel
-Then The user should be redirected to "linked-list" page.
-
+Then The user should be redirected to following page
+|linked-list|
 
 Scenario Outline: Navigate through Linked List learning and run valid Python code
-Given User is on "Linked List" Home page
+Given User is on below Home page
+|Linked List|
 When The user clicks "<Topics>" link
-Then The user should be redirected to "<Topic specific>" page
+Then The user should be redirected to "<Topic specific>" page 
 When The user clicks Try Here button
 Then The user should redirected to the page having Editor and Run button
 When The user clicks the Run button after writes following Valid Python Code in editor
@@ -27,21 +28,22 @@ print"Welcome!!"
 Then The user is able to see the output inside the console
 
 Examples: 
-|Topics|                            | Topic specific|
+|Topics|                            |Topic specific|
 |Introduction|                      |linked-list|
 |Creating Linked LIst|              |creating-linked-list|             
 |Types of Linked List|						  |types-of-linked-list|
-|Implement Linked List in Python|  |implement-linked-list-in-python|
-|Traversal|										    |traversal|
-|Insertion|												|insertion-in-linked-list|
+|Implement Linked List in Python|   |implement-linked-list-in-python|
+|Traversal|										      |traversal|
+|Insertion|												  |insertion-in-linked-list|
 |Deletion|													|deletion-in-linked-list|
 
 
 
 Scenario Outline: Navigate through Linked List learning and run invalid Python code
-Given User is on "Linked List" Home page
+Given User is on below Home page
+|Linked List|
 When The user clicks "<Title>" link
-Then The user should be redirected to "<Title specific>" page
+Then The user should be redirected to "<Title specific>" page of Linked List
 When The user clicks Try Here button
 Then The user should redirected to the page having Editor and Run button
 When The user clicks the Run button after writes following Invalid Python code in editor
@@ -67,18 +69,8 @@ Examples:
 Scenario: Validation of Left Panel Links in Linked List Topic - Specific Page  
 
 Given User is on "Linked List" "Introduction" page
-Then The user should be redirected to Left Panel Topic Specific page as folows
-
- |linked-list|
- |creating-linked-list| 
- |types-of-linked-list|
- |implement-linked-list-in-python|
- |traversal|
- |insertion-in-linked-list|
- |deletion-in-linked-list|
-
-#Then The user tries to click on LINKS on the left panel
-Then The user should redirected to the page having Editor and Run button
+Then The user tries to click on LINKS on the left panel
+Then The user should redirected to the page having Editor button
 
 
 
