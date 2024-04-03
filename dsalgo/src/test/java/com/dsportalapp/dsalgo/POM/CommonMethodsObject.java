@@ -274,6 +274,7 @@ public class CommonMethodsObject {
 			LOG.error("An error occurred while clicking the link: " + e.getMessage());
 			e.printStackTrace();
 		}
+
 	}
 
 	public void checkBrokenLinks() throws URISyntaxException {
@@ -303,4 +304,8 @@ public class CommonMethodsObject {
 //		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(4));
 //		wait.until(ExpectedConditions.visibilityOfElementLocated;
 //	}
+
 }
+
+
+
