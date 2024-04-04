@@ -31,14 +31,7 @@ public class LoginPageObjects {
 	@FindBy(xpath = "//div[@class = 'alert alert-primary']") WebElement loginsuccmsg;
 	@FindBy(xpath = "//a[text() = ' Ninja153 ']") WebElement loginid;
 	@FindBy(xpath = "//div[contains(text(), 'Invalid')]") WebElement invalidErrMsg;
-	@FindBy(xpath="//a[contains(text(),'Sign out')]")
-	WebElement signOutBtn;
-	@FindBy(xpath="//div[@class='alert alert-primary']")
-	WebElement logOutMsg;
-	@FindBy(xpath="//a[contains(text(),' Register ')]")
-	WebElement registerLnk;
-	@FindBy(xpath="//a[contains(text(),' Register ')]")
-	WebElement signInLnk;
+
 	
 	
 	public static Logger Log = LoggerFactory.getLogger(LoginPageObjects.class);
@@ -187,18 +180,4 @@ public void BlankUsernameAndPasswordValidation() {
 		
 	}
 		
-		public void signOut()
-		{
-			signOutBtn.click();
-			try {
-			Assert.assertEquals(logOutMsg.getText() ,"Logged out successfully" );
-			Assert.assertTrue(registerLnk.isEnabled(), "Resgister Link is  not enabled");
-			Assert.assertTrue(signInLnk.isEnabled(), "Sign In Link is not enabled");
-			Log.info("Logged out successfully");
-			}
-			catch (Exception e) {
-				Log.error(e.getMessage());
-				e.printStackTrace();
-              }
-		}
 }

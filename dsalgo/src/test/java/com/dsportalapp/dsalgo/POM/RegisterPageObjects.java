@@ -30,23 +30,23 @@ public class RegisterPageObjects {
 	//locators
 	
 	@FindBy(id="id_username")
-	public WebElement userNameTxtBox;
+	private  WebElement userNameTxtBox;
 	@FindBy(id="id_password1")
-	public WebElement passwordTxtBox;
+	private WebElement passwordTxtBox;
 	@FindBy(id="id_password2")
-	public WebElement confrmPasswordTxtBox;
+	private WebElement confrmPasswordTxtBox;
 	@FindBy(xpath="//input[@type='submit']")
-	WebElement registerBtn;
+	private WebElement registerBtn;
 	@FindBy(xpath="//a[contains(text(),'Login')]")
-	WebElement loginLnk;
+	private WebElement loginLnk;
 	@FindBy(xpath="//div[contains(text(),'password_mismatch:The two password fields didn’t match.')]")
-	WebElement errorMsg;
+	private WebElement errorMsg;
 	@FindBy(xpath="//a[contains(text(),'Register')]")
-	WebElement registerLnk;
+	private WebElement registerLnk;
 	@FindBy(xpath="//div[contains(text(),' New Account Created.')]")
-	WebElement sucessMsg;
+	private WebElement sucessMsg;
 	@FindBy(xpath="//ul//a[2]")
-	WebElement signInName;
+	private WebElement signInName;
 	
 	
 	public void registerNewUser(String username,String password)

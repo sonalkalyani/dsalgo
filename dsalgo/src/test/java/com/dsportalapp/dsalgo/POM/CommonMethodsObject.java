@@ -338,13 +338,13 @@ public class CommonMethodsObject {
 	}
 	
 	@FindBy(xpath="//a[@class='navbar-brand']")
-	WebElement numpyNinjaLogo;
+	private WebElement numpyNinjaLogo;
 	@FindBy(xpath="//a[@class='nav-link dropdown-toggle']")
-	WebElement dataStructuresDD;
+	private WebElement dataStructuresDD;
 	@FindBy(xpath="//ul//a[2]")
-	WebElement signInName;
+	private WebElement signInName;
 	@FindBy(xpath="//a[contains(text(),'Sign out')]")
-	WebElement signOut;
+	private WebElement signOut;
 	
 	
 	public void headervalidation()
@@ -366,6 +366,31 @@ public class CommonMethodsObject {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@FindBy(xpath="//a[contains(text(),'Sign out')]")
+	private WebElement signOutBtn;
+	@FindBy(xpath="//div[@class='alert alert-primary']")
+	private WebElement logOutMsg;
+	@FindBy(xpath="//a[contains(text(),' Register ')]")
+	private WebElement registerLnk;
+	@FindBy(xpath="//a[contains(text(),' Register ')]")
+	private WebElement signInLnk;
+	
+
+	public void signOut()
+	{
+		signOutBtn.click();
+		try {
+		Assert.assertEquals(logOutMsg.getText() ,"Logged out successfully" );
+		Assert.assertTrue(registerLnk.isEnabled(), "Resgister Link is  not enabled");
+		Assert.assertTrue(signInLnk.isEnabled(), "Sign In Link is not enabled");
+		LOG.info("Logged out successfully");
+		}
+		catch (Exception e) {
+			LOG.error(e.getMessage());
+			e.printStackTrace();
+          }
 	}
 	
 	public void waitElementToBeClickable(WebElement element) throws TimeoutException {

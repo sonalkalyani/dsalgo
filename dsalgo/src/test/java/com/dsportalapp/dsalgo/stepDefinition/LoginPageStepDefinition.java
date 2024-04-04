@@ -120,7 +120,7 @@ public class LoginPageStepDefinition  {
 	
 	@Then("The user sign out the application after clicking the sign out button")
 	public void the_user_sign_out_the_application_after_clicking_the_sign_out_button() {
-		loginpageobj.signOut();
+		commonobj.signOut();
 	}
 
 	@When("The user clicks login button after leaving the username textbox and password textbox blank")
