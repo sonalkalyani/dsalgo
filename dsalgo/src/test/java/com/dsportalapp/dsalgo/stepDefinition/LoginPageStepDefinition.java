@@ -104,7 +104,7 @@ public class LoginPageStepDefinition  {
 	@When("THe user clicks on Login button")
 	public void t_he_user_clicks_on_login_button() {
 	   
-		loginpageobj.ClickLoginBtn();
+		
 	}
 
 	@Then("The user should be navigated to Home Page with the message {string} and with the user name on the top")
@@ -116,6 +116,11 @@ public class LoginPageStepDefinition  {
 		String loginId= configFileReader.init_prop().getProperty("username");
 		Assert.assertEquals((StringUtils.capitalize(loginId)),loginpageobj.ValidateLoginIdonHomePage());
 	  
+	}
+	
+	@Then("The user sign out the application after clicking the sign out button")
+	public void the_user_sign_out_the_application_after_clicking_the_sign_out_button() {
+		loginpageobj.signOut();
 	}
 
 	@When("The user clicks login button after leaving the username textbox and password textbox blank")

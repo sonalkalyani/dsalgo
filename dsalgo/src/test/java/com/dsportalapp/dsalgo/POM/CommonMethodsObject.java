@@ -6,8 +6,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -26,17 +28,23 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+import com.dsportalapp.dsalgo.utilities.ConfigReader;
 
 public class CommonMethodsObject {
 
 	WebDriver driver;
+	
+	
 	public static Logger LOG = LoggerFactory.getLogger(CommonMethodsObject.class);
 
 	public CommonMethodsObject(WebDriver driver) {
 
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		
+		
 	}
 
 //	Get Started Button on portal Introduction Page
@@ -99,6 +107,19 @@ public class CommonMethodsObject {
 			e.printStackTrace();
 		}
 
+	}
+
+	public void isTryHereEnabled()
+	{
+		try
+		{
+			Assert.assertTrue(tryHereButton.isEnabled(),"Try Here Button is not enabled");
+			LOG.info("Try Here Button Validation successfully");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 //	python textEditor 
@@ -191,13 +212,15 @@ public class CommonMethodsObject {
 
 	public void clickGetStartedButtonCommon(String option) throws InterruptedException {
 		
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
+		
 		String listOfDtaStructuresItemXpath = "//h5[@class='card-title']";
 		List<WebElement> dataStructuresItem = driver.findElements(By.xpath(listOfDtaStructuresItemXpath));
 		
 		for(WebElement itemElement :dataStructuresItem ) {
 		  try {
-			String item = itemElement.getText();
+			  waitElementToBeClickable(itemElement);
+			  String item = itemElement.getText();
 			if(option.contains(item)) {
 				
 				String getStartedButton= "//a[contains(text(),'Get Started')]";
@@ -293,18 +316,19 @@ public class CommonMethodsObject {
 
 	}
 
-	public void checkBrokenLinks() throws URISyntaxException {
+	//Left Side Panel Links
+	public void checkBrokenLinks() {
 	    SoftAssert softAssert = new SoftAssert();
 	    for (WebElement link : dataStructuresLeftPanellinks) {
 	        String href = link.getAttribute("href");
 	        if (href != null && (href.startsWith("http://") || href.startsWith("https://"))) {
 	            try {
-	                HttpURLConnection connection = (HttpURLConnection) new URI(href).toURL().openConnection();
+	                HttpURLConnection connection = (HttpURLConnection) new URL(href).openConnection();
 	                connection.setRequestMethod("HEAD");
 	                connection.connect();
 	                int responseCode = connection.getResponseCode();
 	                softAssert.assertTrue(responseCode < 400, "The link '" + href + "' is broken with response code " + responseCode);
-	                LOG.info(href +" has been verified");
+	                LOG.info(href+"has been verified");
 	            } catch (IOException e) {
 	                softAssert.fail("Error occurred while checking link '" + href + "': " + e.getMessage());
 	            }
@@ -312,10 +336,47 @@ public class CommonMethodsObject {
 	    }
 	    softAssert.assertAll();
 	}
-	public void waitElementToBeClickable(WebElement element) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-		wait.until(ExpectedConditions.elementToBeClickable(element));
+	
+	@FindBy(xpath="//a[@class='navbar-brand']")
+	WebElement numpyNinjaLogo;
+	@FindBy(xpath="//a[@class='nav-link dropdown-toggle']")
+	WebElement dataStructuresDD;
+	@FindBy(xpath="//ul//a[2]")
+	WebElement signInName;
+	@FindBy(xpath="//a[contains(text(),'Sign out')]")
+	WebElement signOut;
+	
+	
+	public void headervalidation()
+	{
+		try
+		{
+			Assert.assertTrue(numpyNinjaLogo.isDisplayed(),"NumpyNinja Logo is not displayed");
+			Assert.assertTrue(dataStructuresDD.isEnabled(),"Datastructures dropdown is not Enabled");
+			String expectedUsername = ConfigReader.init_prop().getProperty("username");
+			String actualUsername = signInName.getText();
+			Assert.assertEquals(actualUsername.toLowerCase(), expectedUsername.toLowerCase());
+			Assert.assertTrue(signOut.isDisplayed(),"Sign Out Link is not displayed");
+			LOG.info("Header validation done sucessfully");
+				
+		}
+		catch(Exception e)
+		{
+			LOG.error("Header validation Failed with error"+e.getMessage());
+			e.printStackTrace();
+		}
+		
 	}
+	
+	public void waitElementToBeClickable(WebElement element) throws TimeoutException {
+		 try {
+		        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		        wait.until(ExpectedConditions.elementToBeClickable(element));
+		        LOG.info("Element is clickable: " + element);
+		    } catch (Exception e) {
+		        LOG.info("Error occurred while waiting for element: " + element);
+		        e.printStackTrace();
+		    }	}
 //	public void waitVisibilityOfElementLocated(WebElement element) {
 //		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(4));
 //		wait.until(ExpectedConditions.visibilityOfElementLocated;

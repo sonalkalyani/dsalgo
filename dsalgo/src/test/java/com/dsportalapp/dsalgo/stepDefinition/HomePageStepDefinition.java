@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -73,7 +74,7 @@ public class HomePageStepDefinition {
 //	Scenario: Verify display of 'You are not logged in' Message for Unauthenticated Users for DropDown List
 	
 	@When("The user selects following options from the drop down without login")
-	public void the_user_selects_following_options_from_the_drop_down_without_login(List<String> dropDownOptions) throws InterruptedException {
+	public void the_user_selects_following_options_from_the_drop_down_without_login(List<String> dropDownOptions) throws InterruptedException, TimeoutException {
 	
 		for(String option:dropDownOptions) {
 			homepageobj.clickDataStructuresDropDown();
