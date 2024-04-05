@@ -8,7 +8,7 @@ public class PageObjectManager {
 
 	public LoginPageObjects loginpageobj;
 	public PortalPageObjects portalobj;
-	public LinkedListObjects linkedlistobj;
+//	public LinkedListObjects linkedlistobj;
 	public CommonMethodsObject commonobj;
 
 	public RegisterPageObjects registerobjects;
@@ -54,10 +54,10 @@ public class PageObjectManager {
 		return portalobj;
 		
 	}
-	public LinkedListObjects getLinkedListObjects() {
-		linkedlistobj = new LinkedListObjects(driver);
-		return linkedlistobj;
-		
-	}
+//	public LinkedListObjects getLinkedListObjects() {
+//		linkedlistobj = new LinkedListObjects(driver);
+//		return linkedlistobj;
+//		
+//	}
 
 }

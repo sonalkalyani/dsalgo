@@ -8,13 +8,13 @@ import java.util.Properties;
 
 public class ConfigReader {
 	
-	private Properties prop; 
+	private static Properties prop; 
 	
 	/**
 	 * this method is to load properties from config.properties file
 	 * @return properties from prop object
 	 */
-	public Properties init_prop() {
+	public static Properties init_prop() {
 		
 		prop = new Properties();
 		try {

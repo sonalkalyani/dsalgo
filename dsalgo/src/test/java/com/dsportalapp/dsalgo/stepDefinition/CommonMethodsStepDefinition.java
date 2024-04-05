@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import com.dsportalapp.dsalgo.POM.CommonMethodsObject;
 import com.dsportalapp.dsalgo.POM.HomePageObjects;
-import com.dsportalapp.dsalgo.POM.LinkedListObjects;
+
 import com.dsportalapp.dsalgo.POM.LoginPageObjects;
 import com.dsportalapp.dsalgo.POM.PortalPageObjects;
 import com.dsportalapp.dsalgo.utilities.TestSetup;
@@ -24,7 +24,7 @@ import io.cucumber.java.en.When;
 public class CommonMethodsStepDefinition {
 	WebDriver driver;
 	TestSetup testsetup;
-	LinkedListObjects linkedlistobj;
+//	LinkedListObjects linkedlistobj;
 	HomePageObjects homepageobj;
 	CommonMethodsObject commonobj;
 	LoginPageObjects loginpageobj;
@@ -37,15 +37,16 @@ public class CommonMethodsStepDefinition {
 		super();
 		this.testsetup = testsetup;
 		this.driver = testsetup.drivermanager.getDriverManager();
-		linkedlistobj = testsetup.pageobjectmanager.getLinkedListObjects();
+//		linkedlistobj = testsetup.pageobjectmanager.getLinkedListObjects();
 		commonobj = testsetup.pageobjectmanager.getCommonMethodsObject();
 		homepageobj = testsetup.pageobjectmanager.getHomePageObjects();
 		loginpageobj = testsetup.pageobjectmanager.getLoginPageObjects();
 	}
 	@Given("User should be logged in with valid credential")
 	public void user_should_be_logged_in_with_valid_credential() {
-		driver.get("https://dsportalapp.herokuapp.com/home");
-		homepageobj.clickSignInButton();
+//		driver.get("https://dsportalapp.herokuapp.com/home");
+		commonobj.clicktoHomeGetStartedButton();
+		commonobj.clickSignInButton();
 		loginpageobj.EnterValidUsernameandPassword();
 //		commonobj.login();
 	}
@@ -133,16 +134,13 @@ public class CommonMethodsStepDefinition {
 	}
 
 
-	@Then("The user tries to click on LINKS on the left panel")
-	public void the_user_tries_to_click_on_links_on_the_left_panel() throws URISyntaxException {
-		commonobj.checkBrokenLinks();
+	@Then("The user clicks on LINKS on the left panel to validate the Python Editor funtionality")
+	public void the_user_tries_to_click_on_links_on_the_left_panel(String code) throws URISyntaxException, IOException, InterruptedException {
+		commonobj.leftLink(code);
 		LOG.info("All links are validated successfully!!!");
 	}
 	
-	@Then("The user should redirected to the page having Editor button")
-	public void the_user_should_redirected_to_the_page_having_editor_button() {
-	    
-	}
+	
 
 
 	

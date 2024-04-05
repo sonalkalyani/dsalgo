@@ -18,6 +18,7 @@ import org.testng.asserts.IAssert;
 
 import com.dsportalapp.dsalgo.POM.CommonMethodsObject;
 import com.dsportalapp.dsalgo.POM.HomePageObjects;
+import com.dsportalapp.dsalgo.POM.LoginPageObjects;
 import com.dsportalapp.dsalgo.utilities.TestSetup;
 
 import io.cucumber.java.en.Given;
@@ -31,6 +32,7 @@ public class HomePageStepDefinition {
 	TestSetup testsetup;
 	HomePageObjects homepageobj;
 	CommonMethodsObject commonobj;
+	LoginPageObjects loginpageobj;
 	Map<String,String> warningMessageMap;
 	Map<String,String> dropDownwarningMsgMap;
 	
@@ -43,6 +45,7 @@ public class HomePageStepDefinition {
 		this.driver= testsetup.drivermanager.driver;
 		commonobj = testsetup.pageobjectmanager.getCommonMethodsObject();
 		homepageobj = testsetup.pageobjectmanager.getHomePageObjects();
+		loginpageobj = testsetup.pageobjectmanager.getLoginPageObjects();
 		
 	}
 //	Background:
@@ -108,56 +111,32 @@ public class HomePageStepDefinition {
 		LOG.info("Assertion successful for Get Started Button");
 		
 	}
-//	Scenario: Navigation to Register Page
-	
-	@When("The user clicks Register link on DS_Algo Home page")
-	public void the_user_clicks_link_on_DS_Algo_Home_page() {
-		homepageobj.clickRegisterButton();
-	}
-	
-	@Then("The user should be redirected to {string} Page")
-	public void the_user_should_be_redirected_to_page(String redirectedPage) {
-		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The User is not redirected to Register Page ");
-		LOG.info("The user is redirected to Register page successfully!!");
-	}
 
-	@When("The user should be able to see Login link at the bottom of the page")
-	public void the_user_should_be_able_to_see_link_at_the_bottom_of_the_page() {
-		assertTrue(homepageobj.isDisplayLoginLink(), "Login Link is not displayed in Register page");
-		LOG.info("Login link is displayed in Register page");
-	}
-
-	@Then("The user should be able to navigate to {string} page if clicks Login link")
-	public void the_user_should_be_able_to_navigate_to_login_page(String redirectedPage) {
-		homepageobj.clickLoginLink();
-		assertTrue(commonobj.isOnRedirectedPage(redirectedPage),"The user is not redirected to login page");
-		LOG.info("The user is redirected to login page from Register page");
-	}
 
 //	Scenario: Navigation to 'Sign In' Page
 	
-	@When("The user clicks on Sign In link on DS_Algo Home page")
-	public void the_user_clicks_on_sign_in_link_on_ds_algo_home_page() {
-		homepageobj.clickSignInButton();
-	}
-
-	@Then("The user shoulde be redirected to {string} page")
-	public void the_user_shoulde_be_redirected_to_page(String redirectedPage) {
-		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The User is not redirected to Login Page ");
-		LOG.info("The user is redirected to login page");
-	}
-
-	@When("The user should be able to see Register link in login page")
-	public void the_user_should_be_able_to_see_register_link_in_login_page() {
-		assertTrue(homepageobj.isDisplayRegisterLink(), "Register Link is not displayed");
-		LOG.info("Register link is displayed in login page");
-		
-	}
-
-	@Then("The user should able to navigate to {string} page if clicks Register link")
-	public void the_user_should_able_to_navigate_to_page_if_clicks_register_link(String redirectedPage) {
-		homepageobj.clickRegisterLink();
-		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The User is not redirected to Register Page");
-		LOG.info("The user is redirected to Register page from Login page");
-	}
+//	@When("The user clicks on Sign In link on DS_Algo Home page")
+//	public void the_user_clicks_on_sign_in_link_on_ds_algo_home_page() {
+//		loginpageobj.RegisterLinkValidation();
+//	}
+//
+//	@Then("The user shoulde be redirected to {string} page")
+//	public void the_user_shoulde_be_redirected_to_page(String redirectedPage) {
+//		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The User is not redirected to Login Page ");
+//		LOG.info("The user is redirected to login page");
+//	}
+//
+//	@When("The user should be able to see Register link in login page")
+//	public void the_user_should_be_able_to_see_register_link_in_login_page() {
+//		assertTrue(homepageobj.isDisplayRegisterLink(), "Register Link is not displayed");
+//		LOG.info("Register link is displayed in login page");
+//		
+//	}
+//
+//	@Then("The user should able to navigate to {string} page if clicks Register link")
+//	public void the_user_should_able_to_navigate_to_page_if_clicks_register_link(String redirectedPage) {
+//		homepageobj.clickRegisterLink();
+//		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The User is not redirected to Register Page");
+//		LOG.info("The user is redirected to Register page from Login page");
+//	}
 }

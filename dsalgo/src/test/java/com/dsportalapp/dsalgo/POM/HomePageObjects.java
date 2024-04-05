@@ -136,32 +136,7 @@ public class HomePageObjects extends CommonMethodsObject {
 		return dropDownwarningMsgMap;
 	}
 
-//	Register Link in home page
-	
-	@FindBy(xpath="//a[contains(text(),' Register ')]")
-	private WebElement registerButton;
-	public void clickRegisterButton() {
-		try {
-			registerButton.click();
-		}catch (Exception e) {
-	        LOG.error("Error occurred while clicking register link on home page: " + e.getMessage());
-	        e.printStackTrace(); 
-	    }
-	}
-	
-//	Sign In Link in home page
-	
-	@FindBy(xpath="//a[contains(text(),'Sign in')]")
-	private WebElement signInButton;
-	
-	public void clickSignInButton() {
-		try {
-			signInButton.click();
-		} catch (Exception e) {
-			LOG.error("Error occurred while clicking signin link on home page " + e.getMessage());
-			e.printStackTrace();
-		}
-	}
+
 // 	Register Link in login page
 	@FindBy(xpath="//a[contains(text(),'Register!')]")
 	private WebElement registerLink;

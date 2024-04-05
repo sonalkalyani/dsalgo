@@ -5,6 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.time.Duration;
 import java.util.List;
 
@@ -25,6 +26,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 public class CommonMethodsObject {
@@ -54,24 +56,33 @@ public class CommonMethodsObject {
 			LOG.error("An exception occured while clicking 'Get Started' button: " + e.getMessage());
 		}
 	}
-
-//	 Login
-//	@FindBy(xpath = "//input[@id='id_username']")
-//	private WebElement userNameText;
-//
-//	@FindBy(xpath = "//input[@id='id_password']")
-//	private WebElement passwordText;
-//	@FindBy(xpath = "//input[@value='Login']")
-//	private WebElement clickLoginBtn;
-//
-//	public void login() {
-//
-//		userNameText.sendKeys("ninja153");
-//		passwordText.sendKeys("sdet@153");
-//		clickLoginBtn.click();
+////	Register Link in home page
+//	
+//	@FindBy(xpath="//a[contains(text(),' Register ')]")
+//	private WebElement registerButton;
+//	public void clickRegisterButton() {
+//		try {
+//			registerButton.click();
+//		}catch (Exception e) {
+//	        LOG.error("Error occurred while clicking register link on home page: " + e.getMessage());
+//	        e.printStackTrace(); 
+//	    }
 //	}
+//	
+////	Sign In Link in home page
+//	
+	@FindBy(xpath="//a[contains(text(),'Sign in')]")
+	private WebElement signInButton;
 	
-//	Login link in signin page
+	public void clickSignInButton() {
+		try {
+			signInButton.click();
+		} catch (Exception e) {
+			LOG.error("Error occurred while clicking signin link on home page " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
 	@FindBy(xpath="//a[contains(text(),'Login ')]")
 	protected WebElement loginLink;
 	
@@ -205,11 +216,13 @@ public class CommonMethodsObject {
 				getStratedButton.click();
 			  }
 			
-		  }catch(StaleElementReferenceException e) {
-				 LOG.error("Stale element reference encountered." + e);
-				 driver.navigate().refresh();
+		  }
+//			catch(StaleElementReferenceException e) {
+//				 LOG.error("Stale element reference encountered." + e);
+//				 driver.navigate().refresh();
 			
-		  }	catch(Exception e) {
+//		  }
+			catch(Exception e) {
 				LOG.error("An error occured while clicking 'Get Started' button:"+ e.getMessage());
 				e.printStackTrace();
 		  }	
@@ -264,7 +277,7 @@ public class CommonMethodsObject {
 
 	}
 
-	@FindBy(xpath = "//li[@class='list-group-item list-group-item-light ']/a")
+	@FindBy(xpath = "//div[@class='col-2']//a")
 	private List<WebElement> dataStructuresLeftPanellinks;
 
 //	dataStructures Home Page Link
@@ -292,18 +305,18 @@ public class CommonMethodsObject {
 
 	}
 
-	public void checkBrokenLinks() throws URISyntaxException {
+	public void checkBrokenLinks() {
 	    SoftAssert softAssert = new SoftAssert();
 	    for (WebElement link : dataStructuresLeftPanellinks) {
 	        String href = link.getAttribute("href");
 	        if (href != null && (href.startsWith("http://") || href.startsWith("https://"))) {
 	            try {
-	                HttpURLConnection connection = (HttpURLConnection) new URI(href).toURL().openConnection();
+	                HttpURLConnection connection = (HttpURLConnection) new URL(href).openConnection();
 	                connection.setRequestMethod("HEAD");
 	                connection.connect();
 	                int responseCode = connection.getResponseCode();
 	                softAssert.assertTrue(responseCode < 400, "The link '" + href + "' is broken with response code " + responseCode);
-	                LOG.info(href +" has been verified");
+	                LOG.info(href + " has been verified");
 	            } catch (IOException e) {
 	                softAssert.fail("Error occurred while checking link '" + href + "': " + e.getMessage());
 	            }
@@ -320,6 +333,43 @@ public class CommonMethodsObject {
 //		wait.until(ExpectedConditions.visibilityOfElementLocated;
 //	}
 
+	public void leftLink(String pythonCode) {
+
+		int linkSize = dataStructuresLeftPanellinks.size();
+		int j = 0;
+		for (int i = 0; i < linkSize; i++) {
+			WebElement link = dataStructuresLeftPanellinks.get(i);
+			String href = link.getAttribute("href");
+			System.out.println(href);
+//			if(href.contains("array/practice"))
+			try {
+				link.click();
+				j++;
+				String currentURL = driver.getCurrentUrl();
+				Assert.assertTrue(currentURL.contains(href), "Expected Page is not availabe");
+				if (j == linkSize) 
+//				{
+//					if (href.contains("array/practice")) {
+//
+//					}
+					break;
+//				} 
+			else {
+					clickTryHereButton();
+					sendTextEditor(pythonCode);
+					clickRunButton();
+					driver.navigate().back();
+					driver.navigate().refresh();
+					dataStructuresLeftPanellinks = driver.findElements(By.xpath("//div[@class='col-2']//a"));
+					Thread.sleep(2000);
+
+				}
+			} catch (Exception e) {
+				LOG.info("Error occurred while clicking the link '" + href + "': " + e.getMessage());
+
+			}
+		}
+	}
 }
 
 

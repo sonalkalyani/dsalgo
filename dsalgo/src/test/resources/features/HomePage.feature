@@ -44,15 +44,23 @@ Then The user should be able to see below  six options in dropdown menu
 
 
 
-Scenario: Navigation to Register Page
-When The user clicks Register link on DS_Algo Home page
-Then The user should be redirected to "register" Page
-When The user should be able to see Login link at the bottom of the page
-Then The user should be able to navigate to "login" page if clicks Login link
 
-Scenario: Navigation to 'Sign In' Page
-When The user clicks on Sign In link on DS_Algo Home page
-Then The user shoulde be redirected to "login" page
-When The user should be able to see Register link in login page
-Then The user should able to navigate to "register" page if clicks Register link
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import com.dsportalapp.dsalgo.POM.CommonMethodsObject;
-import com.dsportalapp.dsalgo.POM.LinkedListObjects;
+//import com.dsportalapp.dsalgo.POM.LinkedListObjects;
 import com.dsportalapp.dsalgo.POM.PortalPageObjects;
 import com.dsportalapp.dsalgo.utilities.TestSetup;
 
@@ -20,7 +20,7 @@ public class PortalPageStepDefinition {
 	WebDriver driver;
 	TestSetup testsetup;
 	PortalPageObjects portalobj;
-	LinkedListObjects linkedlistobj;
+//	LinkedListObjects linkedlistobj;
 	CommonMethodsObject commonobj;
 	public static Logger LOG = LoggerFactory.getLogger(PortalPageStepDefinition.class);
 	
@@ -29,7 +29,7 @@ public class PortalPageStepDefinition {
 		super();
 		this.testsetup = testsetup;
 		portalobj = testsetup.pageobjectmanager.getPortalPageObjects();
-		linkedlistobj = testsetup.pageobjectmanager.getLinkedListObjects();
+//		linkedlistobj = testsetup.pageobjectmanager.getLinkedListObjects();
 		commonobj = testsetup.pageobjectmanager.getCommonMethodsObject();
 	}
 	

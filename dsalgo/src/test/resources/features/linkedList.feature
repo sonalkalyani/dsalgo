@@ -41,7 +41,7 @@ Examples:
 Scenario Outline: Navigate through 'Linked List' learning and run invalid Python code
 Given User is on "Linked List" Home page
 When The user clicks "<Title>" link
-Then The user should be redirected to "<Title specific>" page of Linked List
+Then The user should be redirected to "<Title specific>" page 
 When The user clicks Try Here button
 Then The user should redirected to the page having Editor and Run button
 When The user clicks the Run button after writes following Invalid Python code in editor
@@ -66,8 +66,13 @@ Examples:
 
 Scenario: Validation of Left Panel Links in 'Linked List' Topic - Specific Page  
 Given User is on "Linked List" "Introduction" page
-Then The user tries to click on LINKS on the left panel
-Then The user should redirected to the page having Editor button
+Then The user clicks on LINKS on the left panel to validate the Python Editor funtionality
+
+"""
+print"Hello"
+print"Welcome!!"
+
+"""
 
 
 

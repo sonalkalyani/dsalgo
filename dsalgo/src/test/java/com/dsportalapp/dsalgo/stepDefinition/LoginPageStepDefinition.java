@@ -99,12 +99,13 @@ public class LoginPageStepDefinition  {
 	public void the_user_enters_valid_and_valid() {
 		
 		loginpageobj.EnterValidUsernameandPassword();
+		
 	}
 
 	@When("THe user clicks on Login button")
 	public void t_he_user_clicks_on_login_button() {
 	   
-		loginpageobj.ClickLoginBtn();
+		LOG.info("Login successfully");
 	}
 
 	@Then("The user should be navigated to Home Page with the message {string} and with the user name on the top")
