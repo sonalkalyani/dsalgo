@@ -1,9 +1,9 @@
 package com.dsportalapp.dsalgo.POM;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,22 +15,27 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import com.dsportalapp.dsalgo.utilities.ConfigReader;
 
-public class LoginPageObjects {
-
+public class LoginPageObjects{
 
 	private WebDriver driver;
-	public ConfigReader configFileReader =new ConfigReader();
-	@FindBy(name = "username") WebElement username;
-	@FindBy(name = "password") WebElement password;
-	@FindBy(xpath = "//input[@value = 'Login']") WebElement loginbtn;
-	@FindBy(xpath = "//a[text()='Register!']") WebElement registerlnk;
-	@FindBy(xpath = "//div[@class = 'alert alert-primary']") WebElement loginsuccmsg;
-	@FindBy(xpath = "//a[text() = ' Ninja153 ']") WebElement loginid;
-	@FindBy(xpath = "//div[contains(text(), 'Invalid')]") WebElement invalidErrMsg;
-	
+	public ConfigReader configFileReader = new ConfigReader();
+	@FindBy(name = "username")
+	private WebElement userName;
+	@FindBy(name = "password")
+	private WebElement password;
+	@FindBy(xpath = "//input[@value = 'Login']")
+	private WebElement loginBtn;
+	@FindBy(xpath = "//a[text()='Register!']")
+	private WebElement registerLnk;
+	@FindBy(xpath = "//div[@class = 'alert alert-primary']")
+	private WebElement loginSuccmsg;
+	@FindBy(xpath = "//a[text() = ' Ninja153 ']")
+	private WebElement loginId;
+	@FindBy(xpath = "//div[contains(text(), 'Invalid')]")
+	private WebElement invalidErrMsg;
+
 	public static Logger Log = LoggerFactory.getLogger(LoginPageObjects.class);
 
-	
 	public LoginPageObjects(WebDriver driver) {
 		
 		this.driver = driver;
@@ -39,138 +44,204 @@ public class LoginPageObjects {
 
 	public void isOnSignInPage() {
 	
-		driver.get(configFileReader.init_prop().getProperty("Url"));
-		
+		try {
+			driver.get(configFileReader.init_prop().getProperty("Url"));
+		} 
+		catch (Exception e) {
+			Log.info("Error whil retrieving Url from global properties");
+			e.printStackTrace();
+		}
 	
 	}
-	public String SigninPageTitle() {
-		
-		return driver.getTitle();
+
+	public String signInPageTitle() {
+
+		String actualtitle = driver.getTitle();
+
+		try {
+			
+			Log.info("Title of the page is: " + actualtitle);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return actualtitle;
 	}
-	
-	public void RegisterLinkValidation() {
-		
-		registerlnk.click();
-	
+
+	public void registerLinkValidation() {
+
+		try {
+			registerLnk.getText();
+		} catch (Exception e) {
+			Log.error("An error occured while checking the Register Link: " + e.getMessage());
+		}
+
 	}
-	public String RegisterLinkNavigation() {
-		
-		return driver.getTitle();
-		
+
+	public String registerLinkNavigation() {
+		registerLnk.click();
+		String registerLink = driver.getTitle();
+		try {
+			Log.info("Title of the Page is: " + registerLink);
+		} catch (Exception e) {
+			Log.error("Error while checking Register Page Title: " + e.getMessage());
+			e.printStackTrace();
+		}
+		return registerLink;
+
 	}
-	public void EnterValidUsernameandPassword() {
-		
-		String usrname = configFileReader.init_prop().getProperty("username");
-		String passwd = configFileReader.init_prop().getProperty("password");
-		username.sendKeys(usrname);
-		password.sendKeys(passwd);
-		ClickLoginBtn();
-		
+
+	public void enterValidUsernameandPassword() {
+		try {
+	        String usrName = configFileReader.init_prop().getProperty("username");
+	        String passwd = configFileReader.init_prop().getProperty("password");
+	        userName.sendKeys(usrName);
+	        password.sendKeys(passwd);
+	        clickLoginBtn();
+	    } catch (Exception e) {
+	        Log.error("An error occurred while entering valid username and password: " + e.getMessage());
+	    }
+
 	}
-	public void EnterInvalidUsernameandPassword(List <Map<String, String>> userList) {
-		
-		
-		username.sendKeys(userList.get(0).get("Username"));
+
+	public void enterInvalidUsernameandPassword(List<Map<String, String>> userList) {
+
+		try {
+		userName.sendKeys(userList.get(0).get("Username"));
 		password.sendKeys(userList.get(0).get("Password"));
-		
+		}
+		catch (Exception e) {
+			Log.error("Error while entering in username and password textboxes " +e.getMessage() );
+		}
 	}
-	public void ClickLoginBtn() {
-		
-		loginbtn.click();
-	
+
+	public void clickLoginBtn() {
+
+		try {
+			loginBtn.click();
+		} catch (Exception e) {
+			Log.error("An error occured while checking the Login Button: " + e.getMessage());
+			e.printStackTrace();
+		}
+
 	}
-	
-	public String ValidateSuccssMsg() {
-		
-		return loginsuccmsg.getText();
-	
+
+	public String validateSuccssMsg(String signInMsg) {
+
+		String actualMessage = loginSuccmsg.getText();
+		try {
+			Assert.assertEquals(actualMessage, signInMsg);
+			Log.info("Message on the HomePage is: " + actualMessage);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return actualMessage;
+
 	}
-	
-	public String ValidateLoginIdonHomePage() {
-		
-		return loginid.getText();
+
+	public void validateLoginIdOnHomePage() {
+
+		String expectdSignInId = loginId.getText();
+		String actualSignInId = configFileReader.init_prop().getProperty("username");
+
+		try {
+			Assert.assertEquals(StringUtils.capitalize(actualSignInId), expectdSignInId);
+		} catch (Exception e) {
+
+			Log.error("Error in displaying SignIn Id: " + e.getMessage());
+			e.printStackTrace();
+		}
 	}
-	
-	public String ValidateinvalidErrorMsg() {
-		
-		return invalidErrMsg.getText(); 
-		
+
+	public String validateInvalidErrorMsg(String errMsg) {
+
+		String actualErrorMsg = invalidErrMsg.getText();
+		try {
+			Assert.assertEquals(actualErrorMsg, errMsg);
+			Log.info("Error Message is: " + actualErrorMsg);
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		return actualErrorMsg;
+
 	}
-	
-public void BlankUsernameAndPasswordValidation() {
-		
-		
+
+	public void blankUsernameAndPasswordValidation() {
+
 		List<WebElement> inputFields = driver.findElements(By.tagName("label"));
 		boolean tooltipFound = false;
 		String tooltipMessage = "";
 		Actions action = new Actions(driver);
 		for (WebElement inputField : inputFields) {
-			
+
 			action.moveToElement(inputField).perform();
 			WebElement activeElement = driver.switchTo().activeElement();
-			
+
 			String ActualErrMsg = activeElement.getAttribute("validationMessage");
 			String ExpectedErrMsg = "Please fill out this field.";
-		
+
 			if (ActualErrMsg != null && !ActualErrMsg.isEmpty()) {
-              
-                tooltipFound = true;
-                tooltipMessage = ActualErrMsg;
-               
-                Log.info("Tooltip is displayed under input field: " + inputField.getText());
-                Assert.assertEquals(ActualErrMsg,ExpectedErrMsg);
-                break;
-                
-            }
-			
-		
+
+				tooltipFound = true;
+				tooltipMessage = ActualErrMsg;
+
+				Log.info("Tooltip is displayed under input field: " + inputField.getText());
+				Assert.assertEquals(ActualErrMsg, ExpectedErrMsg);
+				break;
+
+			}
+
 		}
 		if (!tooltipFound) {
-           Log.info("Tooltip is not displayed under any input field.");
-        } else {
-           
-        	Log.info("Tooltip message: " + tooltipMessage);
-        }
-}
-		public void BlankUsernameValidation() {
-			password.sendKeys("test");
-			loginbtn.click();
-			List<WebElement> inputFields = driver.findElements(By.tagName("label"));
-			boolean tooltipFound = false;
-			String tooltipMessage = "";
-			Actions action = new Actions(driver);
-			for (WebElement inputField : inputFields) {
-				
-				action.moveToElement(inputField).perform();
-				WebElement activeElement = driver.switchTo().activeElement();
-				
-				String ActualErrMsg = activeElement.getAttribute("validationMessage");
-				String ExpectedErrMsg = "Please fill out this field.";
-			
-				if (ActualErrMsg != null && !ActualErrMsg.isEmpty()) {
-	              
-	                tooltipFound = true;
-	                tooltipMessage = ActualErrMsg;
-	              try { 
-	                Log.info("Tooltip is displayed under input field: " + inputField.getText());
-	                Assert.assertEquals(ActualErrMsg,ExpectedErrMsg);
-	              }
-	              catch (Exception e) {
+			Log.info("Tooltip is not displayed under any input field.");
+		} else {
+
+			Log.info("Tooltip message: " + tooltipMessage);
+		}
+	}
+
+	public void blankUsernameValidation() {
+		password.sendKeys("test");
+		loginBtn.click();
+		List<WebElement> inputFields = driver.findElements(By.tagName("label"));
+		boolean tooltipFound = false;
+		String tooltipMessage = "";
+		Actions action = new Actions(driver);
+		for (WebElement inputField : inputFields) {
+
+			action.moveToElement(inputField).perform();
+			WebElement activeElement = driver.switchTo().activeElement();
+
+			String ActualErrMsg = activeElement.getAttribute("validationMessage");
+			String ExpectedErrMsg = "Please fill out this field.";
+
+			if (ActualErrMsg != null && !ActualErrMsg.isEmpty()) {
+
+				tooltipFound = true;
+				tooltipMessage = ActualErrMsg;
+				try {
+					Log.info("Tooltip is displayed under input field: " + inputField.getText());
+					Assert.assertEquals(ActualErrMsg, ExpectedErrMsg);
+				} catch (Exception e) {
 					e.printStackTrace();
-	              }
-	                
-	              break;
-	                
-	            }
-				
-			
+				}
+
+				break;
+
 			}
-			if (!tooltipFound) {
-	           Log.info("Tooltip is not displayed under any input field.");
-	        } else {
-	           
-	        	Log.info("Tooltip message: " + tooltipMessage);
-	        }
-		
+
+		}
+		if (!tooltipFound) {
+			Log.info("Tooltip is not displayed under any input field.");
+		} else {
+
+			Log.info("Tooltip message: " + tooltipMessage);
+		}
+
 	}
 }

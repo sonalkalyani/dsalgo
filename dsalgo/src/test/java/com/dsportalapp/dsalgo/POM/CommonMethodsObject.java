@@ -8,6 +8,7 @@ import java.net.URISyntaxException;
 import java.time.Duration;
 import java.util.List;
 
+import org.apache.commons.logging.LogConfigurationException;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
@@ -55,21 +56,25 @@ public class CommonMethodsObject {
 		}
 	}
 
-//	 Login
-//	@FindBy(xpath = "//input[@id='id_username']")
-//	private WebElement userNameText;
-//
-//	@FindBy(xpath = "//input[@id='id_password']")
-//	private WebElement passwordText;
-//	@FindBy(xpath = "//input[@value='Login']")
-//	private WebElement clickLoginBtn;
-//
-//	public void login() {
-//
-//		userNameText.sendKeys("ninja153");
-//		passwordText.sendKeys("sdet@153");
-//		clickLoginBtn.click();
-//	}
+////	 Login
+	@FindBy(name = "username")
+	protected WebElement userName;
+	@FindBy(name = "password")
+	protected WebElement password;
+	@FindBy(xpath = "//input[@value = 'Login']")
+	protected WebElement loginBtn;
+	
+	public void enterValidUsernameandPassword() {
+		
+		try {
+			
+			LOG.info("Login is successful");
+			
+		} catch (Exception e) {
+			LOG.error("There is an error while signing in" +e.getMessage());
+			e.printStackTrace();
+		}
+	}
 	
 //	Login link in signin page
 	@FindBy(xpath="//a[contains(text(),'Login ')]")

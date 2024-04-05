@@ -3,13 +3,13 @@ As a user
   I want to be able to login with credentials
   So that I can access the dsalgo portal
 
-
+@TC001
 Scenario: Verify Login page title
 Given The user is on DS Algo Sign in Page
 When The user gets the title of the page
 Then Page title should be "Login"
 
-@TC001
+@TC002
 Scenario: Verify Register link under the login button
 Given The user is on DS Algo Sign in Page
 Then Register link should be displayed under the login button
@@ -17,8 +17,7 @@ Then On clicking register link, page should navigate to Registration page with t
 
 Scenario: verify login is successful with valid credentials
 Given The user is on the DS Algo Sign in Page
-When The user enters valid username and valid password
-And THe user clicks on Login button
+When The user enters valid username and valid password and clicks on Login button
 Then The user should be navigated to Home Page with the message "You are logged in" and with the user name on the top
  
 
@@ -48,6 +47,6 @@ Scenario: Verify error message when login button is clicked with invalid usernam
 Given The user is on the DS Algo Sign in Page
 When The user enters below invalid username and invalid password in textbox
 | Username | Password |
-| abcwer2	| xxxdss  |
+| test1223	| xxxdss  |
 And The user clicks on login button
 Then The user should able to see an error message "Invalid Username and Password"

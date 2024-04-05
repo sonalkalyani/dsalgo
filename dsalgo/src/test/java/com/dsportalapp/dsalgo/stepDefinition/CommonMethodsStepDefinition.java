@@ -46,7 +46,7 @@ public class CommonMethodsStepDefinition {
 	public void user_should_be_logged_in_with_valid_credential() {
 		driver.get("https://dsportalapp.herokuapp.com/home");
 		homepageobj.clickSignInButton();
-		loginpageobj.EnterValidUsernameandPassword();
+		loginpageobj.enterValidUsernameandPassword();
 //		commonobj.login();
 	}
 //	@Given("User is on DS_Algo Home page after logged in")
