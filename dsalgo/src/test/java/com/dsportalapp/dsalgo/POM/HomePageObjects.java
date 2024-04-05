@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
@@ -82,7 +83,7 @@ public class HomePageObjects extends CommonMethodsObject {
 	
 //	Select data structures dropdown option
 	
-	public Map<String, String> selectDataStructuresDropDown(String option) throws InterruptedException {
+	public Map<String, String> selectDataStructuresDropDown(String option) throws InterruptedException, TimeoutException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		Map<String, String> dropDownwarningMsgMap = new HashMap<>();
 			waitElementToBeClickable(dataStructuresDropDown);

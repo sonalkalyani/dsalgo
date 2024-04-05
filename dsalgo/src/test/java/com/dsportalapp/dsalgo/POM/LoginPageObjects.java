@@ -1,6 +1,5 @@
 package com.dsportalapp.dsalgo.POM;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,9 +12,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-
 import com.dsportalapp.dsalgo.utilities.ConfigReader;
-import com.dsportalapp.dsalgo.webDriverManager.DriverManager;
+
+
 
 public class LoginPageObjects {
 
@@ -29,6 +28,8 @@ public class LoginPageObjects {
 	@FindBy(xpath = "//div[@class = 'alert alert-primary']") WebElement loginsuccmsg;
 	@FindBy(xpath = "//a[text() = ' Ninja153 ']") WebElement loginid;
 	@FindBy(xpath = "//div[contains(text(), 'Invalid')]") WebElement invalidErrMsg;
+
+	
 	
 	public static Logger Log = LoggerFactory.getLogger(LoginPageObjects.class);
 
@@ -175,4 +176,5 @@ public void BlankUsernameAndPasswordValidation() {
 	        }
 		
 	}
+		
 }

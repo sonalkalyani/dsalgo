@@ -13,6 +13,7 @@ public class PageObjectManager {
 
 	public RegisterPageObjects registerobjects;
 	public QueuePageObjects queueobjects;
+	
 
 
 	public PageObjectManager(WebDriver driver) {
@@ -33,10 +34,7 @@ public class PageObjectManager {
 	
 	}
 
-	public CommonMethodsObject getCommonMethodsObject() {
-		commonobj = new CommonMethodsObject(driver);
-		return commonobj;
-	}
+	
 	public RegisterPageObjects getRegisterPageObjects() {
 		registerobjects = new RegisterPageObjects(driver);
 		return registerobjects;
@@ -45,6 +43,11 @@ public class PageObjectManager {
 	public QueuePageObjects getQueuePageObjects() {
 		queueobjects = new QueuePageObjects(driver);
 		return queueobjects;
+		
+	}
+	public CommonMethodsObject getCommonMethodsObject() {
+		commonobj = new CommonMethodsObject(driver);
+		return commonobj;
 		
 	}
 	

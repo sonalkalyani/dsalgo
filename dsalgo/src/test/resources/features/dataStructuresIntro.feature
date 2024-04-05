@@ -13,6 +13,7 @@ Background:
 #|data-structures-introduction|
 
 
+
 #Scenario Outline: Navigate through 'Data Structures-Introduction' learning and run valid Python code
 #Given User is on "Data Structures-Introduction" Home page
 #When The user clicks "<Topics>" link
@@ -28,7 +29,7 @@ Background:
 #Then The user is able to see the output inside the console
 #
 #Examples: 
-#|Topics|                            | Topic specific|
+#|Topics|                             |Topic specific|
 #|Time Complexity|										|time-complexity|
 #
 #Scenario Outline: Navigate through 'Data Structures-Introduction' and run invalid Python code
@@ -45,14 +46,14 @@ Background:
 #"""
 #Then The user see error msg in alert window
 
-#
 #Examples: 
-#|Title|                             |Title specific|
+#|Topics|                             |Topic specific|
 #|Time Complexity|										|time-complexity|
 
 Scenario: Validation of Left Panel Links in 'Data Structures-Introduction' Topic - Specific Page  
 
 Given User is on "Data Structures-Introduction" "Time Complexity" page
+
 Then The user clicks on LINKS on the left panel to validate the Python Editor funtionality
 
 """
@@ -60,3 +61,4 @@ print"Hello"
 print"Welcome!!"
 
 """
+

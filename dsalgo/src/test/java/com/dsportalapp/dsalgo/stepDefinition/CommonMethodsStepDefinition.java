@@ -71,6 +71,7 @@ public class CommonMethodsStepDefinition {
 	@Given("User is on {string} Home page")
 	public void user_is_on_linked_list_home_page(String dataStructureName) throws InterruptedException {
 		commonobj.clickGetStartedButtonCommon(dataStructureName);
+		commonobj.headervalidation();
 //		linkedlistobj.isOnLinkedListHome();
 	}
 
@@ -83,6 +84,7 @@ public class CommonMethodsStepDefinition {
 	public void the_user_should_be_redirected_to_topics_page(String redirectedPage) {
 		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The user is not redirected to "+redirectedPage+" Topic Page");
 		LOG.info("The user is redirected to "+ redirectedPage + " page");
+		commonobj.headervalidation();
 	}
 	
 	
@@ -140,7 +142,13 @@ public class CommonMethodsStepDefinition {
 		LOG.info("All links are validated successfully!!!");
 	}
 	
-	
+
+//	@Then("The user should redirected to the page having Editor button")
+//	public void the_user_should_redirected_to_the_page_having_editor_button() {
+//		commonobj.isTryHereEnabled();
+//		LOG.info("Try Here button validated for Left Panel Links done successfully");
+//	}
+
 
 
 	

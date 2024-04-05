@@ -1,35 +1,17 @@
 package com.dsportalapp.dsalgo.stepDefinition;
 
-import static org.testng.Assert.assertTrue;
-
-import java.io.IOException;
-import java.sql.Driver;
 import java.util.List;
 import java.util.Map;
-
-import javax.management.loading.PrivateClassLoader;
-
 import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.xmlbeans.impl.xb.xsdschema.Public;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-
 import com.dsportalapp.dsalgo.POM.CommonMethodsObject;
 import com.dsportalapp.dsalgo.POM.LoginPageObjects;
 import com.dsportalapp.dsalgo.utilities.ConfigReader;
 import com.dsportalapp.dsalgo.utilities.TestSetup;
-import com.dsportalapp.dsalgo.webDriverManager.DriverManager;
-
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -105,7 +87,9 @@ public class LoginPageStepDefinition  {
 	@When("THe user clicks on Login button")
 	public void t_he_user_clicks_on_login_button() {
 	   
+
 		LOG.info("Login successfully");
+
 	}
 
 	@Then("The user should be navigated to Home Page with the message {string} and with the user name on the top")
@@ -117,6 +101,11 @@ public class LoginPageStepDefinition  {
 		String loginId= configFileReader.init_prop().getProperty("username");
 		Assert.assertEquals((StringUtils.capitalize(loginId)),loginpageobj.ValidateLoginIdonHomePage());
 	  
+	}
+	
+	@Then("The user sign out the application after clicking the sign out button")
+	public void the_user_sign_out_the_application_after_clicking_the_sign_out_button() {
+		commonobj.signOut();
 	}
 
 	@When("The user clicks login button after leaving the username textbox and password textbox blank")

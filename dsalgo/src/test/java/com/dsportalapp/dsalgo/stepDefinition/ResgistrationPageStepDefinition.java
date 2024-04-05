@@ -143,12 +143,7 @@ public class ResgistrationPageStepDefinition {
 	  
 	}
 	
-//	@After
-//	public void teardown() {
-//		driver.quit();
-//		LOG.info("Browser is closed");
-//	    
-//	}
+
 
 	
 
