@@ -275,7 +275,7 @@ public class CommonMethodsObject {
 //	dataStructures Home Page Link
 	@FindBy(xpath = "//a[@class='list-group-item']")
 	protected List<WebElement> dataStructuresHomeLinks;
-
+// Modified -Dhanya
 	public void clickdataStructuresHomeLinks(String homeLink) {
 		try {
 			

@@ -61,6 +61,7 @@ Given User should be logged in with valid credential
 #Then The user tries to click on LINKS on the left panel
 #Then The user should redirected to the page having Editor button
 
+
 Scenario: Validation of Practice Question link in the Array Page
 Given User is on "Array" "Arrays in Python" page
 When The user clicks "array" Practice Questions link

@@ -146,6 +146,7 @@ public class CommonMethodsStepDefinition {
 	public void the_user_should_redirected_to_the_page_having_editor_button() {
 	    
 	}
+	//Practice Questions 
 
 	@When("The user clicks {string} Practice Questions link")
 	public void the_user_clicks_practice_questions_link(String string) {

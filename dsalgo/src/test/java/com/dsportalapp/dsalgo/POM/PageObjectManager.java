@@ -38,7 +38,7 @@ public class PageObjectManager {
 		commonobj = new CommonMethodsObject(driver);
 		return commonobj;
 	}
-	
+	//Practice Questions
 	public PracticeQuestionObjects getPracticeQuestionObject() {
 		
 		return (practiceobj == null) ? practiceobj = new PracticeQuestionObjects(driver) : practiceobj;

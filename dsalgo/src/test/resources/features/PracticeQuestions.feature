@@ -8,18 +8,18 @@ Given User is on "array" Practice Question page
 
  
 
-#Scenario Outline: Validation of Practice Questions Page with valid code
-#When The user clicks "<Topics>" link
-#Then The user should be redirected the question page contains a question,an tryEditor with Run and Submit buttons
-#When The user is on Python Editor and write valid code in Editor and click the run button
-#Then The user should be able to see output in the console
-#
-#Examples: 
-#|Topics|                            
-#|Search the array|              		
-#|Max Consecutive Ones|        		    	            
-#|Find Numbers with Even Number of Digits|     		
-#|Squares of  a Sorted Array|
+Scenario Outline: Validation of Practice Questions Page with valid code
+When The user clicks "<Topics>" link
+Then The user should be redirected the question page contains a question,an tryEditor with Run and Submit buttons
+When The user is on Python Editor and write valid code in Editor and click the run button
+Then The user should be able to see output in the console
+
+Examples: 
+|Topics|                            
+|Search the array|              		
+|Max Consecutive Ones|        		    	            
+|Find Numbers with Even Number of Digits|     		
+|Squares of  a Sorted Array|
 
 #Scenario Outline: Validation of Practice Questions Page with no code
 #When The user clicks "<Topics>" link
