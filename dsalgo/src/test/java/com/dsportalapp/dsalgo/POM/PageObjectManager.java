@@ -5,24 +5,66 @@ import org.openqa.selenium.WebDriver;
 public class PageObjectManager {
 	public WebDriver driver;
 	public HomePageObjects homepageobj;
-	private ArrayPageObjects arrayPage;
+
+	public LoginPageObjects loginpageobj;
+	public PortalPageObjects portalobj;
+	public LinkedListObjects linkedlistobj;
+	public CommonMethodsObject commonobj;
+	public PracticeQuestionObjects practiceobj;
+
+	//public RegisterPageObjects registerobjects;
+	//public QueuePageObjects queueobjects;
+
 
 	public PageObjectManager(WebDriver driver) {
 		super();
 		this.driver = driver;
 	}
 	
+
+	public LoginPageObjects getLoginPageObjects() {
+		loginpageobj = new LoginPageObjects(driver);
+		return loginpageobj;
+
+	}
+	
 	public HomePageObjects getHomePageObjects() {
-		homepageobj = new HomePageObjects();
+		homepageobj = new HomePageObjects(driver);
 		return homepageobj;
+	
+	}
+
+	public CommonMethodsObject getCommonMethodsObject() {
+		commonobj = new CommonMethodsObject(driver);
+		return commonobj;
+	}
+	
+	public PracticeQuestionObjects getPracticeQuestionObject() {
+		
+		return (practiceobj == null) ? practiceobj = new PracticeQuestionObjects(driver) : practiceobj;
+
 		
 	}
+	/*
+	 * public RegisterPageObjects getRegisterPageObjects() { registerobjects = new
+	 * RegisterPageObjects(driver); return registerobjects;
+	 * 
+	 * } public QueuePageObjects getQueuePageObjects() { queueobjects = new
+	 * QueuePageObjects(driver); return queueobjects;
+	 * 
+	 * }
+	 */
 	
-	public ArrayPageObjects getArrayPage(){
 
-		return (arrayPage == null) ? arrayPage = new ArrayPageObjects(driver) : arrayPage;
-
+	public PortalPageObjects getPortalPageObjects() {
+		portalobj = new PortalPageObjects(driver);
+		return portalobj;
+		
 	}
-	
+	public LinkedListObjects getLinkedListObjects() {
+		linkedlistobj = new LinkedListObjects(driver);
+		return linkedlistobj;
+		
+	}
 
 }
