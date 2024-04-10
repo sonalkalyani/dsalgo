@@ -28,15 +28,15 @@ public class ResgistrationPageStepDefinition {
 		this.testsetup = testsetup;
 		commonobj = testsetup.pageobjectmanager.getCommonMethodsObject();
 		registerobjects=testsetup.pageobjectmanager.getRegisterPageObjects();
+		commonobj = testsetup.pageobjectmanager.getCommonMethodsObject();
 		
 	}
 	
 	@Given("I am on the registration page")
 	public void i_am_on_the_registration_page() {
 		commonobj.clicktoHomeGetStartedButton();
-		registerobjects.clickRegisterLnk();
-		LOG.info("User is on Registartion page");
-	   
+		commonobj.clickRegisterLnk();
+		   
 	}
 
 	@When("User does not enter username {string} and password {string}")

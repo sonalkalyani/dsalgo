@@ -407,6 +407,7 @@ public class CommonMethodsObject {
 		        e.printStackTrace();
 		    }	}
 
+
 		public void waitVisibilityOfElementLocated(WebElement element) {
 			try {
 				wait.until(ExpectedConditions.visibilityOf(element));
@@ -436,5 +437,22 @@ public class CommonMethodsObject {
 			}
 
 		} */
+
+//	public void waitVisibilityOfElementLocated(WebElement element) {
+//		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(4));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated;
+//	}
+	
+	
+	public void clickRegisterLnk()
+	{
+		registerLnk.click();
+		String expectedRegisterPageTitle = "Registration";
+		String actualRegisterPageTitle=driver.getTitle();
+		Assert.assertEquals(actualRegisterPageTitle, expectedRegisterPageTitle);
+		LOG.info("User is " +actualRegisterPageTitle+" page");
+	}
+	
+
 
 }

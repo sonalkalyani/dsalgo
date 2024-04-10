@@ -71,11 +71,7 @@ public class RegisterPageObjects {
 			
 	}
 	
-	public void clickRegisterLnk()
-	{
-		registerLnk.click();
-	}
-		
+	
 	public void validateErrMsg()
 	{
 		String expectedErrMsg="password_mismatch:The two password fields didn’t match.";
