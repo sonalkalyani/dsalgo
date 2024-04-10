@@ -406,5 +406,16 @@ public class CommonMethodsObject {
 //		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(4));
 //		wait.until(ExpectedConditions.visibilityOfElementLocated;
 //	}
+	
+	
+	public void clickRegisterLnk()
+	{
+		registerLnk.click();
+		String expectedRegisterPageTitle = "Registration";
+		String actualRegisterPageTitle=driver.getTitle();
+		Assert.assertEquals(actualRegisterPageTitle, expectedRegisterPageTitle);
+		LOG.info("User is " +actualRegisterPageTitle+" page");
+	}
+	
 
 }
