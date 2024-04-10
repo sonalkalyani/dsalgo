@@ -6,9 +6,19 @@ So that I can verify the the access for Unauthenticated Users
 Background:
 Given The user is on the Home page of DS_Algo portal
 
-Scenario: Verify 'Data Structures DropDown List' size and options
-When The user clicks on the DataStructures DropDown arrow
-Then The user should be able to see below  six options in dropdown menu
+#Scenario: Verify 'Data Structures DropDown List' size and options
+#When The user clicks on the DataStructures DropDown arrow
+#Then The user should be able to see below  six options in dropdown menu
+#|Arrays|
+#|Linked List|
+#|Stack|
+#|Queue|
+#|Tree|
+#|Graph|
+
+Scenario: Verify display of 'You are not logged in' Message for Unauthenticated Users for DropDown List
+When The user selects following options from the drop down without login
+
 |Arrays|
 |Linked List|
 |Stack|
@@ -16,16 +26,6 @@ Then The user should be able to see below  six options in dropdown menu
 |Tree|
 |Graph|
 
-#Scenario: Verify display of 'You are not logged in' Message for Unauthenticated Users for DropDown List
-#When The user selects following options from the drop down without login
-#
-#|Arrays|
-#|Linked List|
-#|Stack|
-#|Queue|
-#|Tree|
-#|Graph|
-#
 #Then The user should be able to see an warning message "You are not logged in" for dropdown list
 #
 #
@@ -42,8 +42,13 @@ Then The user should be able to see below  six options in dropdown menu
 #|Graph|
 #Then The user should be able to see an warning message "You are not logged in" for Get Started Button
 
-
-
+#Scenario: Navigation to Register Page
+#When The user clicking on Register link on the home page
+#Then The user should be redirected to "register" page from home page
+#
+#Scenario: Navigation to 'Sign In' Page
+#When The user clicking on Sign In link on the home page
+#Then The user should be redirected to "login" page from home page
 
 
 

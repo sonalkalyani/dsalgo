@@ -17,10 +17,12 @@ public class DriverManager {
 
 	public WebDriver driver;
 	
+	
 	public WebDriver getDriverManager() throws IOException {
 		if (driver == null) {
-            String browserType = ConfigReader.init_prop().getProperty("browser");
-            String url =  ConfigReader.init_prop().getProperty("Url");
+
+            String browserType = ConfigReader.getProperty("browser");
+            String url =  ConfigReader.getProperty("Url");
 
             switch (browserType.toLowerCase()) {
                 case "chrome":

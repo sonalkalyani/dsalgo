@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
+import com.dsportalapp.dsalgo.POM.CommonMethodsObject;
 import com.dsportalapp.dsalgo.POM.RegisterPageObjects;
 import com.dsportalapp.dsalgo.utilities.TestSetup;
 
@@ -18,18 +19,21 @@ public class ResgistrationPageStepDefinition {
 	WebDriver driver;
 	TestSetup testsetup;
 	RegisterPageObjects registerobjects;
+	CommonMethodsObject commonobj;
 	
 	public static Logger LOG = LoggerFactory.getLogger(ResgistrationPageStepDefinition.class);
 	
 	public ResgistrationPageStepDefinition(TestSetup testsetup) {
 		super();
 		this.testsetup = testsetup;
+		commonobj = testsetup.pageobjectmanager.getCommonMethodsObject();
 		registerobjects=testsetup.pageobjectmanager.getRegisterPageObjects();
 		
 	}
 	
 	@Given("I am on the registration page")
 	public void i_am_on_the_registration_page() {
+		commonobj.clicktoHomeGetStartedButton();
 		registerobjects.clickRegisterLnk();
 		LOG.info("User is on Registartion page");
 	   

@@ -27,8 +27,8 @@ public class HomePageObjects extends CommonMethodsObject {
 	
 	public HomePageObjects(WebDriver driver) {
 		super(driver);
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
+//		this.driver = driver;
+//		PageFactory.initElements(driver, this);
 	}
 	
 	public static Logger LOG = LoggerFactory.getLogger(HomePageObjects.class);
@@ -189,23 +189,20 @@ public class HomePageObjects extends CommonMethodsObject {
 	public Map<String, String> clickGetStartedButton(List<String> dataStructuresOption) throws InterruptedException {
 		Map<String, String> warningMessageMap = new HashMap<>();
 		for(String option : dataStructuresOption) {
-		Thread.sleep(2000);
 		String listOfDtaStructuresItemXpath = "//h5[@class='card-title']";
 		List<WebElement> dataStructuresItem = driver.findElements(By.xpath(listOfDtaStructuresItemXpath));
 		for(WebElement itemElement :dataStructuresItem ) {
 		  try {
 			String item = itemElement.getText();
 			if(option.contains(item)) {
-			
 				String getStartedButton= "//a[contains(text(),'Get Started')]";
 				int index = dataStructuresItem.indexOf(itemElement);
 				WebElement getStratedButton = driver.findElements(By.xpath(getStartedButton)).get(index); 
 				getStratedButton.click();
-				Thread.sleep(3000);
+				waitVisibilityOfElementLocated(loginAlertMessage);
 				String warningMessage = printloginAlertMessage();
 				if(warningMessage != null) {
 					warningMessageMap.put(option,warningMessage);
-//					System.out.println(option + ":"+warningMessageMap.get(option));
 				}
 			}
 		  }catch(Exception e) {
@@ -215,41 +212,11 @@ public class HomePageObjects extends CommonMethodsObject {
 		  }	
 		}
 	}
-		Thread.sleep(3000);
 		driver.navigate().refresh();
 		PageFactory.initElements(driver, this);
 		return warningMessageMap;
 	}
 
-//	 GetStarted Button 
-/*	public Map<String, String> clickGetStartedButton(String option) throws InterruptedException {
-		Map<String, String> warningMessageMap = new HashMap<>();
-		Thread.sleep(2000);
-		String listOfDtaStructuresItemXpath = "//h5[@class='card-title']";
-		List<WebElement> dataStructuresItem = driver.findElements(By.xpath(listOfDtaStructuresItemXpath));
-		for(WebElement itemElement :dataStructuresItem ) {
-		  try {
-			String item = itemElement.getText();
-			if(option.contains(item)) {
-			
-				String getStartedButton= "//a[contains(text(),'Get Started')]";
-				int index = dataStructuresItem.indexOf(itemElement);
-				WebElement getStratedButton = driver.findElements(By.xpath(getStartedButton)).get(index); 
-				getStratedButton.click();
-				Thread.sleep(3000);
-				String warningMessage = printloginAlertMessage();
-				if(warningMessage != null) {
-					warningMessageMap.put(option,warningMessage);
-//					System.out.println(option + ":"+warningMessageMap.get(option));
-				}
-			}
-		  }catch(Exception e) {
-			 LOG.error("Exception encountered." + e);
-			 driver.navigate().refresh();
-		  }	
-		}
-		   return warningMessageMap;
-	}*/
 	
 //	Login warning message for not user logged in 
 	
@@ -269,6 +236,4 @@ public class HomePageObjects extends CommonMethodsObject {
 		
 		}
 	
-	
-
-}
+	}

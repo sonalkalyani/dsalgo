@@ -5,17 +5,13 @@ import org.openqa.selenium.WebDriver;
 public class PageObjectManager {
 	public WebDriver driver;
 	public HomePageObjects homepageobj;
-
 	public LoginPageObjects loginpageobj;
 	public PortalPageObjects portalobj;
-//	public LinkedListObjects linkedlistobj;
 	public CommonMethodsObject commonobj;
-
 	public RegisterPageObjects registerobjects;
-	public QueuePageObjects queueobjects;
+	public PracticeQuestionObjects practiceobj;
 	
-
-
+	
 	public PageObjectManager(WebDriver driver) {
 		super();
 		this.driver = driver;
@@ -40,11 +36,7 @@ public class PageObjectManager {
 		return registerobjects;
 		
 	}
-	public QueuePageObjects getQueuePageObjects() {
-		queueobjects = new QueuePageObjects(driver);
-		return queueobjects;
-		
-	}
+	
 	public CommonMethodsObject getCommonMethodsObject() {
 		commonobj = new CommonMethodsObject(driver);
 		return commonobj;
@@ -57,10 +49,13 @@ public class PageObjectManager {
 		return portalobj;
 		
 	}
-//	public LinkedListObjects getLinkedListObjects() {
-//		linkedlistobj = new LinkedListObjects(driver);
-//		return linkedlistobj;
-//		
-//	}
+	//Practice Questions
+		public PracticeQuestionObjects getPracticeQuestionObject() {
+			
+			return (practiceobj == null) ? practiceobj = new PracticeQuestionObjects(driver) : practiceobj;
+
+			
+		}
+	
 
 }

@@ -112,32 +112,21 @@ public class HomePageStepDefinition {
 		LOG.info("Assertion successful for Get Started Button");
 		
 	}
-
-
-//	Scenario: Navigation to 'Sign In' Page
 	
-//	@When("The user clicks on Sign In link on DS_Algo Home page")
-//	public void the_user_clicks_on_sign_in_link_on_ds_algo_home_page() {
-//		loginpageobj.RegisterLinkValidation();
-//	}
-//
-//	@Then("The user shoulde be redirected to {string} page")
-//	public void the_user_shoulde_be_redirected_to_page(String redirectedPage) {
-//		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The User is not redirected to Login Page ");
-//		LOG.info("The user is redirected to login page");
-//	}
-//
-//	@When("The user should be able to see Register link in login page")
-//	public void the_user_should_be_able_to_see_register_link_in_login_page() {
-//		assertTrue(homepageobj.isDisplayRegisterLink(), "Register Link is not displayed");
-//		LOG.info("Register link is displayed in login page");
-//		
-//	}
-//
-//	@Then("The user should able to navigate to {string} page if clicks Register link")
-//	public void the_user_should_able_to_navigate_to_page_if_clicks_register_link(String redirectedPage) {
-//		homepageobj.clickRegisterLink();
-//		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The User is not redirected to Register Page");
-//		LOG.info("The user is redirected to Register page from Login page");
-//	}
+	@When("The user clicking on Register link on the home page")
+	public void the_user_clicking_on_register_link_on_the_home_page() {
+		commonobj.clickRegisterButton();
+	}
+
+	@When("The user clicking on Sign In link on the home page")
+	public void the_user_clicking_on_sign_in_link_on_the_home_page() {
+		commonobj.clickSignInButton();
+	}
+	@Then("The user should be redirected to {string} page from home page")
+	public void the_user_should_be_redirected_to_page_from_home_page(String redirectedPage) {
+		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The user is not redirected to "+redirectedPage+" Topic Page");
+		LOG.info("The user is redirected to "+ redirectedPage + " page");
+	}
+
+
 }

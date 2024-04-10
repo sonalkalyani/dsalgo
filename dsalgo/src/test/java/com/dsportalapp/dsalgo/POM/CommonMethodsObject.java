@@ -4,7 +4,6 @@ package com.dsportalapp.dsalgo.POM;
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
-
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
@@ -28,6 +27,7 @@ import com.dsportalapp.dsalgo.utilities.ConfigReader;
 public class CommonMethodsObject {
 
 	WebDriver driver;
+	WebDriverWait wait;
 	
 	
 	public static Logger LOG = LoggerFactory.getLogger(CommonMethodsObject.class);
@@ -36,6 +36,7 @@ public class CommonMethodsObject {
 
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		this.wait = new WebDriverWait(driver, Duration.ofSeconds(4)); 
 		
 		
 	}
@@ -57,20 +58,20 @@ public class CommonMethodsObject {
 		}
 	}
 ////	Register Link in home page
-//	
-//	@FindBy(xpath="//a[contains(text(),' Register ')]")
-//	private WebElement registerButton;
-//	public void clickRegisterButton() {
-//		try {
-//			registerButton.click();
-//		}catch (Exception e) {
-//	        LOG.error("Error occurred while clicking register link on home page: " + e.getMessage());
-//	        e.printStackTrace(); 
-//	    }
-//	}
-//	
-////	Sign In Link in home page
-//	
+	
+	@FindBy(xpath="//a[contains(text(),' Register ')]")
+	private WebElement registerButton;
+	public void clickRegisterButton() {
+		try {
+			registerButton.click();
+		}catch (Exception e) {
+	        LOG.error("Error occurred while clicking register link on home page: " + e.getMessage());
+	        e.printStackTrace(); 
+	    }
+	}
+
+//	Sign In Link in home page
+	
 	@FindBy(xpath="//a[contains(text(),'Sign in')]")
 	private WebElement signInButton;
 	
@@ -111,22 +112,9 @@ public class CommonMethodsObject {
 
 	}
 
-	public void isTryHereEnabled()
-	{
-		try
-		{
-			Assert.assertTrue(tryHereButton.isEnabled(),"Try Here Button is not enabled");
-			LOG.info("Try Here Button Validation successfully");
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-
 //	python textEditor 
 	@FindBy(xpath = "//div[@class='CodeMirror-code']")
-	private WebElement textEditor;
+	protected WebElement textEditor;
 
 	public void sendTextEditor(String pythoncode) {
 		try {
@@ -151,7 +139,7 @@ public class CommonMethodsObject {
 
 //	runButton
 	@FindBy(xpath = "//button[@onclick='runit()']")
-	private WebElement runButton;
+	protected WebElement runButton;
 
 	public void clickRunButton() {
 		try {
@@ -213,9 +201,7 @@ public class CommonMethodsObject {
 	}
 
 	public void clickGetStartedButtonCommon(String option) throws InterruptedException {
-		
-		//Thread.sleep(2000);
-		
+			
 		String listOfDtaStructuresItemXpath = "//h5[@class='card-title']";
 		List<WebElement> dataStructuresItem = driver.findElements(By.xpath(listOfDtaStructuresItemXpath));
 		
@@ -232,11 +218,6 @@ public class CommonMethodsObject {
 			  }
 			
 		  }
-//			catch(StaleElementReferenceException e) {
-//				 LOG.error("Stale element reference encountered." + e);
-//				 driver.navigate().refresh();
-			
-//		  }
 			catch(Exception e) {
 				LOG.error("An error occured while clicking 'Get Started' button:"+ e.getMessage());
 				e.printStackTrace();
@@ -259,8 +240,6 @@ public class CommonMethodsObject {
 	protected WebElement graphOption;
 
 	public void selectDataStructuresDropDownCommon(String option) throws InterruptedException {
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
 		try {
 
@@ -297,7 +276,7 @@ public class CommonMethodsObject {
 
 //	dataStructures Home Page Link
 	@FindBy(xpath = "//a[@class='list-group-item']")
-	private List<WebElement> dataStructuresHomeLinks;
+	protected List<WebElement> dataStructuresHomeLinks;
 
 	public void clickdataStructuresHomeLinks(String homeLink) {
 		try {
@@ -338,7 +317,7 @@ public class CommonMethodsObject {
 		{
 			Assert.assertTrue(numpyNinjaLogo.isDisplayed(),"NumpyNinja Logo is not displayed");
 			Assert.assertTrue(dataStructuresDD.isEnabled(),"Datastructures dropdown is not Enabled");
-			String expectedUsername = ConfigReader.init_prop().getProperty("username");
+			String expectedUsername = ConfigReader.getProperty("username");
 			String actualUsername = signInName.getText();
 			Assert.assertEquals(actualUsername.toLowerCase(), expectedUsername.toLowerCase());
 			Assert.assertTrue(signOut.isDisplayed(),"Sign Out Link is not displayed");
@@ -378,19 +357,7 @@ public class CommonMethodsObject {
           }
 	}
 	
-	public void waitElementToBeClickable(WebElement element) throws TimeoutException {
-		 try {
-		        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		        wait.until(ExpectedConditions.elementToBeClickable(element));
-		        LOG.info("Element is clickable: " + element);
-		    } catch (Exception e) {
-		        LOG.info("Error occurred while waiting for element: " + element);
-		        e.printStackTrace();
-		    }	}
-//	public void waitVisibilityOfElementLocated(WebElement element) {
-//		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(4));
-//		wait.until(ExpectedConditions.visibilityOfElementLocated;
-//	}
+	
 
 	public void leftLink(String pythonCode) {
 
@@ -420,7 +387,6 @@ public class CommonMethodsObject {
 					driver.navigate().back();
 					driver.navigate().refresh();
 					dataStructuresLeftPanellinks = driver.findElements(By.xpath("//div[@class='col-2']//a"));
-					Thread.sleep(2000);
 
 				}
 			} catch (Exception e) {
@@ -429,4 +395,46 @@ public class CommonMethodsObject {
 			}
 		}
 	}
+	
+// Explicit wait	
+	public void waitElementToBeClickable(WebElement element) throws TimeoutException {
+		 try {
+		        
+		        wait.until(ExpectedConditions.elementToBeClickable(element));
+		        LOG.info("Element is clickable: " + element);
+		    } catch (Exception e) {
+		        LOG.info("Error occurred while waiting for element: " + e.getMessage());
+		        e.printStackTrace();
+		    }	}
+
+		public void waitVisibilityOfElementLocated(WebElement element) {
+			try {
+				wait.until(ExpectedConditions.visibilityOf(element));
+			} catch (Exception e) {
+				LOG.info("Error occurred while waiting for element: " + e.getMessage());
+				e.printStackTrace();
+			}
+		}
+		
+	/*	public void clickArrayPracticeHomeLinks(String homeLink) {
+			try {
+				for (WebElement link : dataStructuresHomeLinks) {
+					if (link.getText().contains(homeLink)) {
+						link.click();
+						
+					}
+				}
+			} catch (StaleElementReferenceException e) {
+				LOG.error("Stale element reference encountered." + e);
+				driver.navigate().refresh();
+			} catch (ElementNotInteractableException e) {
+				LOG.error("Element not interactable: " + e.getMessage());
+
+			} catch (Exception e) {
+				LOG.error("An error occurred while clicking the link: " + e.getMessage());
+				e.printStackTrace();
+			}
+
+		} */
+
 }

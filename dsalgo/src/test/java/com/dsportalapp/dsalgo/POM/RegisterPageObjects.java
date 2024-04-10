@@ -120,7 +120,7 @@ public class RegisterPageObjects {
 				break;
 			}
 		}
-		String expectedErrMsg="Please fill in this field.";
+		String expectedErrMsg="Please fill out this field.";
 		System.out.println(nullElement);
 		String actualErrMsg=nullElement.getAttribute("validationMessage");
 		try
