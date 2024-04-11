@@ -4,14 +4,24 @@
   <artifactId>dsalgo</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
-  <name>dsalgo</name>
-	<url>http://maven.apache.org</url>
+ <modules>
+        <module>testrunner-core-plugin</module>
+        <module>testrunner-gradle-plugin</module>
+        <module>testrunner-maven-plugin</module>
+        <module>testrunner-running</module>
+        <module>testrunner-testing</module>
+    </modules>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		 <maven.compiler.source>1.8</maven.compiler.source>
-         <maven.compiler.target>1.8</maven.compiler.target>
-	</properties>
+    <packaging>pom</packaging>
+
+    <name>${project.artifactId}</name>
+    <description>A tool for customizing the order testng tests run</description>
+    <url>https://github.com/sonalkalyani/dsalgo/blob/Sonal/dsalgo/src/test/java/com/dsportalapp/dsalgo/testRunner</url>
+
+    <properties>
+        <encoding>UTF-8</encoding>
+        <scala.version>2.12.6</scala.version>
+    </properties>
   
   <dependencies>
 	<dependency>
