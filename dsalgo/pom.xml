@@ -4,15 +4,6 @@
   <artifactId>dsalgo</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
- <modules>
-        <module>testrunner-core-plugin</module>
-        <module>testrunner-gradle-plugin</module>
-        <module>testrunner-maven-plugin</module>
-        <module>testrunner-running</module>
-        <module>testrunner-testing</module>
-    </modules>
-
-    <packaging>pom</packaging>
 
     <name>${project.artifactId}</name>
     <description>A tool for customizing the order testng tests run</description>
