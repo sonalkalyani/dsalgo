@@ -1,8 +1,9 @@
+
 package com.dsportalapp.dsalgo.POM;
 
 import java.util.List;
 import java.util.Map;
-
+import java.util.Properties;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,18 +16,27 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import com.dsportalapp.dsalgo.utilities.ConfigReader;
 
+
+
+
 public class LoginPageObjects{
 
 	private WebDriver driver;
-	public ConfigReader configFileReader = new ConfigReader();
+	public static Logger Log = LoggerFactory.getLogger(LoginPageObjects.class);
+
+	public LoginPageObjects(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+	
 	@FindBy(name = "username")
 	private WebElement userName;
 	@FindBy(name = "password")
 	private WebElement password;
 	@FindBy(xpath = "//input[@value = 'Login']")
 	private WebElement loginBtn;
-	@FindBy(xpath = "//a[text()='Register!']")
-	private WebElement registerLnk;
+//	@FindBy(xpath = "//a[text()='Register!']")
+//	private WebElement registerLnk;
 	@FindBy(xpath = "//div[@class = 'alert alert-primary']")
 	private WebElement loginSuccmsg;
 	@FindBy(xpath = "//a[text() = ' Ninja153 ']")
@@ -34,25 +44,7 @@ public class LoginPageObjects{
 	@FindBy(xpath = "//div[contains(text(), 'Invalid')]")
 	private WebElement invalidErrMsg;
 
-	public static Logger Log = LoggerFactory.getLogger(LoginPageObjects.class);
-
-	public LoginPageObjects(WebDriver driver) {
-		
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-	}
-
-	public void isOnSignInPage() {
 	
-		try {
-			driver.get(configFileReader.init_prop().getProperty("Url"));
-		} 
-		catch (Exception e) {
-			Log.info("Error whil retrieving Url from global properties");
-			e.printStackTrace();
-		}
-	
-	}
 
 	public String signInPageTitle() {
 
@@ -69,33 +61,33 @@ public class LoginPageObjects{
 		return actualtitle;
 	}
 
-	public void registerLinkValidation() {
+//	public void registerLinkValidation() {
+//
+//		try {
+//			registerLnk.getText();
+//		} catch (Exception e) {
+//			Log.error("An error occured while checking the Register Link: " + e.getMessage());
+//		}
+//
+//	}
 
-		try {
-			registerLnk.getText();
-		} catch (Exception e) {
-			Log.error("An error occured while checking the Register Link: " + e.getMessage());
-		}
-
-	}
-
-	public String registerLinkNavigation() {
-		registerLnk.click();
-		String registerLink = driver.getTitle();
-		try {
-			Log.info("Title of the Page is: " + registerLink);
-		} catch (Exception e) {
-			Log.error("Error while checking Register Page Title: " + e.getMessage());
-			e.printStackTrace();
-		}
-		return registerLink;
-
-	}
+//	public String registerLinkNavigation() {
+//		registerLnk.click();
+//		String registerLink = driver.getTitle();
+//		try {
+//			Log.info("Title of the Page is: " + registerLink);
+//		} catch (Exception e) {
+//			Log.error("Error while checking Register Page Title: " + e.getMessage());
+//			e.printStackTrace();
+//		}
+//		return registerLink;
+//
+//	}
 
 	public void enterValidUsernameandPassword() {
 		try {
-	        String usrName = configFileReader.init_prop().getProperty("username");
-	        String passwd = configFileReader.init_prop().getProperty("password");
+			String usrName = ConfigReader.getProperty("username");
+			String passwd = ConfigReader.getProperty("password");
 	        userName.sendKeys(usrName);
 	        password.sendKeys(passwd);
 	        clickLoginBtn();
@@ -143,9 +135,10 @@ public class LoginPageObjects{
 	}
 
 	public void validateLoginIdOnHomePage() {
-
+		
+		
 		String expectdSignInId = loginId.getText();
-		String actualSignInId = configFileReader.init_prop().getProperty("username");
+		String actualSignInId = ConfigReader.getProperty("username");
 
 		try {
 			Assert.assertEquals(StringUtils.capitalize(actualSignInId), expectdSignInId);

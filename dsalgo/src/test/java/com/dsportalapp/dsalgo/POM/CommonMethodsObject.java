@@ -1,14 +1,14 @@
+
 package com.dsportalapp.dsalgo.POM;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.time.Duration;
 import java.util.List;
 
+
 import org.apache.commons.logging.LogConfigurationException;
+
+import java.util.concurrent.TimeoutException;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
@@ -26,17 +26,24 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.asserts.SoftAssert;
+import org.testng.Assert;
+import com.dsportalapp.dsalgo.utilities.ConfigReader;
 
 public class CommonMethodsObject {
 
 	WebDriver driver;
+	WebDriverWait wait;
+	
+	
 	public static Logger LOG = LoggerFactory.getLogger(CommonMethodsObject.class);
 
 	public CommonMethodsObject(WebDriver driver) {
 
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		this.wait = new WebDriverWait(driver, Duration.ofSeconds(4)); 
+		
+		
 	}
 
 //	Get Started Button on portal Introduction Page
@@ -55,6 +62,7 @@ public class CommonMethodsObject {
 			LOG.error("An exception occured while clicking 'Get Started' button: " + e.getMessage());
 		}
 	}
+
 
 ////	 Login
 	@FindBy(name = "username")
@@ -75,8 +83,33 @@ public class CommonMethodsObject {
 			e.printStackTrace();
 		}
 	}
+
 	
-//	Login link in signin page
+	@FindBy(xpath="//a[contains(text(),' Register ')]")
+	private WebElement registerButton;
+	public void clickRegisterButton() {
+		try {
+			registerButton.click();
+		}catch (Exception e) {
+	        LOG.error("Error occurred while clicking register link on home page: " + e.getMessage());
+	        e.printStackTrace(); 
+	    }
+	}
+
+//	Sign In Link in home page
+	
+	@FindBy(xpath="//a[contains(text(),'Sign in')]")
+	private WebElement signInButton;
+	
+	public void clickSignInButton() {
+		try {
+			signInButton.click();
+		} catch (Exception e) {
+			LOG.error("Error occurred while clicking signin link on home page " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
 	@FindBy(xpath="//a[contains(text(),'Login ')]")
 	protected WebElement loginLink;
 	
@@ -107,7 +140,7 @@ public class CommonMethodsObject {
 
 //	python textEditor 
 	@FindBy(xpath = "//div[@class='CodeMirror-code']")
-	private WebElement textEditor;
+	protected WebElement textEditor;
 
 	public void sendTextEditor(String pythoncode) {
 		try {
@@ -132,7 +165,7 @@ public class CommonMethodsObject {
 
 //	runButton
 	@FindBy(xpath = "//button[@onclick='runit()']")
-	private WebElement runButton;
+	protected WebElement runButton;
 
 	public void clickRunButton() {
 		try {
@@ -194,14 +227,14 @@ public class CommonMethodsObject {
 	}
 
 	public void clickGetStartedButtonCommon(String option) throws InterruptedException {
-		
-		Thread.sleep(2000);
+			
 		String listOfDtaStructuresItemXpath = "//h5[@class='card-title']";
 		List<WebElement> dataStructuresItem = driver.findElements(By.xpath(listOfDtaStructuresItemXpath));
 		
 		for(WebElement itemElement :dataStructuresItem ) {
 		  try {
-			String item = itemElement.getText();
+			  waitElementToBeClickable(itemElement);
+			  String item = itemElement.getText();
 			if(option.contains(item)) {
 				
 				String getStartedButton= "//a[contains(text(),'Get Started')]";
@@ -210,11 +243,8 @@ public class CommonMethodsObject {
 				getStratedButton.click();
 			  }
 			
-		  }catch(StaleElementReferenceException e) {
-				 LOG.error("Stale element reference encountered." + e);
-				 driver.navigate().refresh();
-			
-		  }	catch(Exception e) {
+		  }
+			catch(Exception e) {
 				LOG.error("An error occured while clicking 'Get Started' button:"+ e.getMessage());
 				e.printStackTrace();
 		  }	
@@ -236,8 +266,6 @@ public class CommonMethodsObject {
 	protected WebElement graphOption;
 
 	public void selectDataStructuresDropDownCommon(String option) throws InterruptedException {
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
 		try {
 
@@ -269,12 +297,12 @@ public class CommonMethodsObject {
 
 	}
 
-	@FindBy(xpath = "//li[@class='list-group-item list-group-item-light ']/a")
+	@FindBy(xpath = "//div[@class='col-2']//a")
 	private List<WebElement> dataStructuresLeftPanellinks;
 
 //	dataStructures Home Page Link
 	@FindBy(xpath = "//a[@class='list-group-item']")
-	private List<WebElement> dataStructuresHomeLinks;
+	protected List<WebElement> dataStructuresHomeLinks;
 
 	public void clickdataStructuresHomeLinks(String homeLink) {
 		try {
@@ -297,35 +325,160 @@ public class CommonMethodsObject {
 
 	}
 
-	public void checkBrokenLinks() throws URISyntaxException {
-	    SoftAssert softAssert = new SoftAssert();
-	    for (WebElement link : dataStructuresLeftPanellinks) {
-	        String href = link.getAttribute("href");
-	        if (href != null && (href.startsWith("http://") || href.startsWith("https://"))) {
-	            try {
-	                HttpURLConnection connection = (HttpURLConnection) new URI(href).toURL().openConnection();
-	                connection.setRequestMethod("HEAD");
-	                connection.connect();
-	                int responseCode = connection.getResponseCode();
-	                softAssert.assertTrue(responseCode < 400, "The link '" + href + "' is broken with response code " + responseCode);
-	                LOG.info(href +" has been verified");
-	            } catch (IOException e) {
-	                softAssert.fail("Error occurred while checking link '" + href + "': " + e.getMessage());
-	            }
-	        }
-	    }
-	    softAssert.assertAll();
+
+	
+	@FindBy(xpath="//a[@class='navbar-brand']")
+	private WebElement numpyNinjaLogo;
+	@FindBy(xpath="//a[@class='nav-link dropdown-toggle']")
+	private WebElement dataStructuresDD;
+	@FindBy(xpath="//ul//a[2]")
+	private WebElement signInName;
+	@FindBy(xpath="//a[contains(text(),'Sign out')]")
+	private WebElement signOut;
+	
+	
+	public void headervalidation()
+	{
+		try
+		{
+			Assert.assertTrue(numpyNinjaLogo.isDisplayed(),"NumpyNinja Logo is not displayed");
+			Assert.assertTrue(dataStructuresDD.isEnabled(),"Datastructures dropdown is not Enabled");
+			String expectedUsername = ConfigReader.getProperty("username");
+			String actualUsername = signInName.getText();
+			Assert.assertEquals(actualUsername.toLowerCase(), expectedUsername.toLowerCase());
+			Assert.assertTrue(signOut.isDisplayed(),"Sign Out Link is not displayed");
+			LOG.info("Header validation done sucessfully");
+				
+		}
+		catch(Exception e)
+		{
+			LOG.error("Header validation Failed with error"+e.getMessage());
+			e.printStackTrace();
+		}
+		
 	}
-	public void waitElementToBeClickable(WebElement element) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-		wait.until(ExpectedConditions.elementToBeClickable(element));
+	
+	@FindBy(xpath="//a[contains(text(),'Sign out')]")
+	private WebElement signOutBtn;
+	@FindBy(xpath="//div[@class='alert alert-primary']")
+	private WebElement logOutMsg;
+	@FindBy(xpath="//a[contains(text(),' Register ')]")
+	private WebElement registerLnk;
+	@FindBy(xpath="//a[contains(text(),' Register ')]")
+	private WebElement signInLnk;
+	
+
+	public void signOut()
+	{
+		signOutBtn.click();
+		try {
+		Assert.assertEquals(logOutMsg.getText() ,"Logged out successfully" );
+		Assert.assertTrue(registerLnk.isEnabled(), "Resgister Link is  not enabled");
+		Assert.assertTrue(signInLnk.isEnabled(), "Sign In Link is not enabled");
+		LOG.info("Logged out successfully");
+		}
+		catch (Exception e) {
+			LOG.error(e.getMessage());
+			e.printStackTrace();
+          }
 	}
+	
+	
+
+	public void leftLink(String pythonCode) {
+
+		int linkSize = dataStructuresLeftPanellinks.size();
+		int j = 0;
+		for (int i = 0; i < linkSize; i++) {
+			WebElement link = dataStructuresLeftPanellinks.get(i);
+			String href = link.getAttribute("href");
+			System.out.println(href);
+//			if(href.contains("array/practice"))
+			try {
+				link.click();
+				j++;
+				String currentURL = driver.getCurrentUrl();
+				Assert.assertTrue(currentURL.contains(href), "Expected Page is not availabe");
+				if (j == linkSize) 
+//				{
+//					if (href.contains("array/practice")) {
+//
+//					}
+					break;
+//				} 
+			else {
+					clickTryHereButton();
+					sendTextEditor(pythonCode);
+					clickRunButton();
+					driver.navigate().back();
+					driver.navigate().refresh();
+					dataStructuresLeftPanellinks = driver.findElements(By.xpath("//div[@class='col-2']//a"));
+
+				}
+			} catch (Exception e) {
+				LOG.info("Error occurred while clicking the link '" + href + "': " + e.getMessage());
+
+			}
+		}
+	}
+	
+// Explicit wait	
+	public void waitElementToBeClickable(WebElement element) throws TimeoutException {
+		 try {
+		        
+		        wait.until(ExpectedConditions.elementToBeClickable(element));
+		        LOG.info("Element is clickable: " + element);
+		    } catch (Exception e) {
+		        LOG.info("Error occurred while waiting for element: " + e.getMessage());
+		        e.printStackTrace();
+		    }	}
+
+
+		public void waitVisibilityOfElementLocated(WebElement element) {
+			try {
+				wait.until(ExpectedConditions.visibilityOf(element));
+			} catch (Exception e) {
+				LOG.info("Error occurred while waiting for element: " + e.getMessage());
+				e.printStackTrace();
+			}
+		}
+		
+	/*	public void clickArrayPracticeHomeLinks(String homeLink) {
+			try {
+				for (WebElement link : dataStructuresHomeLinks) {
+					if (link.getText().contains(homeLink)) {
+						link.click();
+						
+					}
+				}
+			} catch (StaleElementReferenceException e) {
+				LOG.error("Stale element reference encountered." + e);
+				driver.navigate().refresh();
+			} catch (ElementNotInteractableException e) {
+				LOG.error("Element not interactable: " + e.getMessage());
+
+			} catch (Exception e) {
+				LOG.error("An error occurred while clicking the link: " + e.getMessage());
+				e.printStackTrace();
+			}
+
+		} */
+
 //	public void waitVisibilityOfElementLocated(WebElement element) {
 //		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(4));
 //		wait.until(ExpectedConditions.visibilityOfElementLocated;
 //	}
+	
+	
+	public void clickRegisterLnk()
+	{
+		registerLnk.click();
+		String expectedRegisterPageTitle = "Registration";
+		String actualRegisterPageTitle=driver.getTitle();
+		Assert.assertEquals(actualRegisterPageTitle, expectedRegisterPageTitle);
+		LOG.info("User is " +actualRegisterPageTitle+" page");
+	}
+	
+
 
 }
-
-
-

@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
@@ -26,8 +27,8 @@ public class HomePageObjects extends CommonMethodsObject {
 	
 	public HomePageObjects(WebDriver driver) {
 		super(driver);
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
+//		this.driver = driver;
+//		PageFactory.initElements(driver, this);
 	}
 	
 	public static Logger LOG = LoggerFactory.getLogger(HomePageObjects.class);
@@ -82,7 +83,7 @@ public class HomePageObjects extends CommonMethodsObject {
 	
 //	Select data structures dropdown option
 	
-	public Map<String, String> selectDataStructuresDropDown(String option) throws InterruptedException {
+	public Map<String, String> selectDataStructuresDropDown(String option) throws InterruptedException, TimeoutException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		Map<String, String> dropDownwarningMsgMap = new HashMap<>();
 			waitElementToBeClickable(dataStructuresDropDown);
@@ -136,32 +137,7 @@ public class HomePageObjects extends CommonMethodsObject {
 		return dropDownwarningMsgMap;
 	}
 
-//	Register Link in home page
-	
-	@FindBy(xpath="//a[contains(text(),' Register ')]")
-	private WebElement registerButton;
-	public void clickRegisterButton() {
-		try {
-			registerButton.click();
-		}catch (Exception e) {
-	        LOG.error("Error occurred while clicking register link on home page: " + e.getMessage());
-	        e.printStackTrace(); 
-	    }
-	}
-	
-//	Sign In Link in home page
-	
-	@FindBy(xpath="//a[contains(text(),'Sign in')]")
-	private WebElement signInButton;
-	
-	public void clickSignInButton() {
-		try {
-			signInButton.click();
-		} catch (Exception e) {
-			LOG.error("Error occurred while clicking signin link on home page " + e.getMessage());
-			e.printStackTrace();
-		}
-	}
+
 // 	Register Link in login page
 	@FindBy(xpath="//a[contains(text(),'Register!')]")
 	private WebElement registerLink;
@@ -213,23 +189,20 @@ public class HomePageObjects extends CommonMethodsObject {
 	public Map<String, String> clickGetStartedButton(List<String> dataStructuresOption) throws InterruptedException {
 		Map<String, String> warningMessageMap = new HashMap<>();
 		for(String option : dataStructuresOption) {
-		Thread.sleep(2000);
 		String listOfDtaStructuresItemXpath = "//h5[@class='card-title']";
 		List<WebElement> dataStructuresItem = driver.findElements(By.xpath(listOfDtaStructuresItemXpath));
 		for(WebElement itemElement :dataStructuresItem ) {
 		  try {
 			String item = itemElement.getText();
 			if(option.contains(item)) {
-			
 				String getStartedButton= "//a[contains(text(),'Get Started')]";
 				int index = dataStructuresItem.indexOf(itemElement);
 				WebElement getStratedButton = driver.findElements(By.xpath(getStartedButton)).get(index); 
 				getStratedButton.click();
-				Thread.sleep(3000);
+				waitVisibilityOfElementLocated(loginAlertMessage);
 				String warningMessage = printloginAlertMessage();
 				if(warningMessage != null) {
 					warningMessageMap.put(option,warningMessage);
-//					System.out.println(option + ":"+warningMessageMap.get(option));
 				}
 			}
 		  }catch(Exception e) {
@@ -239,41 +212,11 @@ public class HomePageObjects extends CommonMethodsObject {
 		  }	
 		}
 	}
-		Thread.sleep(3000);
 		driver.navigate().refresh();
 		PageFactory.initElements(driver, this);
 		return warningMessageMap;
 	}
 
-//	 GetStarted Button 
-/*	public Map<String, String> clickGetStartedButton(String option) throws InterruptedException {
-		Map<String, String> warningMessageMap = new HashMap<>();
-		Thread.sleep(2000);
-		String listOfDtaStructuresItemXpath = "//h5[@class='card-title']";
-		List<WebElement> dataStructuresItem = driver.findElements(By.xpath(listOfDtaStructuresItemXpath));
-		for(WebElement itemElement :dataStructuresItem ) {
-		  try {
-			String item = itemElement.getText();
-			if(option.contains(item)) {
-			
-				String getStartedButton= "//a[contains(text(),'Get Started')]";
-				int index = dataStructuresItem.indexOf(itemElement);
-				WebElement getStratedButton = driver.findElements(By.xpath(getStartedButton)).get(index); 
-				getStratedButton.click();
-				Thread.sleep(3000);
-				String warningMessage = printloginAlertMessage();
-				if(warningMessage != null) {
-					warningMessageMap.put(option,warningMessage);
-//					System.out.println(option + ":"+warningMessageMap.get(option));
-				}
-			}
-		  }catch(Exception e) {
-			 LOG.error("Exception encountered." + e);
-			 driver.navigate().refresh();
-		  }	
-		}
-		   return warningMessageMap;
-	}*/
 	
 //	Login warning message for not user logged in 
 	
@@ -293,6 +236,4 @@ public class HomePageObjects extends CommonMethodsObject {
 		
 		}
 	
-	
-
-}
+	}

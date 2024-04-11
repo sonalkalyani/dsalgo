@@ -1,6 +1,8 @@
 
 package com.dsportalapp.dsalgo.testRunner;
 
+import org.testng.annotations.DataProvider;
+
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import io.qameta.allure.testng.Tags;
@@ -9,9 +11,8 @@ public class testRunnerTestNG {
 
 	@CucumberOptions(
 
+
 			features = "src/test/resources/features/LoginPage.feature",
-//			"src/test/resources/features/linkedList.feature",
-//			
 
 			glue = {"com.dsportalapp.dsalgo.stepDefinition","com.dsportalapp.dsalgo.hooks"},
 			monochrome = true
@@ -26,10 +27,10 @@ public class testRunnerTestNG {
 	public class TestNGTestRunner extends AbstractTestNGCucumberTests {
 	
 //		 this is for pararell execution	, scenarios() present in AbstractTestNGCucumberTests() class.
-//		@Override       
-//		@DataProvider(parallel = true)
-//		public Object[][] scenarios() {
-//			return super.scenarios();
-//		}
+		@Override       
+		@DataProvider(parallel = false)
+		public Object[][] scenarios() {
+			return super.scenarios();
+		}
 	}
 }

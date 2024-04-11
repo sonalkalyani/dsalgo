@@ -1,22 +1,15 @@
 package com.dsportalapp.dsalgo.stepDefinition;
 
 import static org.testng.Assert.assertTrue;
-
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
-
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.dsportalapp.dsalgo.POM.CommonMethodsObject;
 import com.dsportalapp.dsalgo.POM.HomePageObjects;
-import com.dsportalapp.dsalgo.POM.LinkedListObjects;
 import com.dsportalapp.dsalgo.POM.LoginPageObjects;
-import com.dsportalapp.dsalgo.POM.PortalPageObjects;
 import com.dsportalapp.dsalgo.utilities.TestSetup;
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -24,7 +17,6 @@ import io.cucumber.java.en.When;
 public class CommonMethodsStepDefinition {
 	WebDriver driver;
 	TestSetup testsetup;
-	LinkedListObjects linkedlistobj;
 	HomePageObjects homepageobj;
 	CommonMethodsObject commonobj;
 	LoginPageObjects loginpageobj;
@@ -37,23 +29,20 @@ public class CommonMethodsStepDefinition {
 		super();
 		this.testsetup = testsetup;
 		this.driver = testsetup.drivermanager.getDriverManager();
-		linkedlistobj = testsetup.pageobjectmanager.getLinkedListObjects();
 		commonobj = testsetup.pageobjectmanager.getCommonMethodsObject();
 		homepageobj = testsetup.pageobjectmanager.getHomePageObjects();
 		loginpageobj = testsetup.pageobjectmanager.getLoginPageObjects();
 	}
 	@Given("User should be logged in with valid credential")
 	public void user_should_be_logged_in_with_valid_credential() {
-		driver.get("https://dsportalapp.herokuapp.com/home");
-		homepageobj.clickSignInButton();
+
+		commonobj.clicktoHomeGetStartedButton();
+		commonobj.clickSignInButton();
 		loginpageobj.enterValidUsernameandPassword();
-//		commonobj.login();
+
+
 	}
-//	@Given("User is on DS_Algo Home page after logged in")
-//	public void user_is_on_ds_algo_home_page_after_logged_in() {
-//	    // Write code here that turns the phrase above into concrete actions
-//	    throw new io.cucumber.java.PendingException();
-//	}
+
 
 	@When("The user select Get Started button in {string} panel")
 	public void the_user_select_get_started_button_in_linked_list_panel(String dataStructureName) throws InterruptedException {
@@ -66,11 +55,12 @@ public class CommonMethodsStepDefinition {
 		assertTrue(commonobj.isOnRedirectedPage(redirectedPageName), "The user should be in https://dsportalapp.herokuapp.com/"+ redirectedPageName + "/ Page");
 	}
 	
-//	--------------------------------------------------------
+
 	@Given("User is on {string} Home page")
 	public void user_is_on_linked_list_home_page(String dataStructureName) throws InterruptedException {
 		commonobj.clickGetStartedButtonCommon(dataStructureName);
-//		linkedlistobj.isOnLinkedListHome();
+		commonobj.headervalidation();
+
 	}
 
 	@When("The user clicks {string} link")
@@ -82,6 +72,7 @@ public class CommonMethodsStepDefinition {
 	public void the_user_should_be_redirected_to_topics_page(String redirectedPage) {
 		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The user is not redirected to "+redirectedPage+" Topic Page");
 		LOG.info("The user is redirected to "+ redirectedPage + " page");
+		commonobj.headervalidation();
 	}
 	
 	
@@ -98,10 +89,7 @@ public class CommonMethodsStepDefinition {
 
 	@When("The user clicks the Run button after writes following Valid Python Code in editor")
 	public void the_user_clicks_the_run_button_after_writes_following_valid_python_code_in_editor(String pythonCode) throws InterruptedException {
-		
-		Thread.sleep(3000);
 		commonobj.sendTextEditor(pythonCode);
-		Thread.sleep(3000);
 		commonobj.clickRunButton();
 	}
 
@@ -115,7 +103,6 @@ public class CommonMethodsStepDefinition {
 	@When("The user clicks the Run button after writes following Invalid Python code in editor")
 	public void the_user_clicks_the_run_button_after_writes_following_invalid_python_code_in_editor(String invalidPythonCode) throws InterruptedException {
 		commonobj.sendTextEditor(invalidPythonCode);
-		Thread.sleep(3000);
 		commonobj.clickRunButton();
 	}
 	
@@ -124,7 +111,7 @@ public class CommonMethodsStepDefinition {
 		String alertMessage = commonobj.switchToAlert();
 		LOG.info(alertMessage);
 	}
-//	---------------------------------------------------------------
+
 	
 	@Given("User is on {string} {string} page")
 	public void user_is_on_page(String dataStructureName, String dataStructureTopicName) throws InterruptedException {
@@ -133,18 +120,25 @@ public class CommonMethodsStepDefinition {
 	}
 
 
-	@Then("The user tries to click on LINKS on the left panel")
-	public void the_user_tries_to_click_on_links_on_the_left_panel() throws URISyntaxException {
-		commonobj.checkBrokenLinks();
+	@Then("The user clicks on LINKS on the left panel to validate the Python Editor funtionality")
+	public void the_user_tries_to_click_on_links_on_the_left_panel(String code) throws URISyntaxException, IOException, InterruptedException {
+		commonobj.leftLink(code);
 		LOG.info("All links are validated successfully!!!");
 	}
 	
-	@Then("The user should redirected to the page having Editor button")
-	public void the_user_should_redirected_to_the_page_having_editor_button() {
-	    
-	}
+	//Practice Questions 
+
+		/*@When("The user clicks {string} Practice Questions link")
+		public void the_user_clicks_practice_questions_link(String string) {
+		   practiceobj.navigateToPracticeQuestionPage(string); 
+		}
 
 
+		@Then("The user should be redirected to practice page having links like {string} ,{string},{string} and {string}")
+		public void the_user_should_be_redirected_to_practice_page_having_links_like_and(String string, String string2, String string3, String string4) {
+		    practiceobj.clickdataStructuresHomeLinks(string, string2, string3, string4);
+		}
+*/
 	
 	
 }

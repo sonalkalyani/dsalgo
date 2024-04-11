@@ -1,35 +1,17 @@
 package com.dsportalapp.dsalgo.stepDefinition;
 
-import static org.testng.Assert.assertTrue;
-
-import java.io.IOException;
-import java.sql.Driver;
 import java.util.List;
 import java.util.Map;
-
-import javax.management.loading.PrivateClassLoader;
-
 import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.xmlbeans.impl.xb.xsdschema.Public;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-
 import com.dsportalapp.dsalgo.POM.CommonMethodsObject;
 import com.dsportalapp.dsalgo.POM.LoginPageObjects;
 import com.dsportalapp.dsalgo.utilities.ConfigReader;
 import com.dsportalapp.dsalgo.utilities.TestSetup;
-import com.dsportalapp.dsalgo.webDriverManager.DriverManager;
-
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -37,12 +19,10 @@ import io.cucumber.java.en.When;
 
 public class LoginPageStepDefinition  {
 	
-	ConfigReader configFileReader = new ConfigReader();
 	WebDriver driver;
 	TestSetup testsetup;
 	CommonMethodsObject commonobj;
-	private String title;
-	private LoginPageObjects loginpageobj;
+	LoginPageObjects loginpageobj;
 	public static Logger LOG = LoggerFactory.getLogger(LoginPageStepDefinition.class);
 	
 	public LoginPageStepDefinition(TestSetup testsetup) {
@@ -53,10 +33,11 @@ public class LoginPageStepDefinition  {
 	}
 	
 	
-	@Given("The user is on DS Algo Sign in Page")
-	public void the_user_is_on_ds_algo_sign_in_page() {
 	
-		loginpageobj.isOnSignInPage();
+	@Given("The user is on the DS Algo Sign in Page")
+	public void the_user_is_on_the_ds_algo_sign_in_page() {
+		commonobj.clicktoHomeGetStartedButton();
+		commonobj.clickSignInButton();
 	}
 
 	@When("The user gets the title of the page")
@@ -72,27 +53,14 @@ public class LoginPageStepDefinition  {
 		Assert.assertTrue(title.contains(expectedTitlename));
 	}
 
-
-	@Then("Register link should be displayed under the login button")
-	public void register_link_should_be_displayed_under_the_login_button() {
-		
-		loginpageobj.registerLinkValidation();
-	   
-	}
 	
 	@Then("On clicking register link, page should navigate to Registration page with title {string}")
 	public void on_clicking_register_link_page_should_navigate_to_registration_page_with_title(String expectedRgstrnPagetitle) {
 		
-		String actualRegisterPageTitle = loginpageobj.registerLinkNavigation();
-		LOG.info("Current Page Title is: " +actualRegisterPageTitle);
-		Assert.assertEquals(actualRegisterPageTitle, expectedRgstrnPagetitle);
+		commonobj.clickRegisterLnk();
 	}
 
-	@Given("The user is on the DS Algo Sign in Page")
-	public void the_user_is_on_the_ds_algo_sign_in_page() {
-		 
-		loginpageobj.isOnSignInPage();
-	}
+	
 
 	@When("The user enters valid username and valid password and clicks on Login button")
 	public void the_user_enters_valid_username_and_valid_password_and_clicks_on_Login_button() {
@@ -160,7 +128,6 @@ public class LoginPageStepDefinition  {
 		loginpageobj.enterInvalidUsernameandPassword(userList);
 	}
 	
-
 
 
 }

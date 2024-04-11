@@ -8,14 +8,12 @@ import java.util.Properties;
 
 public class ConfigReader {
 	
-	private Properties prop; 
-	
+	private static Properties prop = null;
 	/**
 	 * this method is to load properties from config.properties file
 	 * @return properties from prop object
 	 */
-	public Properties init_prop() {
-		
+	private static void init_prop() {		
 		prop = new Properties();
 		try {
 			FileInputStream fis = new FileInputStream("./src/test/resources/config/global.properties");
@@ -26,9 +24,14 @@ public class ConfigReader {
 		} catch (IOException e) {
 			
 			e.printStackTrace();
+		}		
+	}
+	
+	public static String getProperty(String key) {
+		if (prop == null) {
+			init_prop();
 		}
-		
-		return prop;
+		return prop.getProperty(key);
 	}
 
 }

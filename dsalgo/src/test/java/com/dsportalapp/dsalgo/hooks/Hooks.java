@@ -21,9 +21,10 @@ public class Hooks {
 	public TestSetup testup;
 	
 	
-	public Hooks(TestSetup testup) {
+	public Hooks(TestSetup testup) throws IOException {
 		
 		this.testup = testup;
+		this.driver=testup.drivermanager.getDriverManager();
 	}
 /*	
 	@Before(order = 0)
@@ -45,12 +46,12 @@ public class Hooks {
 		}
 		
 	}
+	
+	
+	*/
 	@After(order = 0)
 	public void quitBrowser() {
 		driver.quit();
 	}
-	
-	*/
-	
 	
 }
