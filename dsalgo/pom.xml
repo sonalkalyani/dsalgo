@@ -3,8 +3,30 @@
   <groupId>com.dsportalapp</groupId>
   <artifactId>dsalgo</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  
+   <build>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+	    	<artifactId>maven-surefire-plugin</artifactId>
+	    	<version>3.2.5</version>
+	    	<configuration>
+                    <!-- Specify testng.xml file location -->
+                    <suiteXmlFiles>
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+		</plugin>
+		<plugin>
+			<!-- https://mvnrepository.com/artifact/org.apache.maven/maven-core -->
+			    <groupId>org.apache.maven</groupId>
+			    <artifactId>maven-core</artifactId>
+			    <version>3.9.6</version>
+		</plugin>
+	</plugins>
+ </build>
+ 
   <dependencies>
+	
 	<dependency>
 		<groupId>org.seleniumhq.selenium</groupId>
 		<artifactId>selenium-java</artifactId>
@@ -103,12 +125,7 @@
 	    <artifactId>allure-testng</artifactId>
 	    <version>2.25.0</version>
 	</dependency>
-<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
-	<dependency>
-	    <groupId>org.apache.maven.plugins</groupId>
-	    <artifactId>maven-surefire-plugin</artifactId>
-	    <version>3.2.5</version>
-	</dependency>
+
 <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 <dependency>
     <groupId>org.apache.commons</groupId>

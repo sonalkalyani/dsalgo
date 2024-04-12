@@ -1,3 +1,4 @@
+
 package com.dsportalapp.dsalgo.utilities;
 
 
@@ -8,30 +9,33 @@ import java.util.Properties;
 
 public class ConfigReader {
 	
-	private static Properties prop = null;
-	/**
-	 * this method is to load properties from config.properties file
-	 * @return properties from prop object
-	 */
+	public static ThreadLocal<Properties> prop = new ThreadLocal<Properties>();
+	
 	private static void init_prop() {		
-		prop = new Properties();
+		prop.set(new Properties());
 		try {
 			FileInputStream fis = new FileInputStream("./src/test/resources/config/global.properties");
-			prop.load(fis);
+			prop.get().load(fis);
 		} catch (FileNotFoundException e) {
 			
 			e.printStackTrace();
 		} catch (IOException e) {
 			
 			e.printStackTrace();
-		}		
+		}		 
 	}
 	
 	public static String getProperty(String key) {
-		if (prop == null) {
+		if (prop.get() == null) {
 			init_prop();
 		}
-		return prop.getProperty(key);
+		return prop.get().getProperty(key);
+	}
+	public static void setProperty(String key, String value) {
+		if (prop.get() == null) {
+			init_prop();
+		}
+		prop.get().setProperty(key,value);
 	}
 
 }

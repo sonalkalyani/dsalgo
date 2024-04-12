@@ -11,7 +11,7 @@ Feature: New User Registartion Functionality
     #Examples: 
       #| username | password |
       #|          |          |
-
+#
  #Scenario Outline: User cannot register with invalid Username
     #When User enters username "<username>" with invalid special charecter and valid password "<password>"
     #And User submit the registration form with errors
@@ -60,22 +60,22 @@ Feature: New User Registartion Functionality
     #Examples: 
       #| username  | password  | confirmpassword |
       #| Sandy@345 | happy1234 | happy4567       |
+#
+  Scenario Outline: User can register with valid information
+    When User enters valid username "<username>" and password "<password>"
+    And User submits the registration form  successfully
+    And User should be redirected to Home Page
+    And user should be logged in with the registered "<username>"
 
-  #Scenario Outline: User can register with valid information
-    #When User enters valid username "<username>" and password "<password>"
-    #And User submits the registration form  successfully
-    #And User should be redirected to Home Page
-    #And user should be logged in with the registered "<username>"
-#
-    #Examples: 
-      #| username  | password   |
-      #| Quality_123| quality@8989|
-#
+    Examples: 
+      | username  | password   |
+      | Quality_123| quality@8989|
+
   #| Sandy.John | Ninja_1234 |
   #| Sandy-345  | SDET@1234 |
   #| Sandy+345  | Test_0123 |
-  
-  
+  #
+  #
   #Scenario Outline: User cannot  register with existing  user details
     #When User enters existing username "<username>" and password "<password>"
     #And User submit the registration form with errors
@@ -85,6 +85,6 @@ Feature: New User Registartion Functionality
       #| username  | password   |
       #| Sandy_0987 | Numpy@8899 |
 #
-  Scenario: User can  traverse to Login page from Registration page
-    When User clicks on login link
-    Then User should traverse to Login page
+  #Scenario: User can  traverse to Login page from Registration page
+    #When User clicks on login link
+    #Then User should traverse to Login page
