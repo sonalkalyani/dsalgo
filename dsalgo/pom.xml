@@ -104,11 +104,11 @@
 	    <version>2.25.0</version>
 	</dependency>
 <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
-	<dependency>
+	<!--<dependency>
 	    <groupId>org.apache.maven.plugins</groupId>
 	    <artifactId>maven-surefire-plugin</artifactId>
 	    <version>3.2.5</version>
-	</dependency>
+	</dependency> --> 
 <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 <dependency>
     <groupId>org.apache.commons</groupId>
@@ -123,4 +123,29 @@
 </dependency>
 
   </dependencies>
+ <build>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+	    	<artifactId>maven-surefire-plugin</artifactId>
+	    	<version>3.2.5</version>
+	    	<configuration>
+                    <!-- Specify testng.xml file location -->
+                    <suiteXmlFiles>
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                    
+                </configuration>
+		</plugin>
+		<plugin>
+			<!-- https://mvnrepository.com/artifact/org.apache.maven/maven-core -->
+
+			    <groupId>org.apache.maven</groupId>
+			    <artifactId>maven-core</artifactId>
+			    <version>3.9.6</version>
+
+
+		</plugin>
+	</plugins>
+ </build>
 </project>

@@ -11,7 +11,7 @@
         <!-- defaults to https -->
         <protocol>http</protocol>
         <!-- title of the document -->
-        <documentTitle>dsalgo</documentTitle>
+        <documentTitle>DS-ALGO</documentTitle>
         <!-- report name - displayed at top-nav -->
         <reportName>Grasshopper Report</reportName>
         <!-- location of charts in the test view -->

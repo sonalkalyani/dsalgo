@@ -6,15 +6,15 @@ So that I can verify the the access for Unauthenticated Users
 Background:
 Given The user is on the Home page of DS_Algo portal
 
-#Scenario: Verify 'Data Structures DropDown List' size and options
-#When The user clicks on the DataStructures DropDown arrow
-#Then The user should be able to see below  six options in dropdown menu
-#|Arrays|
-#|Linked List|
-#|Stack|
-#|Queue|
-#|Tree|
-#|Graph|
+Scenario: Verify 'Data Structures DropDown List' size and options
+When The user clicks on the DataStructures DropDown arrow
+Then The user should be able to see below  six options in dropdown menu
+|Arrays|
+|Linked List|
+|Stack|
+|Queue|
+|Tree|
+|Graph|
 
 Scenario: Verify display of 'You are not logged in' Message for Unauthenticated Users for DropDown List
 When The user selects following options from the drop down without login

@@ -8,6 +8,7 @@ import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.dsportalapp.dsalgo.utilities.ConfigReader;
 
@@ -21,10 +22,13 @@ public class DriverManager {
 	public WebDriver getDriverManager() throws IOException {
 		if (driver == null) {
 
-            String browserType = ConfigReader.getProperty("browser");
-            String url =  ConfigReader.getProperty("Url");
+			 String browserType = ConfigReader.getProperty("browser");
+	            String url = ConfigReader.getProperty("Url");
+		            if (browserType == null || url == null) {
+		                throw new IllegalArgumentException("Browser type or URL not found in configuration");
+		            }
 
-            switch (browserType.toLowerCase()) {
+               switch (browserType.toLowerCase()) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
@@ -33,6 +37,10 @@ public class DriverManager {
                     WebDriverManager.edgedriver().setup();
                     driver = new EdgeDriver();
                     break;
+                case "firefox":
+                    WebDriverManager.firefoxdriver().setup();
+                    driver = new FirefoxDriver();
+                    break;   
                 default:
                     throw new IllegalArgumentException("Unsupported browser: " + browserType);
             }

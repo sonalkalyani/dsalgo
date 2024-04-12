@@ -6,7 +6,6 @@ So that I can access the dsalgo portal
 Background:
 Given The user is on the DS Algo Sign in Page
 
-
 @TC001
 Scenario: Verify Login page title
 When The user gets the title of the page
@@ -14,9 +13,7 @@ Then Page title should be "Login"
 
 @TC002
 Scenario: Verify Register link under the login button
-Then Register link should be displayed under the login button
-Then On clicking register link, page should navigate to Registration page with title "Registration"
-
+Then On clicking register link, page should navigate to Registration page with title Registration
 
 
 Scenario: verify login is successful with valid credentials

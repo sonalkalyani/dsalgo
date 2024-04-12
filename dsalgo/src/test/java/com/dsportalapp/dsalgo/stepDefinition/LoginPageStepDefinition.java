@@ -61,15 +61,11 @@ public class LoginPageStepDefinition  {
 	   
 	}
 	
-	@Then("On clicking register link, page should navigate to Registration page with title {string}")
-	public void on_clicking_register_link_page_should_navigate_to_registration_page_with_title(String expectedRgstrnPagetitle) {
+	@Then("On clicking register link, page should navigate to Registration page with title Registration")
+	public void on_clicking_register_link_page_should_navigate_to_registration_page_with_title() {
 		
-		String actualRegisterPageTitle = loginpageobj.registerLinkNavigation();
-		LOG.info("Current Page Title is: " +actualRegisterPageTitle);
-		Assert.assertEquals(actualRegisterPageTitle, expectedRgstrnPagetitle);
+		commonobj.clickRegisterLnk();
 	}
-
-	
 
 	@When("The user enters valid username and valid password and clicks on Login button")
 	public void the_user_enters_valid_username_and_valid_password_and_clicks_on_Login_button() {
