@@ -7,7 +7,8 @@ Additionally, I want to verify the correct execution of Python code snippets
 Background:
 Given User should be logged in with valid credential
 
-Scenario:
+
+Scenario: User selecting 'Stack' Data Structure
 When The user select Get Started button in "Stack" panel
 Then The user should be redirected to following page
 |stack| 
@@ -32,7 +33,8 @@ Examples:
 |Implementation|             				|implementation|             
 |Applications|						  				|stack-applications|
 
-#
+
+
 Scenario Outline: Navigate through 'Stack' learning and run invalid Python code
 Given User is on "Stack" Home page
 When The user clicks "<Topics>" link
@@ -56,16 +58,16 @@ Examples:
 
 
 
-#Scenario: Validation of Left Panel Links in 'Stack' Topic - Specific Page  
-#
-#Given User is on "Stack" "Operations in Stack" page
-#Then The user clicks on LINKS on the left panel to validate the Python Editor funtionality
-#
-#"""
-#print"Hello"
-#print"Welcome!!"
-#
-#"""
+Scenario: Validation of Left Panel Links in 'Stack' Topic - Specific Page  
+
+Given User is on "Stack" "Operations in Stack" page
+Then The user clicks on LINKS on the left panel to validate the Python Editor funtionality
+
+"""
+print"Hello"
+print"Welcome!!"
+
+"""
 
 
 

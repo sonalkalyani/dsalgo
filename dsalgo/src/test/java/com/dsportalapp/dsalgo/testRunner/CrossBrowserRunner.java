@@ -1,4 +1,3 @@
-
 package com.dsportalapp.dsalgo.testRunner;
 
 import org.testng.annotations.BeforeClass;
@@ -45,3 +44,4 @@ public class CrossBrowserRunner extends AbstractTestNGCucumberTests{
 //			return super.scenarios();
 //		}
 	}
+

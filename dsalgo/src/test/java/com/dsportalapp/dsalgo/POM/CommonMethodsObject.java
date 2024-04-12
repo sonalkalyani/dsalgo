@@ -8,6 +8,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.ElementNotInteractableException;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -416,6 +417,19 @@ public class CommonMethodsObject {
 				e.printStackTrace();
 			}
 		}
+		public static void TextIndentation(WebDriver driver, WebElement pythonElement, int row, int space,boolean flag) {
+			Actions action = new Actions(driver);
+		       // Keys cmdCtrl = Platform.getCurrent().is(Platform.MAC) ? Keys.COMMAND : Keys.CONTROL;
+			for(int i=1;i<=row;i++) {
+			      action.sendKeys(Keys.ARROW_UP).keyUp(Keys.SHIFT).perform();
+			       for(int j=1;j<=space;j++) {
+		            if(i==1 && flag) action.sendKeys(Keys.BACK_SPACE).perform();
+		            else action.sendKeys(Keys.DELETE).perform();
+				   }
+			}
+		}
+		
+		
 		
 	/*	public void clickArrayPracticeHomeLinks(String homeLink) {
 			try {

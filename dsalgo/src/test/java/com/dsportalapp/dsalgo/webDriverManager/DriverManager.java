@@ -22,10 +22,13 @@ public class DriverManager {
 	public WebDriver getDriverManager() throws IOException {
 		if (driver == null) {
 
-            String browserType = ConfigReader.getProperty("browser");
-            String url =  ConfigReader.getProperty("Url");
+			 String browserType = ConfigReader.getProperty("browser");
+	            String url = ConfigReader.getProperty("Url");
+		            if (browserType == null || url == null) {
+		                throw new IllegalArgumentException("Browser type or URL not found in configuration");
+		            }
 
-            switch (browserType.toLowerCase()) {
+               switch (browserType.toLowerCase()) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
@@ -37,9 +40,8 @@ public class DriverManager {
                 case "firefox":
                 	 WebDriverManager.firefoxdriver().setup();
                      driver = new FirefoxDriver();
-                     break;
-                	
-                default:
+                   break;         	
+                 default:
                     throw new IllegalArgumentException("Unsupported browser: " + browserType);
             }
 

@@ -8,7 +8,8 @@ Additionally, I want to verify the correct execution of Python code snippets
 Background:
 Given User should be logged in with valid credential
 
-Scenario:
+
+Scenario: User selecting 'Queue' Data Structure
 When The user select Get Started button in "Queue" panel
 Then The user should be redirected to following page
 |queue|
