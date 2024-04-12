@@ -15,12 +15,12 @@ public class testRunnerTestNG {
 			features = "src/test/resources/features/LoginPage.feature",
 
 			glue = {"com.dsportalapp.dsalgo.stepDefinition","com.dsportalapp.dsalgo.hooks"},
-			monochrome = true
+			monochrome = true,
 //			tags  = "@TC001"
 
 
 //			dryRun=true
-//			plugin = {"pretty", "html:target/cucumber.html","json:target/cucmber.json",
+			plugin = {"pretty", "html:target/cucumber.html","json:target/cucmber.json"}
 //			plugin ={"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
 
 			)

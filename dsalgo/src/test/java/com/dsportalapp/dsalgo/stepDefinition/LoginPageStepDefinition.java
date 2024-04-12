@@ -54,8 +54,8 @@ public class LoginPageStepDefinition  {
 	}
 
 	
-	@Then("On clicking register link, page should navigate to Registration page with title {string}")
-	public void on_clicking_register_link_page_should_navigate_to_registration_page_with_title(String expectedRgstrnPagetitle) {
+	@Then("On clicking register link, page should navigate to Registration page with title Registration")
+	public void on_clicking_register_link_page_should_navigate_to_registration_page_with_title_Registration() {
 		
 		commonobj.clickRegisterLnk();
 	}

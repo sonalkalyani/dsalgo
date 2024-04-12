@@ -14,7 +14,7 @@ Then Page title should be "Login"
 
 @TC002
 Scenario: Verify Register link under the login button
-Then On clicking register link, page should navigate to Registration page with title "Registration"
+Then On clicking register link, page should navigate to Registration page with title Registration
 
 
 Scenario: verify login is successful with valid credentials
