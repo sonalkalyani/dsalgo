@@ -28,7 +28,7 @@ public class testRunnerTestNG {
 	
 //		 this is for pararell execution	, scenarios() present in AbstractTestNGCucumberTests() class.
 		@Override       
-		@DataProvider(parallel = false)
+		@DataProvider(parallel = true)
 		public Object[][] scenarios() {
 			return super.scenarios();
 		}
