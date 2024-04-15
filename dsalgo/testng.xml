@@ -18,5 +18,8 @@
     <classes>
       <class name="com.dsportalapp.dsalgo.testRunner.CrossBrowserRunner"/>
      </classes>
+     
   </test> <!-- Test -->
+ 
 </suite> <!-- Suite -->
+
