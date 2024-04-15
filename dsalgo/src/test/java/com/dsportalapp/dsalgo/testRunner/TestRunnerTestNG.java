@@ -10,8 +10,8 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
 
-	//	features = "src/test/resources/features",
-		features =	"src/test/resources/features/LoginPage.feature",
+		features = "src/test/resources/features",
+//		"src/test/resources/features/LoginPage.feature",
 		glue = {"com.dsportalapp.dsalgo.stepDefinition","com.dsportalapp.dsalgo.hooks"},
 		monochrome = true,
 //		dryRun=true
@@ -27,5 +27,4 @@ public class TestRunnerTestNG extends AbstractTestNGCucumberTests{
 		public Object[][] scenarios() {
 			return super.scenarios();
 		}
-	}
-
+}

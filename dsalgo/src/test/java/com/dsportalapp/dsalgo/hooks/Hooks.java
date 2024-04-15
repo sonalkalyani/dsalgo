@@ -3,6 +3,8 @@ package com.dsportalapp.dsalgo.hooks;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import com.dsportalapp.dsalgo.utilities.ConfigReader;
@@ -11,6 +13,7 @@ import com.dsportalapp.dsalgo.webDriverManager.DriverManager;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 
 public class Hooks {
 	
@@ -52,6 +55,17 @@ public class Hooks {
 	@After(order = 0)
 	public void quitBrowser() {
 		driver.quit();
+	}
+	
+	@After(order = 1)
+	public void takeScreenshotOnFailure(Scenario scenario)
+	{
+		if(scenario.isFailed())
+		{
+			TakesScreenshot ts=(TakesScreenshot)driver;
+			byte[] src=ts.getScreenshotAs(OutputType.BYTES);
+			scenario.attach(src, "image/png", "screenshot");
+		}
 	}
 	
 }
