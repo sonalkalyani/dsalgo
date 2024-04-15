@@ -6,7 +6,6 @@ So that I can access the dsalgo portal
 Background:
 Given The user is on the DS Algo Sign in Page
 
-
 @TC001
 Scenario: Verify Login page title
 When The user gets the title of the page
