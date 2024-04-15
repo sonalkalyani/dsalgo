@@ -118,21 +118,16 @@
     <version>2.15.1</version>
 </dependency>
 
+  	<dependency>
+  		<groupId>cucumber</groupId>
+  		<artifactId>cucumber</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  		<scope>build</scope>
+  	</dependency>
   </dependencies>
  <build>
 	<plugins>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-	    	<artifactId>maven-surefire-plugin</artifactId>
-	    	<version>3.2.5</version>
-	    	<configuration>
-                    <!-- Specify testng.xml file location -->
-                    <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
-                    </suiteXmlFiles>
-                    
-                </configuration>
-		</plugin>
+		
 		<plugin>
 			<!-- https://mvnrepository.com/artifact/org.apache.maven/maven-core -->
 
@@ -140,8 +135,22 @@
 			    <artifactId>maven-core</artifactId>
 			    <version>3.9.6</version>
 
-
 		</plugin>
+		
+		 <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
+        <configuration>
+          <includes>
+            <include>**/Test*.java</include>
+          </includes>
+          <!-- Specify testng.xml file location -->
+           <suiteXmlFiles>
+          		 <suiteXmlFile>testng.xml</suiteXmlFile>
+            </suiteXmlFiles>
+        </configuration>
+      </plugin>
 	</plugins>
  </build>
 </project>

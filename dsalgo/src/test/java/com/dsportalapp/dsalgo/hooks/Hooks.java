@@ -1,5 +1,6 @@
 package com.dsportalapp.dsalgo.hooks;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -13,6 +14,7 @@ import com.dsportalapp.dsalgo.webDriverManager.DriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.qameta.allure.Allure;
 
 public class Hooks {
 	
@@ -64,6 +66,7 @@ public class Hooks {
 			TakesScreenshot ts=(TakesScreenshot)driver;
 			byte[] src=ts.getScreenshotAs(OutputType.BYTES);
 			scenario.attach(src, "image/png", "screenshot");
+			Allure.addAttachment("Failed Scenario Screenshot",new ByteArrayInputStream(src));
 		}
 	}
 
