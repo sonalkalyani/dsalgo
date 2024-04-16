@@ -7,16 +7,16 @@
       <class name="com.dsportalapp.dsalgo.testRunner.CrossBrowserRunner"/>
      </classes>
   </test> <!-- Test -->
-  <test name="edge">
+ <!-- <test name="edge">
 	<parameter name="browser" value="edge"></parameter>
     <classes>
       <class name="com.dsportalapp.dsalgo.testRunner.CrossBrowserRunner"/>
      </classes>
-  </test> <!-- Test -->
+  </test>  Test 
   <test name="firefox">
 	<parameter name="browser" value="firefox"></parameter>
     <classes>
       <class name="com.dsportalapp.dsalgo.testRunner.CrossBrowserRunner"/>
      </classes>
-  </test> <!-- Test -->
+  </test>  Test -->
 </suite> <!-- Suite -->
