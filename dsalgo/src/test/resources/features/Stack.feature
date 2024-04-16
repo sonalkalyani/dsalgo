@@ -7,6 +7,7 @@ Additionally, I want to verify the correct execution of Python code snippets
 Background:
 Given User should be logged in with valid credential
 
+
 Scenario: User selecting 'Stack' Data Structure
 When The user select Get Started button in "Stack" panel
 Then The user should be redirected to following page
@@ -31,6 +32,7 @@ Examples:
 |Operations in Stack|               |operations-in-stack|
 |Implementation|             				|implementation|             
 |Applications|						  				|stack-applications|
+
 
 
 Scenario Outline: Navigate through 'Stack' learning and run invalid Python code

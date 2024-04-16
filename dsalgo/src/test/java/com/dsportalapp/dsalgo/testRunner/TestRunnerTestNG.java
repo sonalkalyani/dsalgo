@@ -10,14 +10,19 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
 
+
 		features = "src/test/resources/features/",
-//		"src/test/resources/features/LoginPage.feature",
+
+
+
 		glue = {"com.dsportalapp.dsalgo.stepDefinition","com.dsportalapp.dsalgo.hooks"},
 		monochrome = true
 //		dryRun=true
 //		plugin = {"pretty", "html:target/cucumber.html","json:target/cucmber.json",
+
 //				plugin = {"pretty","io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"}
 //		plugin ={"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
+
 
 		)
 public class TestRunnerTestNG extends AbstractTestNGCucumberTests{
@@ -28,5 +33,4 @@ public class TestRunnerTestNG extends AbstractTestNGCucumberTests{
 		public Object[][] scenarios() {
 			return super.scenarios();
 		}
-	}
-
+}

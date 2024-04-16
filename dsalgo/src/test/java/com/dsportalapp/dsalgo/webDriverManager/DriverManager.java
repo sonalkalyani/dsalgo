@@ -38,10 +38,10 @@ public class DriverManager {
                     driver = new EdgeDriver();
                     break;
                 case "firefox":
-                    WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
-                    break;   
-                default:
+                	 WebDriverManager.firefoxdriver().setup();
+                     driver = new FirefoxDriver();
+                   break;         	
+                 default:
                     throw new IllegalArgumentException("Unsupported browser: " + browserType);
             }
 

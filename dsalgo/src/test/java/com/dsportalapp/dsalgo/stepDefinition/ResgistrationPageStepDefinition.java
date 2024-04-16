@@ -104,6 +104,7 @@ public class ResgistrationPageStepDefinition {
 	public void user_submit_the_registration_form_with_successfully() {
 		
 		LOG.info("Form Submitted successfully");
+		
 	    
 	}
 

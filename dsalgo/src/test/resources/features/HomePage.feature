@@ -31,6 +31,7 @@ Then The user should be able to see an warning message "You are not logged in" f
 
 
 Scenario: Verify display of 'You are not logged in' Message for Unauthenticated Users for 'Get Started Button'
+
 When The user clicks following any Get Started button for Data Structures Option on the DS home page
 |Data Structures-Introduction|
 |Arrays|
@@ -42,9 +43,11 @@ When The user clicks following any Get Started button for Data Structures Option
 Then The user should be able to see an warning message "You are not logged in" for Get Started Button
 
 
+
 Scenario: Navigation to 'Register' Page
 When The user clicking on Register link on the home page
 Then The user should be redirected to "register" page from home page
+
 
 
 Scenario: Navigation to 'Sign In' Page
