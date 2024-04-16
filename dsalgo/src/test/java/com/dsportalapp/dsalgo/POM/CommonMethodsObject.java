@@ -29,6 +29,8 @@ public class CommonMethodsObject {
 
 	WebDriver driver;
 	WebDriverWait wait;
+	WebDriverWait alertWait;
+	WebDriverWait resultEditorWait;
 	
 	
 	public static Logger LOG = LoggerFactory.getLogger(CommonMethodsObject.class);
@@ -38,7 +40,8 @@ public class CommonMethodsObject {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(4)); 
-		
+		this.alertWait = new WebDriverWait(driver, Duration.ofMillis(300));
+		this.resultEditorWait = new WebDriverWait(driver, Duration.ofMillis(300));
 		
 	}
 
@@ -157,6 +160,8 @@ public class CommonMethodsObject {
 
 	public String printResultEditor() {
 		try {
+
+			resultEditorWait.until(ExpectedConditions.visibilityOf(resultEditor));
 			return resultEditor.getText();
 		} catch (NoSuchElementException e) {
 			LOG.error("An error occured while retrieving text from the result editor " + e.getMessage());
@@ -172,9 +177,11 @@ public class CommonMethodsObject {
 	public String switchToAlert() {
 		String alertMessage = null;
 		try {
-			Alert alert = driver.switchTo().alert();
+			Alert alert = alertWait.until(ExpectedConditions.alertIsPresent());
+//			 alert = driver.switchTo().alert();
 			if (alert != null) {
 				alertMessage = alert.getText();
+//				Thread.sleep(1000);
 				alert.accept();
 				return alertMessage;
 			} else {
@@ -283,10 +290,10 @@ public class CommonMethodsObject {
 	public void clickdataStructuresHomeLinks(String homeLink) {
 		try {
 			for (WebElement link : dataStructuresHomeLinks) {
-//				String linkStr=link.getText().replaceAll("\\s", "");
-//				String homeStr = homeLink.replaceAll("\\s", "");
-//				if (linkStr.contains(homeStr)) {
-				if (link.getText().contains(homeLink)) {
+				String linkStr=link.getText().replaceAll("\\s", "");
+				String homeStr = homeLink.replaceAll("\\s", "");
+				if (linkStr.contains(homeStr)) {
+//				if (link.getText().contains(homeLink)) {
 					link.click();
 					break;
 				}
