@@ -148,8 +148,14 @@ public class CommonMethodsObject {
 	private WebElement resultEditor;
 
 	public String printResultEditor() {
+		String result = null;
 		try {
-			return resultEditor.getText();
+			
+			Thread.sleep(1000);
+			result = resultEditor.getText();
+			
+			LOG.info("Inside Print Result Editor >>"+result);
+			
 		} catch (NoSuchElementException e) {
 			LOG.error("An error occured while retrieving text from the result editor " + e.getMessage());
 			e.printStackTrace();
@@ -157,7 +163,7 @@ public class CommonMethodsObject {
 			LOG.error("An error occured while retrieving text from the result editor " + e.getMessage());
 			e.printStackTrace();
 		}
-		return "";
+		return result;
 	}
 
 //	switchToAlert
@@ -167,6 +173,7 @@ public class CommonMethodsObject {
 			Alert alert = driver.switchTo().alert();
 			if (alert != null) {
 				alertMessage = alert.getText();
+				Thread.sleep(1000);
 				alert.accept();
 				return alertMessage;
 			} else {

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import com.dsportalapp.dsalgo.POM.CommonMethodsObject;
 import com.dsportalapp.dsalgo.POM.PracticeQuestionObjects;
 import com.dsportalapp.dsalgo.utilities.TestSetup;
+import com.github.dockerjava.api.model.Driver;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -32,6 +33,7 @@ public class PracticeQuestionsStepDefinition {
 
 	@Given("User is on {string} Practice Question page")
 	public void user_is_on_page(String string) {
+		
 		practiceobj.navigateToPracticeQuestionPage(string);
 	}
 
@@ -40,15 +42,18 @@ public class PracticeQuestionsStepDefinition {
 		practiceobj.checkElementsinPracticeQuestionPage();
 	}
 
-	@When("The user is on Python Editor and write valid code in Editor and click the run button")
-	public void the_user_is_on_python_editor_and_write_valid_code_in_editor_and_click_the_run_button() {
-		
-		practiceobj.clearAndInsertMessage("print('helo')");
+	@When("The user inputs valid data from {string} and {string} and click the run button")
+	public void the_user_inputs_valid_data_from_and_and_click_the_run_button(String string, String string2) throws Exception {
+	 	
+		practiceobj.tryValidPython(string,string2);
+		//practiceobj.clearAndInsertMessage("print('helo')");
 	}
 
 	@Then("The user should be able to see output in the console")
 	public void the_user_should_be_able_to_see_output_in_the_console() {
-		LOG.info("Result in the Practice Question :" + commonobj.printResultEditor());
+		
+		practiceobj.checkResult();
+		
 	}
 
 	@When("The user clicks the Run button without entring the code in the Editor")
@@ -61,9 +66,9 @@ public class PracticeQuestionsStepDefinition {
 		LOG.info("Null Result in the Practice Question :" + commonobj.printResultEditor());
 	}
 
-	@When("The user is on Python Editor and write invalid code in Editor and click the run button")
-	public void the_user_is_on_python_editor_and_write_invalid_code_in_editor_and_click_the_run_button() {
-		commonobj.clickRunButton();
+	@When("The user inputs invalid data from {string} and {string} and click the run button")
+	public void the_user_inputs_invalid_data_from_and_and_click_the_run_button(String string, String string2) throws Exception {
+		practiceobj.tryInValidPython(string,string2);
 	}
 
 	@Then("The user should able to see an error message in alert window")
@@ -82,5 +87,8 @@ public class PracticeQuestionsStepDefinition {
 		practiceobj.getErrorMessage(string);
 
 	}
+	
+	
+	
 
 }
