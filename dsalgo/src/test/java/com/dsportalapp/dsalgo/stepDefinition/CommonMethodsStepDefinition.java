@@ -127,8 +127,8 @@ public class CommonMethodsStepDefinition {
 	}
 	
 	//Practice Questions 
-
-		/*@When("The user clicks {string} Practice Questions link")
+/*
+		@When("The user clicks {string} Practice Questions link")
 		public void the_user_clicks_practice_questions_link(String string) {
 		   practiceobj.navigateToPracticeQuestionPage(string); 
 		}
@@ -139,6 +139,9 @@ public class CommonMethodsStepDefinition {
 		    practiceobj.clickdataStructuresHomeLinks(string, string2, string3, string4);
 		}
 */
+	@Then("The user should be signout the application if clicks on the signout link")
+	public void the_user_should_be_signout_the_application_if_clicks_on_the_signout_link() {
+		commonobj.signOut();
 	
-	
+}
 }
