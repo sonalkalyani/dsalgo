@@ -82,5 +82,21 @@ print"Hello"
 print"Welcome!!"
 
 """
+Then The user should be signout the application if clicks on the signout link 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

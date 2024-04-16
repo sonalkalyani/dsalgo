@@ -279,9 +279,13 @@ public class CommonMethodsObject {
 	@FindBy(xpath = "//a[@class='list-group-item']")
 	protected List<WebElement> dataStructuresHomeLinks;
 
+
 	public void clickdataStructuresHomeLinks(String homeLink) {
 		try {
 			for (WebElement link : dataStructuresHomeLinks) {
+//				String linkStr=link.getText().replaceAll("\\s", "");
+//				String homeStr = homeLink.replaceAll("\\s", "");
+//				if (linkStr.contains(homeStr)) {
 				if (link.getText().contains(homeLink)) {
 					link.click();
 					break;
@@ -345,8 +349,9 @@ public class CommonMethodsObject {
 
 	public void signOut()
 	{
-		signOutBtn.click();
+		
 		try {
+		signOutBtn.click();
 		Assert.assertEquals(logOutMsg.getText() ,"Logged out successfully" );
 		Assert.assertTrue(registerLnk.isEnabled(), "Resgister Link is  not enabled");
 		Assert.assertTrue(signInLnk.isEnabled(), "Sign In Link is not enabled");

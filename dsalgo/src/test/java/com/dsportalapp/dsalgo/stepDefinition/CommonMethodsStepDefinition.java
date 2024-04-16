@@ -3,6 +3,8 @@ package com.dsportalapp.dsalgo.stepDefinition;
 import static org.testng.Assert.assertTrue;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.concurrent.TimeoutException;
+
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,7 +58,8 @@ public class CommonMethodsStepDefinition {
 	
 
 	@Given("User is on {string} Home page")
-	public void user_is_on_linked_list_home_page(String dataStructureName) throws InterruptedException {
+	public void user_is_on_linked_list_home_page(String dataStructureName) throws InterruptedException, TimeoutException {
+		
 		commonobj.clickGetStartedButtonCommon(dataStructureName);
 		commonobj.headervalidation();
 
@@ -138,6 +141,9 @@ public class CommonMethodsStepDefinition {
 		    practiceobj.clickdataStructuresHomeLinks(string, string2, string3, string4);
 		}
 */
-	
+	@Then("The user should be signout the application if clicks on the signout link")
+	public void the_user_should_be_signout_the_application_if_clicks_on_the_signout_link() {
+		commonobj.signOut();
+	}
 	
 }
