@@ -12,14 +12,15 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.2.5</version>
         <configuration>
+			 <!-- Specify testng.xml file location -->
+           <suiteXmlFiles>
+          		 <suiteXmlFile>testng.xml</suiteXmlFile>
+            </suiteXmlFiles>
           <includes>
             <include>**/Test*.java</include>
             
           </includes>
-          <!-- Specify testng.xml file location -->
-           <suiteXmlFiles>
-          		 <suiteXmlFile>testng.xml</suiteXmlFile>
-            </suiteXmlFiles>
+         
         </configuration>
                  
       </plugin>
