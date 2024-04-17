@@ -30,17 +30,17 @@ Then The user should be able to see below  six options in dropdown menu
 #
 #
 #
-#Scenario: Verify display of 'You are not logged in' Message for Unauthenticated Users for 'Get Started Button'
-#
-#When The user clicks following any Get Started button for Data Structures Option on the DS home page
-#|Data Structures-Introduction|
-#|Arrays|
-#|Linked List|
-#|Stack|
-#|Queue|
-#|Tree|
-#|Graph|
-#Then The user should be able to see an warning message "You are not logged in" for Get Started Button
+Scenario: Verify display of 'You are not logged in' Message for Unauthenticated Users for 'Get Started Button'
+
+When The user clicks following any Get Started button for Data Structures Option on the DS home page
+|Data Structures-Introduction|
+|Arrays|
+|Linked List|
+|Stack|
+|Queue|
+|Tree|
+|Graph|
+Then The user should be able to see an warning message "You are not logged in" for Get Started Button
 
 
 
