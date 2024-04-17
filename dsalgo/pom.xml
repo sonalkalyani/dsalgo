@@ -146,9 +146,9 @@
             <include>**/Test*.java</include>
           </includes>
           <!-- Specify testng.xml file location -->
-           <suiteXmlFiles>
+          <!-- <suiteXmlFiles>
           		 <suiteXmlFile>testng.xml</suiteXmlFile>
-            </suiteXmlFiles>
+            </suiteXmlFiles>-->
         </configuration>
       </plugin>
 	</plugins>
