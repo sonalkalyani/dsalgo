@@ -21,8 +21,8 @@ import io.cucumber.testng.CucumberOptions;
 //		tags  = ,
 //		dryRun=true
   	    plugin = {"pretty", "html:target/cucumber.html","json:target/cucmber.json",
-		"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
-//				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"}
+		"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+			"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"}
 
 		)
 public class CrossBrowserRunner extends AbstractTestNGCucumberTests{
