@@ -13,7 +13,7 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
 
-		features = "src/test/resources/features/portal.feature",
+		features = "src/test/resources/features/RegistrationPage.feature",
 //		"src/test/resources/features/linkedList.feature",
 //		"src/test/resources/features/LoginPage.feature",
 		glue = {"com.dsportalapp.dsalgo.stepDefinition","com.dsportalapp.dsalgo.hooks"},
