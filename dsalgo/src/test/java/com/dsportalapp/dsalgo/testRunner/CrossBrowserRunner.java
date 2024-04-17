@@ -13,12 +13,12 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
 
-		features = "src/test/resources/features/HomePage.feature",
+		features = "src/test/resources/features",
 
 		glue = {"com.dsportalapp.dsalgo.stepDefinition","com.dsportalapp.dsalgo.hooks"},
 		monochrome = true,
 		plugin = {"pretty", "html:target/cucumber.html","json:target/cucmber.json",
-		"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+		"pretty","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
 		"pretty","io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
 		}
 
