@@ -22,6 +22,7 @@
             <include>**/Test*.java</include>
             
           </includes>
+          <reportsDirectory>${project.build.directory}/test-output/SparkReport/${timestamp}</reportsDirectory>
          
         </configuration>
                  

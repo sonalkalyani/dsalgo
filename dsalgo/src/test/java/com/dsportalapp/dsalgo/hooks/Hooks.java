@@ -29,6 +29,7 @@ public class Hooks {
 		this.testup = testup;
 		this.driver=testup.drivermanager.getDriverManager();
 	}
+	
 /*	
 	@Before(order = 0)
 	public void getProperty() {
