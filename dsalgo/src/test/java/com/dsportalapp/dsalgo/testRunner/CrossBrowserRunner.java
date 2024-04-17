@@ -20,8 +20,8 @@ import io.cucumber.testng.CucumberOptions;
 		monochrome = true,
 //		tags  = ,
 //		dryRun=true
-  	    plugin = {"pretty", "html:target/cucumber.html","json:target/cucmber.json"}
-//		plugin ={"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+  	    plugin = {"pretty", "html:target/cucumber.html","json:target/cucmber.json",
+		"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
 //				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"}
 
 		)
