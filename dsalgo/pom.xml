@@ -15,14 +15,13 @@
         <version>3.2.5</version>
         <configuration>
 			 <!-- Specify testng.xml file location -->
-           <suiteXmlFiles>
+          <!-- <suiteXmlFiles>
           		 <suiteXmlFile>testng.xml</suiteXmlFile>
-            </suiteXmlFiles>
+            </suiteXmlFiles>-->
           <includes>
             <include>**/Test*.java</include>
             
           </includes>
-          <reportsDirectory>${project.build.directory}/test-output/SparkReport/${timestamp}</reportsDirectory>
          
         </configuration>
                  
