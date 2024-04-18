@@ -27,8 +27,8 @@ public class HomePageObjects extends CommonMethodsObject {
 	
 	public HomePageObjects(WebDriver driver) {
 		super(driver);
-//		this.driver = driver;
-//		PageFactory.initElements(driver, this);
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
 	}
 	
 	public static Logger LOG = LoggerFactory.getLogger(HomePageObjects.class);
@@ -161,20 +161,7 @@ public class HomePageObjects extends CommonMethodsObject {
 		}
 		return result;
 	}
-////	Login link in signin page
-//	@FindBy(xpath="//a[contains(text(),'Login ')]")
-//	private WebElement loginLink;
-//	
-//	public boolean isDisplayLoginLink() {
-//		boolean result = false;
-//			try {
-//				result = loginLink.isDisplayed();
-//			 } catch (Exception e) {
-//			        LOG.error("Error occurred while checking if login link is displayed: " + e.getMessage());
-//			        e.printStackTrace(); 
-//			 }
-//		return result;
-//	}
+	
 	public void clickLoginLink() {
 		try {
 			loginLink.click();

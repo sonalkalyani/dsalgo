@@ -178,10 +178,8 @@ public class CommonMethodsObject {
 		String alertMessage = null;
 		try {
 			Alert alert = alertWait.until(ExpectedConditions.alertIsPresent());
-//			 alert = driver.switchTo().alert();
 			if (alert != null) {
 				alertMessage = alert.getText();
-//				Thread.sleep(1000);
 				alert.accept();
 				return alertMessage;
 			} else {
@@ -442,32 +440,6 @@ public class CommonMethodsObject {
 		}
 		
 		
-		
-	/*	public void clickArrayPracticeHomeLinks(String homeLink) {
-			try {
-				for (WebElement link : dataStructuresHomeLinks) {
-					if (link.getText().contains(homeLink)) {
-						link.click();
-						
-					}
-				}
-			} catch (StaleElementReferenceException e) {
-				LOG.error("Stale element reference encountered." + e);
-				driver.navigate().refresh();
-			} catch (ElementNotInteractableException e) {
-				LOG.error("Element not interactable: " + e.getMessage());
-
-			} catch (Exception e) {
-				LOG.error("An error occurred while clicking the link: " + e.getMessage());
-				e.printStackTrace();
-			}
-
-		} */
-
-//	public void waitVisibilityOfElementLocated(WebElement element) {
-//		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(4));
-//		wait.until(ExpectedConditions.visibilityOfElementLocated;
-//	}
 	
 	
 	public void clickRegisterLnk()

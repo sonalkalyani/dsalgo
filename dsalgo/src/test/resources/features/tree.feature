@@ -8,7 +8,7 @@ Background:
  Given User should be logged in with valid credential
 
 
-Scenario:User selecting 'Tree' Data Structure
+Scenario: User selecting 'Tree' Data Structure
 When The user select Get Started button in "Tree" panel
 Then The user should be redirected to following page
 |tree|

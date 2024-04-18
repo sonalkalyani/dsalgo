@@ -142,13 +142,22 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.2.5</version>
         <configuration>
-          <includes>
+          <!--<includes>
             <include>**/Test*.java</include>
-          </includes>
+          </includes>-->
           <!-- Specify testng.xml file location -->
-          <!-- <suiteXmlFiles>
+           <suiteXmlFiles>
           		 <suiteXmlFile>testng.xml</suiteXmlFile>
-            </suiteXmlFiles>-->
+            </suiteXmlFiles>
+            <properties>
+				<dataproviderthreadcount>20</dataproviderthreadcount>
+				<parallel>tests</parallel>
+				<threadCount> 5 </threadCount>
+			</properties>
+				<!--<systemPropertyVariables> 
+					<browser> chrome </browser>
+				</systemPropertyVariables>-->
+			
         </configuration>
       </plugin>
 	</plugins>

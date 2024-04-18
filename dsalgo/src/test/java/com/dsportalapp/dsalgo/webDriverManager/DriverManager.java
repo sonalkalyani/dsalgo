@@ -7,8 +7,11 @@ import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import com.dsportalapp.dsalgo.utilities.ConfigReader;
 
@@ -31,15 +34,21 @@ public class DriverManager {
                switch (browserType.toLowerCase()) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                    ChromeOptions chromeoption = new ChromeOptions();
+                    chromeoption.addArguments("--headless");
+                    driver = new ChromeDriver(chromeoption);
                     break;
                 case "edge":
                     WebDriverManager.edgedriver().setup();
-                    driver = new EdgeDriver();
+                    EdgeOptions edgeoption = new EdgeOptions();
+                    edgeoption.addArguments("--headless");
+                    driver = new EdgeDriver(edgeoption);
                     break;
                 case "firefox":
                 	 WebDriverManager.firefoxdriver().setup();
-                     driver = new FirefoxDriver();
+                	 FirefoxOptions firefoxoption = new FirefoxOptions();
+                     firefoxoption.addArguments("--headless");
+                     driver = new FirefoxDriver(firefoxoption);
                    break;         	
                  default:
                     throw new IllegalArgumentException("Unsupported browser: " + browserType);
