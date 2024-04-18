@@ -38,7 +38,13 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		
 	</build>
+	<properties>
+				<dataproviderthreadcount>20</dataproviderthreadcount>
+				<parallel>tests</parallel>
+				<threadCount> 5 </threadCount>
+			</properties>
   <dependencies>
 	<dependency>
 		<groupId>org.seleniumhq.selenium</groupId>

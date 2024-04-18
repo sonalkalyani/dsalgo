@@ -7,8 +7,11 @@ import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
 
 import com.dsportalapp.dsalgo.utilities.ConfigReader;
@@ -32,10 +35,14 @@ public class DriverManager {
                switch (browserType.toLowerCase()) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
+                    ChromeOptions chromeoption = new ChromeOptions();
+                    chromeoption.addArguments("--headless");
                     driver = new ChromeDriver();
                     break;
                 case "edge":
                     WebDriverManager.edgedriver().setup();
+                    EdgeOptions edgeoption = new EdgeOptions();
+                    edgeoption.addArguments("--headless");
                     driver = new EdgeDriver();
                     break;
 //                case "safari":
@@ -44,6 +51,8 @@ public class DriverManager {
 //                    break;
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
+                    FirefoxOptions firefoxoption = new FirefoxOptions();
+                    firefoxoption.addArguments("--headless");
                     driver = new FirefoxDriver();
                     break;   
                 default:
