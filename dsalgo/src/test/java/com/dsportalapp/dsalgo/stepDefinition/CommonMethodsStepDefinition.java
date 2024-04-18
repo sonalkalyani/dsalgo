@@ -3,12 +3,15 @@ package com.dsportalapp.dsalgo.stepDefinition;
 import static org.testng.Assert.assertTrue;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.concurrent.TimeoutException;
+
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.dsportalapp.dsalgo.POM.CommonMethodsObject;
 import com.dsportalapp.dsalgo.POM.HomePageObjects;
 import com.dsportalapp.dsalgo.POM.LoginPageObjects;
+import com.dsportalapp.dsalgo.POM.PracticeQuestionObjects;
 import com.dsportalapp.dsalgo.utilities.TestSetup;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -20,6 +23,7 @@ public class CommonMethodsStepDefinition {
 	HomePageObjects homepageobj;
 	CommonMethodsObject commonobj;
 	LoginPageObjects loginpageobj;
+	PracticeQuestionObjects practiceobj;
 	
 	
 	public static Logger LOG = LoggerFactory.getLogger(PortalPageStepDefinition.class);
@@ -32,6 +36,7 @@ public class CommonMethodsStepDefinition {
 		commonobj = testsetup.pageobjectmanager.getCommonMethodsObject();
 		homepageobj = testsetup.pageobjectmanager.getHomePageObjects();
 		loginpageobj = testsetup.pageobjectmanager.getLoginPageObjects();
+		practiceobj= testsetup.pageobjectmanager.getPracticeQuestionObject();
 	}
 	@Given("User should be logged in with valid credential")
 	public void user_should_be_logged_in_with_valid_credential() {
@@ -56,7 +61,8 @@ public class CommonMethodsStepDefinition {
 	
 
 	@Given("User is on {string} Home page")
-	public void user_is_on_linked_list_home_page(String dataStructureName) throws InterruptedException {
+	public void user_is_on_linked_list_home_page(String dataStructureName) throws InterruptedException, TimeoutException {
+		
 		commonobj.clickGetStartedButtonCommon(dataStructureName);
 		commonobj.headervalidation();
 
@@ -127,7 +133,7 @@ public class CommonMethodsStepDefinition {
 	
 	//Practice Questions 
 
-		/*@When("The user clicks {string} Practice Questions link")
+		@When("The user clicks {string} Practice Questions link")
 		public void the_user_clicks_practice_questions_link(String string) {
 		   practiceobj.navigateToPracticeQuestionPage(string); 
 		}
@@ -137,7 +143,10 @@ public class CommonMethodsStepDefinition {
 		public void the_user_should_be_redirected_to_practice_page_having_links_like_and(String string, String string2, String string3, String string4) {
 		    practiceobj.clickdataStructuresHomeLinks(string, string2, string3, string4);
 		}
-*/
-	
+
+	@Then("The user should be signout the application if clicks on the signout link")
+	public void the_user_should_be_signout_the_application_if_clicks_on_the_signout_link() {
+		commonobj.signOut();
+	}
 	
 }

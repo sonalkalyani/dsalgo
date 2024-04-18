@@ -8,10 +8,9 @@ Background:
  Given User should be logged in with valid credential
  
 
- Scenario:
-=======
+
 Scenario: User selecting 'Data Structures-Introduction' Data Structure
->>>>>>> 6f622a2813ef5a0642f33f0680fdc501a4c686f7
+
 When The user select Get Started button in "Data Structures-Introduction" panel
 Then The user should be redirected to following page
 |data-structures-introduction|
@@ -39,8 +38,8 @@ Examples:
 
 Scenario Outline: Navigate through 'Data Structures-Introduction' and run invalid Python code
 Given User is on "Data Structures-Introduction" Home page
-When The user clicks "<Title>" link
-Then The user should be redirected to "<Title specific>" page
+When The user clicks "<Topics>" link
+Then The user should be redirected to "<Topic specific>" page
 When The user clicks Try Here button
 Then The user should redirected to the page having Editor and Run button
 When The user clicks the Run button after writes following Invalid Python code in editor

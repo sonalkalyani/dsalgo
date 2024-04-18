@@ -29,6 +29,8 @@ public class CommonMethodsObject {
 
 	WebDriver driver;
 	WebDriverWait wait;
+	WebDriverWait alertWait;
+	WebDriverWait resultEditorWait;
 	
 	
 	public static Logger LOG = LoggerFactory.getLogger(CommonMethodsObject.class);
@@ -38,7 +40,8 @@ public class CommonMethodsObject {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(4)); 
-		
+		this.alertWait = new WebDriverWait(driver, Duration.ofMillis(300));
+		this.resultEditorWait = new WebDriverWait(driver, Duration.ofMillis(300));
 		
 	}
 
@@ -157,6 +160,8 @@ public class CommonMethodsObject {
 
 	public String printResultEditor() {
 		try {
+
+			resultEditorWait.until(ExpectedConditions.visibilityOf(resultEditor));
 			return resultEditor.getText();
 		} catch (NoSuchElementException e) {
 			LOG.error("An error occured while retrieving text from the result editor " + e.getMessage());
@@ -172,7 +177,7 @@ public class CommonMethodsObject {
 	public String switchToAlert() {
 		String alertMessage = null;
 		try {
-			Alert alert = driver.switchTo().alert();
+			Alert alert = alertWait.until(ExpectedConditions.alertIsPresent());
 			if (alert != null) {
 				alertMessage = alert.getText();
 				alert.accept();
@@ -279,10 +284,14 @@ public class CommonMethodsObject {
 	@FindBy(xpath = "//a[@class='list-group-item']")
 	protected List<WebElement> dataStructuresHomeLinks;
 
+
 	public void clickdataStructuresHomeLinks(String homeLink) {
 		try {
 			for (WebElement link : dataStructuresHomeLinks) {
-				if (link.getText().contains(homeLink)) {
+				String linkStr=link.getText().replaceAll("\\s", "");
+				String homeStr = homeLink.replaceAll("\\s", "");
+				if (linkStr.contains(homeStr)) {
+//				if (link.getText().contains(homeLink)) {
 					link.click();
 					break;
 				}
@@ -345,8 +354,9 @@ public class CommonMethodsObject {
 
 	public void signOut()
 	{
-		signOutBtn.click();
+		
 		try {
+		signOutBtn.click();
 		Assert.assertEquals(logOutMsg.getText() ,"Logged out successfully" );
 		Assert.assertTrue(registerLnk.isEnabled(), "Resgister Link is  not enabled");
 		Assert.assertTrue(signInLnk.isEnabled(), "Sign In Link is not enabled");
@@ -430,32 +440,6 @@ public class CommonMethodsObject {
 		}
 		
 		
-		
-	/*	public void clickArrayPracticeHomeLinks(String homeLink) {
-			try {
-				for (WebElement link : dataStructuresHomeLinks) {
-					if (link.getText().contains(homeLink)) {
-						link.click();
-						
-					}
-				}
-			} catch (StaleElementReferenceException e) {
-				LOG.error("Stale element reference encountered." + e);
-				driver.navigate().refresh();
-			} catch (ElementNotInteractableException e) {
-				LOG.error("Element not interactable: " + e.getMessage());
-
-			} catch (Exception e) {
-				LOG.error("An error occurred while clicking the link: " + e.getMessage());
-				e.printStackTrace();
-			}
-
-		} */
-
-//	public void waitVisibilityOfElementLocated(WebElement element) {
-//		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(4));
-//		wait.until(ExpectedConditions.visibilityOfElementLocated;
-//	}
 	
 	
 	public void clickRegisterLnk()

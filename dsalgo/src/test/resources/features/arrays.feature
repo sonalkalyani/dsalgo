@@ -8,7 +8,7 @@ Background:
 Given User should be logged in with valid credential
 
 
-Scenario:
+Scenario: User selecting 'Array' Data Structure
 When The user select Get Started button in "Array" panel
 Then The user should be redirected to following page
 |array|
@@ -117,4 +117,7 @@ print"Hello"
 print"Welcome!!"
 
 """
-
+Scenario: Validation of Practice Question link in the Array Page
+Given User is on "Array" "Arrays in Python" page
+When The user clicks "array" Practice Questions link
+Then The user should be redirected to practice page having links like "Search the array" ,"Max Consecutive Ones","Find Numbers with Even Number of Digits" and "Squares of a Sorted Array"

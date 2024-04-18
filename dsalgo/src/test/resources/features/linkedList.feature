@@ -40,8 +40,8 @@ Examples:
 
 Scenario Outline: Navigate through 'Linked List' learning and run invalid Python code
 Given User is on "Linked List" Home page
-When The user clicks "<Title>" link
-Then The user should be redirected to "<Title specific>" page 
+When The user clicks "<Topics>" link
+Then The user should be redirected to "<Topic specific>" page 
 When The user clicks Try Here button
 Then The user should redirected to the page having Editor and Run button
 When The user clicks the Run button after writes following Invalid Python code in editor
@@ -54,7 +54,7 @@ Then The user see error msg in alert window
 
 
 Examples: 
-|Title|                            | Title specific|
+|Topics|                            | Topic specific|
 |Introduction|                      |linked-list|
 |Creating Linked LIst|              |creating-linked-list|             
 |Types of Linked List|						  |types-of-linked-list|
