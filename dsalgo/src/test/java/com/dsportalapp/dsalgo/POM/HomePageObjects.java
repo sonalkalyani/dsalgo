@@ -27,8 +27,8 @@ public class HomePageObjects extends CommonMethodsObject {
 	
 	public HomePageObjects(WebDriver driver) {
 		super(driver);
-//		this.driver = driver;
-//		PageFactory.initElements(driver, this);
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
 	}
 	
 	public static Logger LOG = LoggerFactory.getLogger(HomePageObjects.class);
