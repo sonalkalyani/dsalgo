@@ -18,9 +18,9 @@ import io.qameta.allure.Allure;
 
 public class Hooks {
 	
-	private DriverManager driverManager;
+//	private DriverManager driverManager;
 	private WebDriver driver;
-	private ConfigReader configFileReader;
+//	private ConfigReader configFileReader;
 	Properties prop;
 	public TestSetup testup;
 	
