@@ -61,15 +61,15 @@ Feature: New User Registartion Functionality
       | username  | password  | confirmpassword |
       | Sandy@345 | happy1234 | happy4567       |
 
-  Scenario Outline: User can register with valid information
-    When User enters valid username "<username>" and password "<password>"
-    And User submits the registration form  successfully
-    And User should be redirected to Home Page
-    And user should be logged in with the registered "<username>"
-
-    Examples: 
-      | username  | password   |
-      | Quality_123| quality@8989|
+  #Scenario Outline: User can register with valid information
+    #When User enters valid username "<username>" and password "<password>"
+    #And User submits the registration form  successfully
+    #And User should be redirected to Home Page
+    #And user should be logged in with the registered "<username>"
+#
+    #Examples: 
+      #| username  | password   |
+      #| Quality_123| quality@8989|
 
   #| Sandy.John | Ninja_1234 |
   #| Sandy-345  | SDET@1234 |

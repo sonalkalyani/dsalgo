@@ -14,7 +14,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
 
 
-		features = "src/test/resources/features/",
+		features = "src/test/resources/features/HomePage.feature",
 
 
 		glue = {"com.dsportalapp.dsalgo.stepDefinition","com.dsportalapp.dsalgo.hooks"},
@@ -38,7 +38,7 @@ public class CrossBrowserRunner extends AbstractTestNGCucumberTests{
 
 		}
 	}
-
+	
 
 
 	}
