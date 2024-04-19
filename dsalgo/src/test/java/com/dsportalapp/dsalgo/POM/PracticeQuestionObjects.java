@@ -213,9 +213,7 @@ public class PracticeQuestionObjects extends CommonMethodsObject {
 				String link2Str = link2.replaceAll("\\s", "");
 				String link3Str = link3.replaceAll("\\s", "");
 				String link4Str = link4.replaceAll("\\s", "");
-				// System.out.println(linkStr+"====================="+homeStr);
-				// boolean f=linkStr.contains(homeStr);
-				// System.out.println(f+"=====================");
+				
 				if (linkStr.contains(link1Str) || linkStr.contains(link2Str) || linkStr.contains(link3Str)
 						|| linkStr.contains(link4Str)) {
 					LOG.info("====******Matched Link************====" + link.getText());

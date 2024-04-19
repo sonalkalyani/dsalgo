@@ -11,7 +11,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
 
 
-		features = "src/test/resources/features/HomePage.feature",
+		features = "src/test/resources/features/",
 		glue = {"com.dsportalapp.dsalgo.stepDefinition","com.dsportalapp.dsalgo.hooks"},
 		monochrome = true,
 //		dryRun=true
@@ -24,9 +24,9 @@ import io.cucumber.testng.CucumberOptions;
 public class TestRunnerTestNG extends AbstractTestNGCucumberTests{
 		
 //		 this is for pararell execution	, scenarios() present in AbstractTestNGCucumberTests() class.
-//		@Override       
-//		@DataProvider(parallel = true)
-//		public Object[][] scenarios() {
-//			return super.scenarios();
-//		}
+		@Override       
+		@DataProvider(parallel = true)
+		public Object[][] scenarios() {
+			return super.scenarios();
+		}
 }
