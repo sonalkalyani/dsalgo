@@ -151,9 +151,9 @@
 						<include>**/Test*.java</include>
 					</includes>
 					<!-- Specify testng.xml file location -->
-					<suiteXmlFiles>
+				<!--	<suiteXmlFiles>
 						<suiteXmlFile>testng.xml</suiteXmlFile>
-					</suiteXmlFiles>
+					</suiteXmlFiles>-->
 					<properties>
 						<dataproviderthreadcount> 20 </dataproviderthreadcount>
 						<parallel> tests </parallel>
