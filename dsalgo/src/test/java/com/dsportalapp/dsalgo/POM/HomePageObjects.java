@@ -3,9 +3,11 @@ package com.dsportalapp.dsalgo.POM;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
@@ -20,23 +22,29 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class HomePageObjects {
+public class HomePageObjects extends CommonMethodsObject {
 	WebDriver driver;
 	
 	public HomePageObjects(WebDriver driver) {
-		
+		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 	
 	public static Logger LOG = LoggerFactory.getLogger(HomePageObjects.class);
 	
+//	NumpyNinja Header
 	@FindBy(xpath="//a[contains(text(),'NumpyNinja')]")
 	private WebElement numpyNinjaHomeButton;
 	
 	public void clickNumpyNinjaHomeButton() {
-		numpyNinjaHomeButton.click();	
+		try {
+		numpyNinjaHomeButton.click();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
+//	Data Structures Drop down
 	@FindBy(xpath="//div[@class='navbar-nav']/div")
 	private WebElement dataStructuresDropDown;
 	
@@ -49,196 +57,155 @@ public class HomePageObjects {
 			return true;
 		}catch(Exception e) {
 			e.printStackTrace();
-			return false;
 		}
-		
-		
+		 return false;
 	}
+	
+//  Data Structures	dropdown  option names
+	
 	By dataStructuresDropDownOptions =By.xpath("//div[@class='navbar-nav']/div/div/a");
-//	dropdown  option names
+
 	public List<String> getDataStructuresOptions() {
-		List<WebElement> totalOptions = dataStructuresDropDown.findElements(dataStructuresDropDownOptions);
-		List<String> optionNames = new ArrayList<String>();
-		for(WebElement optionName :totalOptions ) 
-		{
-			optionNames.add(optionName.getText());
-		}
-		return optionNames;
-	}
-//	 Dropdown option xpath
-	
-	@FindBy(xpath="//div[@class='navbar-nav'][1]/div/div/a[1]")
-	private WebElement arraysOption;
-	@FindBy(xpath="//div[@class='navbar-nav'][1]/div/div/a[2]")
-	private WebElement linkedListsOption;
-	@FindBy(xpath="//div[@class='navbar-nav'][1]/div/div/a[3]")
-	private WebElement statckOption;
-	@FindBy(xpath="//div[@class='navbar-nav'][1]/div/div/a[4]")
-	private WebElement queueOption;
-	@FindBy(xpath="//div[@class='navbar-nav'][1]/div/div/a[5]")
-	private WebElement treeOption;
-	@FindBy(xpath="//div[@class='navbar-nav'][1]/div/div/a[6]")
-	private WebElement graphOption;
-//	Select data structures dropdown option
-	public void waitElementToBeClickable(WebElement element) {
-	WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(4));
-	wait.until(ExpectedConditions.elementToBeClickable(element));
-	}
-//	public void waitVisibilityOfElementLocated(WebElement element) {
-//		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(4));
-//		wait.until(ExpectedConditions.visibilityOfElementLocated;
-//	}
-	public void newSelectDataStructuresDropDown(List<String> options) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		for(String option: options) {
-			clickDataStructuresDropDown();
-			switch(option.toLowerCase()) {
-			case "arrays":
-				wait.until(ExpectedConditions.elementToBeClickable(arraysOption)).click();
-				break;
-			case "linked list":
-				wait.until(ExpectedConditions.elementToBeClickable(linkedListsOption)).click();
-				break;
-			case "stack":
-				wait.until(ExpectedConditions.elementToBeClickable(statckOption)).click();
-				break;
-			case "queue":
-				wait.until(ExpectedConditions.elementToBeClickable(queueOption)).click();
-				break;
-			case "tree":
-				wait.until(ExpectedConditions.elementToBeClickable(treeOption)).click();
-				break;
-			case "graph":
-				wait.until(ExpectedConditions.elementToBeClickable(graphOption)).click();
-				break;
-			default: 
-				throw new IllegalArgumentException("Invalid option: "+ option );
-			  }
-			
-			
-		}
-		
-	}
-
-	public void selectDataStructuresDropDown(String option) throws InterruptedException {
-//		driver.navigate().refresh();
-		
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-		waitElementToBeClickable(dataStructuresDropDown);
-		clickDataStructuresDropDown();
-		if(clickDataStructuresDropDown()) {
-			LOG.info("Dropdown has been clicked");
-		}else {
-			LOG.info("Failed to click dropdown");
-		}
-		
 		try {
-			
-		switch(option.toLowerCase()) {
-		case "arrays":
-			wait.until(ExpectedConditions.elementToBeClickable(arraysOption)).click();
-			break;
-		case "linked list":
-			wait.until(ExpectedConditions.elementToBeClickable(linkedListsOption)).click();
-			break;
-		case "stack":
-			wait.until(ExpectedConditions.elementToBeClickable(statckOption)).click();
-			break;
-		case "queue":
-			wait.until(ExpectedConditions.elementToBeClickable(queueOption)).click();
-			break;
-		case "tree":
-			wait.until(ExpectedConditions.elementToBeClickable(treeOption)).click();
-			break;
-		case "graph":
-			wait.until(ExpectedConditions.elementToBeClickable(graphOption)).click();
-			break;
-		default: 
-			throw new IllegalArgumentException("Invalid option: "+ option );
-		  }
-		}catch(NoSuchElementException e) {
-			LOG.error("Option " + option +" not found in the dropdownlist" + e );
+			List<WebElement> totalOptions = dataStructuresDropDown.findElements(dataStructuresDropDownOptions);
+			List<String> optionNames = new ArrayList<String>();
+			for (WebElement optionName : totalOptions) {
+				optionNames.add(optionName.getText());
+			}
+			return optionNames;
+		} catch (Exception e) {
+			LOG.error("Error occurred while getting data structures options: " + e.getMessage());
+			e.printStackTrace(); 
+			return Collections.emptyList(); 
 		}
-		catch(ElementNotInteractableException e) {
-			LOG.error("Option " + option +" not found in the dropdownlist" + e );
-		}catch(StaleElementReferenceException e) {
-			PageFactory.initElements(driver, this);
-			wait.until(ExpectedConditions.elementToBeClickable(linkedListsOption)).click();
-			LOG.error("Option " + option +" not found in the dropdownlist" + e );
+	}
+	
+	
+//	Select data structures dropdown option
+	
+	public Map<String, String> selectDataStructuresDropDown(String option) throws InterruptedException, TimeoutException {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		Map<String, String> dropDownwarningMsgMap = new HashMap<>();
+			waitElementToBeClickable(dataStructuresDropDown);
+			clickDataStructuresDropDown();
+			if (clickDataStructuresDropDown()) {
+				LOG.info("Dropdown has been clicked");
+			} else {
+				LOG.info("Failed to click dropdown");
+			}
+
+			try {
+
+				switch (option.toLowerCase()) {
+				case "arrays":
+					wait.until(ExpectedConditions.elementToBeClickable(arraysOption)).click();
+					break;
+				case "linked list":
+					wait.until(ExpectedConditions.elementToBeClickable(linkedListsOption)).click();
+					break;
+				case "stack":
+					wait.until(ExpectedConditions.elementToBeClickable(statckOption)).click();
+					break;
+				case "queue":
+					wait.until(ExpectedConditions.elementToBeClickable(queueOption)).click();
+					break;
+				case "tree":
+					wait.until(ExpectedConditions.elementToBeClickable(treeOption)).click();
+					break;
+				case "graph":
+					wait.until(ExpectedConditions.elementToBeClickable(graphOption)).click();
+					break;
+				default:
+					throw new IllegalArgumentException("Invalid option: " + option);
+				}
+				String warningMessage = printloginAlertMessage();
+				if (warningMessage != null) {
+					dropDownwarningMsgMap.put(option, warningMessage);
+//			LOG.info(option + ":"+warningMessageMap.get(option));
+				}
+			} catch (NoSuchElementException e) {
+				LOG.error("Option " + option + " not found in the dropdownlist" + e);
+			} catch (ElementNotInteractableException e) {
+				LOG.error("Option " + option + " not found in the dropdownlist" + e);
+			} catch (StaleElementReferenceException e) {
+				PageFactory.initElements(driver, this);
+				wait.until(ExpectedConditions.elementToBeClickable(linkedListsOption)).click();
+				LOG.error("Option " + option + " not found in the dropdownlist" + e);
+
+			}
 			
-		}
-				
+		return dropDownwarningMsgMap;
 	}
 
-	
-	@FindBy(xpath="//a[contains(text(),' Register ')]")
-	private WebElement registerButton;
-	@FindBy(xpath="//a[contains(text(),'Sign in')]")
-	private WebElement signInButton;
-	public void clickRegisterButton() {
-		registerButton.click();
-	}
-	public void clickSignInButton() {
-		signInButton.click();
-	}
-	public boolean isOnLoginPage() {
-		return driver.getCurrentUrl().contains("login");
-	}
-	public boolean isOnRegisterPage() {
-		return driver.getCurrentUrl().contains("register");
-	}
+
+// 	Register Link in login page
 	@FindBy(xpath="//a[contains(text(),'Register!')]")
 	private WebElement registerLink;
 	
 	public void clickRegisterLink() {
-		registerLink.click();
+		try {
+			registerLink.click();
+		}catch (Exception e) {
+	        LOG.error("Error occurred while clicking register link: " + e.getMessage());
+	        e.printStackTrace(); 
+	    }
 	}
+
 	public boolean isDisplayRegisterLink() {
-		return registerLink.isDisplayed();
+		boolean result = false;
+		try {
+			return registerLink.isDisplayed();
+		} catch (Exception e) {
+			LOG.error("Error occurred while checking if register link is displayed: " + e.getMessage());
+			e.printStackTrace();
+		}
+		return result;
 	}
-	
-	@FindBy(xpath="//a[contains(text(),'Login ')]")
-	private WebElement loginLink;
-	
-	public boolean isDisplayLoginLink() {
-		return loginLink.isDisplayed();
-	}
+
 	public void clickLoginLink() {
-		loginLink.click();
+		try {
+			loginLink.click();
+		} catch (Exception e) {
+	        
+	        LOG.error("Error occurred while clicking login link: " + e.getMessage());
+	        e.printStackTrace(); 
+	    }
 	}
 	
-	
-	public Map<String, String> clickGetStartedButton(String option) throws InterruptedException {
+//	 GetStarted Button 
+	public Map<String, String> clickGetStartedButton(List<String> dataStructuresOption) throws InterruptedException {
 		Map<String, String> warningMessageMap = new HashMap<>();
-		Thread.sleep(2000);
+		for(String option : dataStructuresOption) {
 		String listOfDtaStructuresItemXpath = "//h5[@class='card-title']";
 		List<WebElement> dataStructuresItem = driver.findElements(By.xpath(listOfDtaStructuresItemXpath));
-		int j=0;
 		for(WebElement itemElement :dataStructuresItem ) {
 		  try {
 			String item = itemElement.getText();
 			if(option.contains(item)) {
-				j++;
 				String getStartedButton= "//a[contains(text(),'Get Started')]";
 				int index = dataStructuresItem.indexOf(itemElement);
 				WebElement getStratedButton = driver.findElements(By.xpath(getStartedButton)).get(index); 
 				getStratedButton.click();
-				if(j==1)
-					break;
-				
+				waitVisibilityOfElementLocated(loginAlertMessage);
 				String warningMessage = printloginAlertMessage();
 				if(warningMessage != null) {
 					warningMessageMap.put(option,warningMessage);
 				}
 			}
-		  }catch(StaleElementReferenceException e) {
-			 LOG.error("Stale element reference encountered." + e);
-//			 driver.navigate().refresh();
+		  }catch(Exception e) {
+			 LOG.error("Exception encountered." + e.getMessage());
+			 e.printStackTrace();
+			 driver.navigate().refresh();
 		  }	
 		}
-		   return warningMessageMap;
 	}
+		driver.navigate().refresh();
+		PageFactory.initElements(driver, this);
+		return warningMessageMap;
+	}
+
 	
+//	Login warning message for not user logged in 
 	
 	@FindBy(xpath="//div[@class='alert alert-primary']")
 	private WebElement loginAlertMessage;
@@ -249,11 +216,11 @@ public class HomePageObjects {
 			loginAlert =  loginAlertMessage.getText();
 		} catch(NoSuchElementException e) {
 			LOG.error("NoSuchElementException found", e );
-		 }
+		 }catch(Exception e) {
+				LOG.error("Exception occured while getting text ", e );
+			 }
 		   return loginAlert;
 		
 		}
 	
-	
-
-}
+	}

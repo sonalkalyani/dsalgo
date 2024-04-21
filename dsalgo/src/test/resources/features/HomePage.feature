@@ -18,7 +18,6 @@ Then The user should be able to see below  six options in dropdown menu
 
 Scenario: Verify display of 'You are not logged in' Message for Unauthenticated Users for DropDown List
 When The user selects following options from the drop down without login
-
 |Arrays|
 |Linked List|
 |Stack|
@@ -26,32 +25,50 @@ When The user selects following options from the drop down without login
 |Tree|
 |Graph|
 
-Then The user should be able to see an warning message "You are not logged in"
+Then The user should be able to see an warning message "You are not logged in" for dropdown list
 
 
 
 Scenario: Verify display of 'You are not logged in' Message for Unauthenticated Users for 'Get Started Button'
 
 When The user clicks following any Get Started button for Data Structures Option on the DS home page
+|Data Structures-Introduction|
 |Arrays|
 |Linked List|
 |Stack|
 |Queue|
 |Tree|
 |Graph|
-Then The user should be able to see an warning message "You are not logged in"
+Then The user should be able to see an warning message "You are not logged in" for Get Started Button
 
 
 
-Scenario: Navigation to Register Page
-When The user clicks "Register" link
-Then The user should be redirected to Register Page
-When The user should be able to see "Login" link at the bottom of the page
-Then The user should be able to navigate to login page
+Scenario: Navigation to 'Register' Page
+When The user clicking on Register link on the home page
+Then The user should be redirected to "register" page from home page
+
+
 
 Scenario: Navigation to 'Sign In' Page
-When The user clicks on "Sign In" link
-Then The user shoulde be redirected to login page
-When The user should be able to see "Register" link
-Then The user should able to navigate to Register page
+When The user clicking on Sign In link on the home page
+Then The user should be redirected to "login" page from home page
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

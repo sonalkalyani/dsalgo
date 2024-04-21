@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -18,6 +19,7 @@ import org.testng.asserts.IAssert;
 
 import com.dsportalapp.dsalgo.POM.CommonMethodsObject;
 import com.dsportalapp.dsalgo.POM.HomePageObjects;
+import com.dsportalapp.dsalgo.POM.LoginPageObjects;
 import com.dsportalapp.dsalgo.utilities.TestSetup;
 
 import io.cucumber.java.en.Given;
@@ -31,6 +33,10 @@ public class HomePageStepDefinition {
 	TestSetup testsetup;
 	HomePageObjects homepageobj;
 	CommonMethodsObject commonobj;
+	LoginPageObjects loginpageobj;
+	Map<String,String> warningMessageMap;
+	Map<String,String> dropDownwarningMsgMap;
+	
 	
 	public static Logger LOG = LoggerFactory.getLogger(HomePageStepDefinition.class);
 	
@@ -40,15 +46,17 @@ public class HomePageStepDefinition {
 		this.driver= testsetup.drivermanager.driver;
 		commonobj = testsetup.pageobjectmanager.getCommonMethodsObject();
 		homepageobj = testsetup.pageobjectmanager.getHomePageObjects();
+		loginpageobj = testsetup.pageobjectmanager.getLoginPageObjects();
 		
 	}
-
+//	Background:
 	@Given("The user is on the Home page of DS_Algo portal")
 	public void the_user_is_on_the_home_page_of_ds_algo_portal() {
 		commonobj.clicktoHomeGetStartedButton();
 	}
 
-
+//	Scenario: Verify 'Data Structures DropDown List' size and options
+	
 	@When("The user clicks on the DataStructures DropDown arrow")
 	public void the_user_clicks_on_the_data_structures_drop_down_arrow() {
 		homepageobj.clickDataStructuresDropDown();
@@ -63,104 +71,62 @@ public class HomePageStepDefinition {
 		for(String expectedOption : expectedDropDownOptions) {
 			assertTrue(actualDropDownOptions.contains(expectedOption), expectedOption + " is not present in the dropdown");
 		}
+		LOG.info("Assertion successful for DropDown List size and options");
 	}
 	
+//	Scenario: Verify display of 'You are not logged in' Message for Unauthenticated Users for DropDown List
+	
 	@When("The user selects following options from the drop down without login")
-	public void the_user_selects_following_options_from_the_drop_down_without_login(List<String> dropDownOptions) throws InterruptedException {
+	public void the_user_selects_following_options_from_the_drop_down_without_login(List<String> dropDownOptions) throws InterruptedException, TimeoutException {
 	
 		for(String option:dropDownOptions) {
 			homepageobj.clickDataStructuresDropDown();
-			homepageobj.selectDataStructuresDropDown(option);
+			dropDownwarningMsgMap =	homepageobj.selectDataStructuresDropDown(option);
 			driver.navigate().refresh();
 			PageFactory.initElements(driver, this);
 		}
 	}
 
-	@Then("The user should be able to see an warning message {string}")
-	public void the_user_should_be_able_to_see_an_warning_message(String expectedWarningMessage) {
-		String actualMessage = homepageobj.printloginAlertMessage();
-		Assert.assertEquals(actualMessage, expectedWarningMessage,"The actual warning message does not match the with expected warning message");
+	@Then("The user should be able to see an warning message {string} for dropdown list")
+	public void the_user_should_be_able_to_see_an_warning_message_for_dropdown_list(String expectedWarningMessage) {
+		dropDownwarningMsgMap.entrySet().forEach(e-> {
+			Assert.assertEquals(e.getValue(), expectedWarningMessage, 
+					"Expected message is not displayed for option:" +e.getKey() );
+		});
+		LOG.info("Assertion successful for DropDown List selection without login");
 	}
 	
-
+//	Scenario: Verify display of 'You are not logged in' Message for Unauthenticated Users for 'Get Started Button'
 	
-//	----------------------------------------------------------------------------------------
-	
-
-	
-	@When("The user selects {string} from the drop down without login")
-	public void the_user_selects_any_data_structures_item_from_the_drop_down_without_login(String option) throws InterruptedException {
-		homepageobj.clickDataStructuresDropDown();
-//		homepageobj.selectDataStructuresDropDown(option);
-	}
-	@Then("The user should able to see an warning message {string}")
-	public void the_user_should_able_to_see_an_warning_message(String expectedMessage) {
-		String warningMessage = homepageobj.printloginAlertMessage();
-		Assert.assertEquals(warningMessage, expectedMessage);
-	}
-
 	@When("The user clicks following any Get Started button for Data Structures Option on the DS home page")
 	public void the_user_clicks_following_any_get_started_button_for_data_structures_option_on_the_ds_home_page(List<String> dataStructuresOption) throws InterruptedException {
-		for(String option : dataStructuresOption) {
-		Map<String,String> warningMessageMap = homepageobj.clickGetStartedButton(option);
-		if(warningMessageMap != null) {
-			for(Map.Entry<String, String> entry : warningMessageMap.entrySet()) {
-				System.out.println("Option" + entry.getKey() + ", WarningMessage: " + entry.getValue());
-			}
-		}else {
-			System.out.println("WarningMessageMap is null");
+			warningMessageMap = homepageobj.clickGetStartedButton(dataStructuresOption);
 		}
-		Thread.sleep(3000);
-		driver.navigate().refresh();
-		PageFactory.initElements(driver, this);
-		}
-	}
-
-
-	@When("The user clicks Register link")
-	public void the_user_clicks_link() {
-		homepageobj.clickRegisterButton();
-	}
-
-	@Then("The user should be redirected to Register page")
-	public void the_user_should_be_redirected_to_register_page() {
-		
-		assertTrue(homepageobj.isOnRegisterPage(), "The User is not redirected to Register Page ");
+	
+	@Then("The user should be able to see an warning message {string} for Get Started Button")
+	public void the_user_should_be_able_to_see_an_warning_message(String expectedWarningMessage) {
+		warningMessageMap.entrySet().forEach(e -> {			
+			Assert.assertEquals(e.getValue(), expectedWarningMessage, 
+					"Expected message is not displayed for option:" +e.getKey() );
+		});
+		LOG.info("Assertion successful for Get Started Button");
 		
 	}
-
-	@Then("The user should be able to see Login link at the bottom of the page")
-	public void the_user_should_be_able_to_see_link_at_the_bottom_of_the_page() {
-		
-		assertTrue(homepageobj.isDisplayLoginLink(), "Login Link is not displayed");
-	}                                         
-
-	@Then("The user should be able to navigate to login page if clicks")
-	public void the_user_should_be_able_to_navigate_to_login_page() {
-		homepageobj.clickLoginLink();
-		assertTrue(homepageobj.isOnLoginPage(),"The user is not redirected to login page");
-		
+	
+	@When("The user clicking on Register link on the home page")
+	public void the_user_clicking_on_register_link_on_the_home_page() {
+		commonobj.clickRegisterButton();
 	}
 
-	@When("The user clicks on Sign In link")
-	public void the_user_clicks_on_link() {
-		homepageobj.clickSignInButton();
+	@When("The user clicking on Sign In link on the home page")
+	public void the_user_clicking_on_sign_in_link_on_the_home_page() {
+		commonobj.clickSignInButton();
+	}
+	@Then("The user should be redirected to {string} page from home page")
+	public void the_user_should_be_redirected_to_page_from_home_page(String redirectedPage) {
+		assertTrue(commonobj.isOnRedirectedPage(redirectedPage), "The user is not redirected to "+redirectedPage+" Topic Page");
+		LOG.info("The user is redirected to "+ redirectedPage + " page");
 	}
 
-	@Then("The user should be redirected to login page")
-	public void the_user_should_be_redirected_to_login_page() {
-		assertTrue(homepageobj.isOnLoginPage(),"The user is not redirected to login page");
-	}
-
-	@Then("The user should be able to see Register link")
-	public void the_user_should_be_able_to_see_link() {
-		assertTrue(homepageobj.isDisplayRegisterLink(), "Register Link is not displayed");;
-	}
-
-	@Then("The user should able to navigate to register page")
-	public void the_user_should_able_to_navigate_to_register_page() {
-		homepageobj.clickRegisterLink();
-		assertTrue(homepageobj.isOnRegisterPage(), "The User is not redirected to Register Page ");
-	}
 
 }

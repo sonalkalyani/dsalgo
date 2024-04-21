@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import com.dsportalapp.dsalgo.POM.CommonMethodsObject;
-import com.dsportalapp.dsalgo.POM.LinkedListObjects;
 import com.dsportalapp.dsalgo.POM.PortalPageObjects;
 import com.dsportalapp.dsalgo.utilities.TestSetup;
 
@@ -20,7 +19,6 @@ public class PortalPageStepDefinition {
 	WebDriver driver;
 	TestSetup testsetup;
 	PortalPageObjects portalobj;
-	LinkedListObjects linkedlistobj;
 	CommonMethodsObject commonobj;
 	public static Logger LOG = LoggerFactory.getLogger(PortalPageStepDefinition.class);
 	
@@ -29,10 +27,11 @@ public class PortalPageStepDefinition {
 		super();
 		this.testsetup = testsetup;
 		portalobj = testsetup.pageobjectmanager.getPortalPageObjects();
-		linkedlistobj = testsetup.pageobjectmanager.getLinkedListObjects();
 		commonobj = testsetup.pageobjectmanager.getCommonMethodsObject();
 	}
-
+	
+//	Scenario: User landing on DS_Algo Introduction page
+	
 	@Given("The user is opening the browser and enter the DS_Algo Portal <URL>")
 	public void the_user_is_should_open_the_browser_and_enter_the_ds_algo_portal_url() {
 		LOG.info("The user is on Landing Page successful");
