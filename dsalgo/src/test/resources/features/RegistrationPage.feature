@@ -69,14 +69,9 @@ Feature: New User Registartion Functionality
 
     Examples: 
       | username  | password   |
-      | Quality_456| quality@1111|
+      | testcrafters| testcrafters@123|
 
-  #| Sandy.John | Ninja_1234 |
-  #| Sandy-345  | SDET@1234 |
-  #| Sandy+345  | Test_0123 |
-  
-  
-  Scenario Outline: User cannot  register with existing  user details
+   Scenario Outline: User cannot  register with existing  user details
     When User enters existing username "<username>" and password "<password>"
     And User submit the registration form with errors
     Then User should see an error message
