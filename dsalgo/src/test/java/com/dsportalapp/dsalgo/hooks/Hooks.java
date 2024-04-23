@@ -39,6 +39,6 @@ public class Hooks {
 			Allure.addAttachment("Failed Scenario Screenshot",new ByteArrayInputStream(src));
 		}
 	}
-}
+} 
 
 
