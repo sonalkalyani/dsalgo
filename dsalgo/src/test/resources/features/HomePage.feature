@@ -52,23 +52,3 @@ Then The user should be redirected to "register" page from home page
 Scenario: Navigation to 'Sign In' Page
 When The user clicking on Sign In link on the home page
 Then The user should be redirected to "login" page from home page
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
