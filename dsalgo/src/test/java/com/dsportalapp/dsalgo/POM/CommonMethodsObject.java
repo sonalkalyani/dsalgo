@@ -178,8 +178,10 @@ public class CommonMethodsObject {
 		String alertMessage = null;
 		try {
 			Alert alert = alertWait.until(ExpectedConditions.alertIsPresent());
+//			 alert = driver.switchTo().alert();
 			if (alert != null) {
 				alertMessage = alert.getText();
+//				Thread.sleep(1000);
 				alert.accept();
 				return alertMessage;
 			} else {
@@ -438,6 +440,7 @@ public class CommonMethodsObject {
 				   }
 			}
 		}
+		
 		
 		
 	

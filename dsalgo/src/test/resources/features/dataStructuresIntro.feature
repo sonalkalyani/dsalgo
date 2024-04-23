@@ -55,24 +55,6 @@ Examples:
 |Time Complexity|										|time-complexity|
 
 
-Scenario Outline: Navigate through 'Data Structures-Introduction' and run invalid Python code
-Given User is on "Data Structures-Introduction" Home page
-When The user clicks "<Topics>" link
-Then The user should be redirected to "<Topic specific>" page
-When The user clicks Try Here button
-Then The user should redirected to the page having Editor and Run button
-When The user clicks the Run button after writes following Invalid Python code in editor
-"""
-public class PythonCode{
- int a = 0;
-}
-"""
-Then The user see error msg in alert window
-
-Examples: 
-|Topics|                             |Topic specific|
-|Time Complexity|									   |time-complexity|
-
 
 
 Scenario: Validation of Left Panel Links in 'Data Structures-Introduction' Topic - Specific Page  

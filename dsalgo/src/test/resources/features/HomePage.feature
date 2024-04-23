@@ -18,7 +18,6 @@ Then The user should be able to see below  six options in dropdown menu
 
 Scenario: Verify display of 'You are not logged in' Message for Unauthenticated Users for DropDown List
 When The user selects following options from the drop down without login
-
 |Arrays|
 |Linked List|
 |Stack|
@@ -53,23 +52,3 @@ Then The user should be redirected to "register" page from home page
 Scenario: Navigation to 'Sign In' Page
 When The user clicking on Sign In link on the home page
 Then The user should be redirected to "login" page from home page
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

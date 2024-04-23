@@ -161,7 +161,7 @@ public class HomePageObjects extends CommonMethodsObject {
 		}
 		return result;
 	}
-	
+
 	public void clickLoginLink() {
 		try {
 			loginLink.click();
